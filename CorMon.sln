@@ -3,17 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.Web", "CorMon.Web\CorMon.Web.csproj", "{9580FF16-1506-45EB-84A3-D5B8F41C1037}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web", "CorMon.Web\CorMon.Web.csproj", "{9580FF16-1506-45EB-84A3-D5B8F41C1037}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.Application", "CorMon.Application\CorMon.Application.csproj", "{184CE80B-F843-47B2-8ABA-445A866E061F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Application", "CorMon.Application\CorMon.Application.csproj", "{184CE80B-F843-47B2-8ABA-445A866E061F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.Core", "CorMon.Core\CorMon.Core.csproj", "{773F0099-1A7A-40AE-A764-6C1CF08E56DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Core", "CorMon.Core\CorMon.Core.csproj", "{773F0099-1A7A-40AE-A764-6C1CF08E56DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.Infrastructure", "CorMon.Infrastructure\CorMon.Infrastructure.csproj", "{242D4665-8C03-4DCA-AE55-400039C5E1D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Infrastructure", "CorMon.Infrastructure\CorMon.Infrastructure.csproj", "{242D4665-8C03-4DCA-AE55-400039C5E1D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.Resource", "CorMon.Resource\CorMon.Resource.csproj", "{337DC0B1-BFD7-4D40-A30E-6AE9109F7577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Resource", "CorMon.Resource\CorMon.Resource.csproj", "{337DC0B1-BFD7-4D40-A30E-6AE9109F7577}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.IocConfig", "CorMon.IocConfig\CorMon.IocConfig.csproj", "{F8D1DA8B-5BE2-4FE8-A2D7-F1ADD3868F4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.IocConfig", "CorMon.IocConfig\CorMon.IocConfig.csproj", "{F8D1DA8B-5BE2-4FE8-A2D7-F1ADD3868F4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.Application.Tests", "CorMon.Application.Tests\CorMon.Application.Tests.csproj", "{8AEAE485-24B5-44B3-B824-8044EC891FB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.Web.MVC.Tests", "CorMon.Web.MVC.Tests\CorMon.Web.MVC.Tests.csproj", "{82D0BEE8-A084-4E63-A92F-84A788A7E01B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{14E82702-68C1-4585-A5B3-783A8EB8E6A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{85F9EA2C-4F75-4388-A56A-BB689C226886}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{500772FC-BE27-4D64-A058-77DBB2B8A945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +55,27 @@ Global
 		{F8D1DA8B-5BE2-4FE8-A2D7-F1ADD3868F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8D1DA8B-5BE2-4FE8-A2D7-F1ADD3868F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8D1DA8B-5BE2-4FE8-A2D7-F1ADD3868F4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AEAE485-24B5-44B3-B824-8044EC891FB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AEAE485-24B5-44B3-B824-8044EC891FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AEAE485-24B5-44B3-B824-8044EC891FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AEAE485-24B5-44B3-B824-8044EC891FB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82D0BEE8-A084-4E63-A92F-84A788A7E01B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82D0BEE8-A084-4E63-A92F-84A788A7E01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82D0BEE8-A084-4E63-A92F-84A788A7E01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82D0BEE8-A084-4E63-A92F-84A788A7E01B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9580FF16-1506-45EB-84A3-D5B8F41C1037} = {85F9EA2C-4F75-4388-A56A-BB689C226886}
+		{184CE80B-F843-47B2-8ABA-445A866E061F} = {14E82702-68C1-4585-A5B3-783A8EB8E6A0}
+		{773F0099-1A7A-40AE-A764-6C1CF08E56DA} = {14E82702-68C1-4585-A5B3-783A8EB8E6A0}
+		{242D4665-8C03-4DCA-AE55-400039C5E1D3} = {14E82702-68C1-4585-A5B3-783A8EB8E6A0}
+		{337DC0B1-BFD7-4D40-A30E-6AE9109F7577} = {14E82702-68C1-4585-A5B3-783A8EB8E6A0}
+		{F8D1DA8B-5BE2-4FE8-A2D7-F1ADD3868F4B} = {14E82702-68C1-4585-A5B3-783A8EB8E6A0}
+		{8AEAE485-24B5-44B3-B824-8044EC891FB0} = {500772FC-BE27-4D64-A058-77DBB2B8A945}
+		{82D0BEE8-A084-4E63-A92F-84A788A7E01B} = {500772FC-BE27-4D64-A058-77DBB2B8A945}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1AA7C160-88A3-4F7E-9632-671246E2A6EC}

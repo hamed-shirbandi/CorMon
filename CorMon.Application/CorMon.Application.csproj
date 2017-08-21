@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CorMon.Core\CorMon.Core.csproj" />
+    <ProjectReference Include="..\CorMon.Infrastructure\CorMon.Infrastructure.csproj" />
+    <ProjectReference Include="..\CorMon.Resource\CorMon.Resource.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -48,8 +48,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Admin\Controllers\PostsControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Public\Controllers\PostsControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

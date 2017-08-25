@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using StructureMap.AspNetCore;
 
 namespace CorMon.Web
 {
@@ -19,7 +20,8 @@ namespace CorMon.Web
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+            .UseStructureMap()
+            .UseStartup<Startup>()
+            .Build();
     }
 }

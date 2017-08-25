@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using CorMon.Web.Models;
 using CorMon.Application.Posts;
 using CorMon.Application.Posts.Dto;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Http;
+using System.Globalization;
 
 namespace CorMon.Web.Controllers
 {
@@ -51,6 +54,19 @@ namespace CorMon.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IActionResult SetLanguage(string lang = "en-US")
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(new CultureInfo(lang))), new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+            return RedirectToAction("Index");
         }
 
         #endregion

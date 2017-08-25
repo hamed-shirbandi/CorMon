@@ -64,6 +64,8 @@ namespace CorMon.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute("areaRoute", "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

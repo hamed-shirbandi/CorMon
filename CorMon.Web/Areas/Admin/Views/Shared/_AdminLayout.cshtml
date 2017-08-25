@@ -1,0 +1,158 @@
+﻿@{
+    var defaultUserImageUrl = Url.Content("~/Content/public/img/defaults/no-image-user.jpg");
+    var defaultUserTileImageUrl = Url.Content("~/Content/public/img/defaults/no-image-user-thumbnail.jpg");
+}
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="~/Content/admin/css/main.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
+</head>
+<body class="">
+    <div class="wrapper">
+        <div class="wrapper-header">
+            <div class="wrapper-header-bar">
+                <ul class="nav-bar is-right">
+                    <li>
+                        <a role="button" data-toggle="sidebar-open">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Avatar -->
+
+
+
+                <ul class="nav-bar is-left nav-profile">
+                    <li>
+                        <a class="nav-profile-toggle" role="button" data-toggle="dropdown">
+                            <i class="fa fa-caret-down"></i>
+                            <span>test</span>
+                            <!-- Avatar -->
+                            <img src="@(null ?? defaultUserImageUrl)" />
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action(action: "profile", controller: "users", values: new { Area = "admin", id =0 })">
+                                    پروفایل
+                                    <i class="si si-user"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action(action: "MySelf", controller: "settings", values: new { Area = "admin" })">
+                                    تنظیمات شخصی
+                                    <i class="si si-settings"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action(action: "logoff", controller: "account", values: new { Area = ""})">
+                                    خروج
+                                    <i class="si si-logout"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /Avatar -->
+
+                <ul class="nav-bar nav-quick">
+                        <li><a href="@Url.Action(action: "index", controller: "home", values: new { Area = ""})" target="_blank"><i class="si si-home"></i></a></li>
+                        <li><a href="@Url.Action(action: "create", controller: "posts", values: new { Area = "admin", postType ="" })"><i class="si si-pencil"></i></a></li>
+                        <li><a href="@Url.Action(action: "index", controller: "users", values: new { Area = "admin" })"><i class="si si-users"></i></a></li>
+                        <li><a href="@Url.Action(action: "index", controller: "filemanager", values: new { Area = "admin"})"><i class="si si-folder"></i></a></li>
+                        <li><a href="@Url.Action(action: "Index", controller: "statistic", values: new { Area = "admin"})"><i class="si si-bar-chart"></i></a></li>
+                        <li><a href="@Url.Action(action: "index", controller: "settings", values: new { Area = "admin" })"><i class="si si-settings"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /wrapper-header -->
+        <div class="wrapper-sidebar">
+            <a role="button" data-toggle="sidebar-close">
+                <i class="si si-close"></i>
+            </a>
+            <div id="sidebar-scroll">
+                <div class="sidebar">
+                    <div class="sidebar-header">
+                        <img src="~/Content/admin/img/logo/cmc-logo.png" />
+                    </div>
+                    <div class="sidebar-content">
+                        <ul class="nav-main">
+                            <li>
+                                <a class="nav-main-dashboard" href="@Url.Action(action: "index", controller: "dashboard", values: new { Area = "admin"})">
+                                    <span class="si si-speedometer"></span>
+                                </a>
+                            </li>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" role="button">
+                                        <span class="si si-pencil"></span>
+                                        مطالب
+                                    </a>
+                                    <ul class="sidebar__nav__sub">
+                                            <li><a href="@Url.Action(action: "create", controller: "posts", values: new { Area = "admin", postType ="" })">مطلب جدید</a></li>
+                                            <li><a href="@Url.Action(action: "index", controller: "posts", values: new { Area = "admin", postType ="" })">همه مطالب</a></li>
+                                            <li><a href="@Url.Action(action: "index", controller: "posts", values: new { Area = "admin", trashState ="", postType = "" })">زباله دان</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" role="button">
+                                        <span class="si si-list"></span>
+                                        گروه ها
+                                    </a>
+                                    <ul class="sidebar__nav__sub">
+                                            <li><a href="@Url.Action(action: "index", controller: "Taxonomy", values: new { Area = "admin", type ="", entity = "" })">مطالب</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" role="button">
+                                        <span class="si si-tag"></span>
+                                        برچسب ها
+                                    </a>
+                                    <ul class="sidebar__nav__sub">
+                                            <li><a href="@Url.Action(action: "index", controller: "Taxonomy", values: new { Area = "admin", type = "", entity = "" })">مطالب</a></li>
+                                    </ul>
+                                </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar -->
+            </div>
+            <!-- /sidebar-scroll -->
+        </div>
+        <!-- /wrapper-sidebar -->
+        <div class="wrapper-inner">
+            <div class="wrapper-content">
+                <!--info block-->
+                @RenderSection("InfoBlock", required: false)
+                <!--/info block-->
+                @RenderBody()
+                <!-- ajax loading -->
+                <div class="global-ajax-loading" id="global-ajax-loading"></div>
+                <!-- /ajax loading -->
+            </div>
+            <!-- /wrapper-content -->
+        </div>
+        <!-- /wrapper-inner -->
+    </div>
+    <!-- /wrapper -->
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/scripts/public/vendors/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/scripts/admin/core/cormon.core.js"></script>
+    <script src="~/scripts/admin/app/cormon.app.js"></script>
+
+    @RenderSection("Scripts", required: false)
+    <script>
+        (function ($) {
+            $('.block-scroll').slimscroll({
+                height: $(this).find('.block-content').height()
+            });
+
+            $("#global-ajax-loading").height($(".wrapper-content").height());
+        })(jQuery);
+    </script>
+
+</body>
+</html>

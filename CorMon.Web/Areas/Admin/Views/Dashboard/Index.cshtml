@@ -1,0 +1,62 @@
+﻿@*@model Lezan.Cms.Engine.Application.ViewModels.DashBoardModel*@
+@{
+    ViewBag.Title = "میز کار";
+    var defaultPostTileImageUrl = Url.Content("~/Content/public/img/defaults/no-image-post-thumbnail.jpg");
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="grid-content">
+    <div class="grid-25 tablet-grid-50 mobile-grid-100">
+        <div class="stat-tiles color-1">
+            <div class="stat-tiles-body">
+                <div class="stat-icon">
+                    <i class="si si-users"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="number">12</div>
+                    <div class="desc">کل کاربران</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-25 tablet-grid-50 mobile-grid-100">
+        <div class="stat-tiles color-2">
+            <div class="stat-tiles-body">
+                <div class="stat-icon">
+                    <i class="si si-pencil"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="number">33</div>
+                    <div class="desc">  نظرات</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-25 tablet-grid-50 mobile-grid-100">
+        <div class="stat-tiles color-3">
+            <div class="stat-tiles-body">
+                <div class="stat-icon">
+                    <i class="si si-bubbles"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="number">528</div>
+                    <div class="desc"> مطالب</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-25 tablet-grid-50 mobile-grid-100">
+        <div class="stat-tiles color-4">
+            <div class="stat-tiles-body">
+                <div class="stat-icon">
+                    <i class="si si-eye"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="number">225</div>
+                    <div class="desc">تعداد بازدید</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

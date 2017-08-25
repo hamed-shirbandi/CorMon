@@ -22,13 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Views\Shared\" />
-    <Folder Include="wwwroot\admin\img\Loading\" />
-    <Folder Include="wwwroot\public\fonts\" />
-    <Folder Include="wwwroot\public\vendors\" />
-    <Folder Include="wwwroot\site\images\favicon\" />
-    <Folder Include="wwwroot\site\images\portfolio\" />
+    <Folder Include="wwwroot\content\admin\img\Loading\" />
+    <Folder Include="wwwroot\content\public\fonts\" />
+    <Folder Include="wwwroot\content\public\vendors\" />
+    <Folder Include="wwwroot\content\site\images\favicon\" />
+    <Folder Include="wwwroot\content\site\images\portfolio\" />
   </ItemGroup>
 
 </Project>

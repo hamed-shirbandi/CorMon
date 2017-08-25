@@ -9,6 +9,8 @@ namespace CorMon.Application.Posts
 {
    public interface IPostService
     {
+        Task<PostInput> GetToUpdate(string id);
+        Task<PostOutput> Get(string id);
         Task<PostJsonResult> InsertAsync(PostInput input);
         Task<IEnumerable<PostOutput>> SearchAsync(string  term);
     }

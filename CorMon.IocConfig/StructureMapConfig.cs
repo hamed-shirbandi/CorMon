@@ -1,4 +1,5 @@
 ﻿using CorMon.Application.Posts;
+using CorMon.Application.Users;
 using CorMon.Core.Data;
 using CorMon.Infrastructure.DbContext;
 using CorMon.Infrastructure.Repositories;
@@ -20,7 +21,10 @@ namespace CorMon.IocConfig
                 config.For<IPostRepository>().Use<PostRepository>();
                 config.For<IMongoDbContext>().Use<MongoDbContext>();
                 config.For<IMongoClient>().Use<MongoClient>();
+                config.For<IUserService>().Use<UserService>();
+                config.For<IUserRepository>().Use<UserRepository>();
             });
+            
 
             container.Populate(services);
 

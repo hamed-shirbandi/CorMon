@@ -1,5 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<CorMon.Application.Posts.Dto.PostOutput>
 
-<h2>index</h2>
+@{
+    ViewBag.title = ViewBag.ApplicationName;
+    ViewBag.description = ViewBag.ApplicationDescription;
+    ViewBag.allowRobots = RobotsState.Global;
+    ViewBag.keywords = ViewBag.ApplicationKeywords;
+    //ViewBag.cacheControlType = CacheControlType._private;
+}
+<div class="row">
+    <div class="sub-title">
+        <h2 class="main-color">آخرین مقالات و یادداشت های من</h2>
+    </div>
+
+    <div class="col-md-12 content-page">
+        <input type="hidden" id="search-term" value="@ViewBag.term" />
+        <input type="hidden" id="search-categoryId" value="@ViewBag.categoryId" />
+        <input type="hidden" id="search-tagId" value="@ViewBag.tagId" />
+        <div id="show-more-post">
+            @Html.Partial("_ArticlesList", Model)
+        </div>
+
+        @if (Model.Count() > 0)
+        {
+            <div class="col-md-12 text-center">
+                <a href="javascript:void(0)" id="load-more-post" class="load-more-button main-color">بیشتر</a>
+                <div id="post-end-message"></div>
+            </div>
+        }
+    </div>
+    
+
+</div>
+
+

@@ -9,7 +9,8 @@ namespace CorMon.Application.Posts.Dto
 {
    public class PostOutput
     {
-       
+        public string Id { get; set; }
+
         [Display(Name = "Post_Author", ResourceType = typeof(Metadata))]
         public string Author { get; set; }
         public string UserId { get; set; }

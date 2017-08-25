@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CorMon.Application.Posts.Dto.PostOutput>
+@{
+    var defaultPostTileImageUrl = Url.Content("~/Content/public/img/defaults/no-image-post-thumbnail.jpg");
+
+}
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-info">
+        هیچ نوشته ای وجود ندارد
+    </div>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        var hasMore = (item.Content != null && item.Content.IndexOf("--more--") > -1);
+
+        <div class="col-md-12 bottom-bordered blog-post" @if (ViewBag.IsAjaxRequest == true) { <text> hidden</text> }>
+            <div class="post-title">
+                <a href="@Url.Action(action: "Article", controller: "blog", values: new { id = item.Id, title = item.UrlTitle })">
+                    <h1>
+                        @item.Title
+                    </h1>
+                </a>
+            </div>
+            <div class="post-info">
+                <span>
+                    <span class="cat-meta-info margin-left-20">
+                        <span class="glyphicon glyphicon-stats">
+                            <span class="cat-meta-info">@item.PostLevel</span>
+                        </span>
+                    </span>
+                    <span class="cat-meta-info margin-left-20">
+                        <span class="glyphicon glyphicon-calendar">
+                            <span class="cat-meta-info">@item.PublishDateTime</span>
+                        </span>
+                    </span>
+                    <span class="cat-meta-info">
+                        <span class="glyphicon glyphicon-list">
+                            @*@foreach (var category in item.CategoriesList)
+                            {
+                                @Html.ActionLink(linkText: category.Name, actionName: "articles", controllerName: "blog", htmlAttributes: new { @class = "main-color post-category", style = "" }, routeValues: new { Area = "", taxName = category.UrlTitle, taxId = category.Id, taxType = TaxType.Category })
+                            }*@
+                        </span>
+                    </span>
+                </span>
+            </div>
+            @if (hasMore)
+            {
+                <p> @Html.Raw(item.Content.Substring(0, item.Content.IndexOf("--more--")))</p>
+            }
+            else
+            {
+                <p>  @Html.Raw(item.Content)</p>
+            }
+            <a class="button button-style button-anim fa fa-long-arrow-right pull-left" href="@Url.Action(action: "Article", controller: "blog", values: new { id = item.Id, title = item.UrlTitle })">
+                <span>ادامه مقاله</span>
+            </a>
+            <div class="clearfix"></div>
+        </div>
+
+    }
+}
+

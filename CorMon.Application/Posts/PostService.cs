@@ -41,7 +41,7 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public async Task<PostInput> GetToUpdate(string id)
+        public async Task<PostInput> GetToUpdateAsync(string id)
         {
             var post = await _postRepository.GetAsync(id);
             if (post == null)
@@ -73,7 +73,7 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public async Task<PostOutput> Get(string id)
+        public async Task<PostOutput> GetAsync(string id)
         {
             var post = await _postRepository.GetAsync(id);
             if (post==null || post.IsDeleted)

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using System.Globalization;
+using CorMon.Application.Posts;
 
 namespace CorMon.Web.Controllers
 {
@@ -12,17 +13,21 @@ namespace CorMon.Web.Controllers
     {
         #region Fields
 
+        private readonly IPostService _postService;
 
         #endregion
+
 
         #region Ctor
 
-        public HomeController()
+        public HomeController(IPostService postService)
         {
-          
+            _postService = postService;
         }
 
+
         #endregion
+
 
         #region Methods
 
@@ -34,8 +39,9 @@ namespace CorMon.Web.Controllers
         /// </summary>
         public async Task<IActionResult> Index()
         {
-    
-            return View();
+            var posts = await _postService.SearchAsync(term: "");
+
+            return View(posts);
         }
 
 

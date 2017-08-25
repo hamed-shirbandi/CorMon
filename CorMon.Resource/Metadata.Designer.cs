@@ -88,6 +88,78 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Draft.
+        /// </summary>
+        public static string Enum_PublishStatus_Draft {
+            get {
+                return ResourceManager.GetString("Enum_PublishStatus_Draft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publish.
+        /// </summary>
+        public static string Enum_PublishStatus_Publish {
+            get {
+                return ResourceManager.GetString("Enum_PublishStatus_Publish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Global.
+        /// </summary>
+        public static string Enum_RobotsState_Global {
+            get {
+                return ResourceManager.GetString("Enum_RobotsState_Global", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Follow.
+        /// </summary>
+        public static string Enum_RobotsState_NoFollow {
+            get {
+                return ResourceManager.GetString("Enum_RobotsState_NoFollow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Follow - No Index.
+        /// </summary>
+        public static string Enum_RobotsState_NoFollowNoIndex {
+            get {
+                return ResourceManager.GetString("Enum_RobotsState_NoFollowNoIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Index.
+        /// </summary>
+        public static string Enum_RobotsState_NoIndex {
+            get {
+                return ResourceManager.GetString("Enum_RobotsState_NoIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asc.
+        /// </summary>
+        public static string Enum_SortOrder_Asc {
+            get {
+                return ResourceManager.GetString("Enum_SortOrder_Asc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desc.
+        /// </summary>
+        public static string Enum_SortOrder_Desc {
+            get {
+                return ResourceManager.GetString("Enum_SortOrder_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post_Author.
         /// </summary>
         public static string Post_Author {
@@ -115,6 +187,96 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meta Description.
+        /// </summary>
+        public static string Post_MetaDescription {
+            get {
+                return ResourceManager.GetString("Post_MetaDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meta KeyWords.
+        /// </summary>
+        public static string Post_MetaKeyWords {
+            get {
+                return ResourceManager.GetString("Post_MetaKeyWords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post Level.
+        /// </summary>
+        public static string Post_PostLevel {
+            get {
+                return ResourceManager.GetString("Post_PostLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post Level Required.
+        /// </summary>
+        public static string Post_PostLevel_Required {
+            get {
+                return ResourceManager.GetString("Post_PostLevel_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publish DateTime.
+        /// </summary>
+        public static string Post_PublishDateTime {
+            get {
+                return ResourceManager.GetString("Post_PublishDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publish DateTime Required.
+        /// </summary>
+        public static string Post_PublishDateTime_Required {
+            get {
+                return ResourceManager.GetString("Post_PublishDateTime_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publish Status.
+        /// </summary>
+        public static string Post_PublishStatus {
+            get {
+                return ResourceManager.GetString("Post_PublishStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publish Status Required.
+        /// </summary>
+        public static string Post_PublishStatus_Required {
+            get {
+                return ResourceManager.GetString("Post_PublishStatus_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Robots State.
+        /// </summary>
+        public static string Post_RobotsState {
+            get {
+                return ResourceManager.GetString("Post_RobotsState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Robots State Required.
+        /// </summary>
+        public static string Post_RobotsState_Required {
+            get {
+                return ResourceManager.GetString("Post_RobotsState_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string Post_Title {
@@ -129,6 +291,15 @@ namespace CorMon.Resource {
         public static string Post_Title_Required {
             get {
                 return ResourceManager.GetString("Post_Title_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Url Title.
+        /// </summary>
+        public static string Post_UrlTitle {
+            get {
+                return ResourceManager.GetString("Post_UrlTitle", resourceCulture);
             }
         }
     }

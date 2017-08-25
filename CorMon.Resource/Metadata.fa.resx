@@ -159,10 +159,43 @@
   <data name="Post_Content_Required" xml:space="preserve">
     <value>محتوای مطلب را وارد کنید</value>
   </data>
+  <data name="Post_MetaDescription" xml:space="preserve">
+    <value>توصیف</value>
+  </data>
+  <data name="Post_MetaKeyWords" xml:space="preserve">
+    <value>کلیدواژه ها</value>
+  </data>
+  <data name="Post_PostLevel" xml:space="preserve">
+    <value>سطح مطلب</value>
+  </data>
+  <data name="Post_PostLevel_Required" xml:space="preserve">
+    <value>سطح مطلب را مشخص کنید</value>
+  </data>
+  <data name="Post_PublishDateTime" xml:space="preserve">
+    <value>تاریخ انتشار</value>
+  </data>
+  <data name="Post_PublishDateTime_Required" xml:space="preserve">
+    <value>تاریخ انتشار را وارد کنید</value>
+  </data>
+  <data name="Post_PublishStatus" xml:space="preserve">
+    <value>وضعیت انتشار</value>
+  </data>
+  <data name="Post_PublishStatus_Required" xml:space="preserve">
+    <value>وضعیت انتشار را مشخص کنید</value>
+  </data>
+  <data name="Post_RobotsState" xml:space="preserve">
+    <value>وضعیت موتورهای جستجو</value>
+  </data>
+  <data name="Post_RobotsState_Required" xml:space="preserve">
+    <value>وضعیت موتورهای جستجو را مشخص کنید</value>
+  </data>
   <data name="Post_Title" xml:space="preserve">
     <value>عنوان</value>
   </data>
   <data name="Post_Title_Required" xml:space="preserve">
     <value>عنوان مطلب را وارد کنید</value>
+  </data>
+  <data name="Post_UrlTitle" xml:space="preserve">
+    <value>نامک</value>
   </data>
 </root>

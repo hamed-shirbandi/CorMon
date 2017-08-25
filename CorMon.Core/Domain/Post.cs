@@ -1,7 +1,5 @@
 ﻿using CorMon.Core.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CorMon.Core.Domain
 {
@@ -127,14 +125,7 @@ namespace CorMon.Core.Domain
 
 
 
-        
-        /// <summary>
-        /// تعریف خود ارجاعی
-        /// </summary>
-        public Post ParentPage { get; set; }
-
-
-        
+   
 
         /// <summary>
         /// کلید  کاربر

@@ -126,6 +126,30 @@
   <data name="Enum_PostLevel_Typical" xml:space="preserve">
     <value>Typical</value>
   </data>
+  <data name="Enum_PublishStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="Enum_PublishStatus_Publish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="Enum_RobotsState_Global" xml:space="preserve">
+    <value>Global</value>
+  </data>
+  <data name="Enum_RobotsState_NoFollow" xml:space="preserve">
+    <value>No Follow</value>
+  </data>
+  <data name="Enum_RobotsState_NoFollowNoIndex" xml:space="preserve">
+    <value>No Follow - No Index</value>
+  </data>
+  <data name="Enum_RobotsState_NoIndex" xml:space="preserve">
+    <value>No Index</value>
+  </data>
+  <data name="Enum_SortOrder_Asc" xml:space="preserve">
+    <value>Asc</value>
+  </data>
+  <data name="Enum_SortOrder_Desc" xml:space="preserve">
+    <value>Desc</value>
+  </data>
   <data name="Post_Author" xml:space="preserve">
     <value>Post_Author</value>
   </data>
@@ -135,10 +159,43 @@
   <data name="Post_Content_Required" xml:space="preserve">
     <value>Post Content Required</value>
   </data>
+  <data name="Post_MetaDescription" xml:space="preserve">
+    <value>Meta Description</value>
+  </data>
+  <data name="Post_MetaKeyWords" xml:space="preserve">
+    <value>Meta KeyWords</value>
+  </data>
+  <data name="Post_PostLevel" xml:space="preserve">
+    <value>Post Level</value>
+  </data>
+  <data name="Post_PostLevel_Required" xml:space="preserve">
+    <value>Post Level Required</value>
+  </data>
+  <data name="Post_PublishDateTime" xml:space="preserve">
+    <value>Publish DateTime</value>
+  </data>
+  <data name="Post_PublishDateTime_Required" xml:space="preserve">
+    <value>Publish DateTime Required</value>
+  </data>
+  <data name="Post_PublishStatus" xml:space="preserve">
+    <value>Publish Status</value>
+  </data>
+  <data name="Post_PublishStatus_Required" xml:space="preserve">
+    <value>Publish Status Required</value>
+  </data>
+  <data name="Post_RobotsState" xml:space="preserve">
+    <value>Robots State</value>
+  </data>
+  <data name="Post_RobotsState_Required" xml:space="preserve">
+    <value>Robots State Required</value>
+  </data>
   <data name="Post_Title" xml:space="preserve">
     <value>Title</value>
   </data>
   <data name="Post_Title_Required" xml:space="preserve">
     <value>Post Title Required</value>
+  </data>
+  <data name="Post_UrlTitle" xml:space="preserve">
+    <value>Url Title</value>
   </data>
 </root>

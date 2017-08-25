@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Vazir';
+    font-weight: normal;
+    src: url("/Content/site/fonts/Vazir-FD.woff") format("woff");
+}
+
+@font-face {
+    font-family: 'Vazir';
+    font-weight: bold;
+    src: url("/Content/site/fonts/Vazir-Bold-FD.woff") format("woff");
+}
+
+html, body, p, h1, h2, h3, h4, h5, a, span {
+    font-family: 'Vazir', Tahoma, sans-serif;
+}
+
+.bottom-bordered{
+     border-bottom: 1px dashed #cccccc;
+}
+.navbar-default {
+    background: #20231f;
+}
+
+.page-body {
+    z-index: 99;
+    margin-top: 10px;
+}
+
+.about-fixed {
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background: #1abc9c;
+}
+
+.dark-input {
+    background: #454343;
+    color: whitesmoke;
+    border: 0px solid;
+    border-radius: 25px;
+}
+
+.black-color{
+      color:black;
+}
+.cat-meta{
+ display:block;
+
+}
+.cat-meta-info{
+    color:black;
+    font-size:12px;
+    font-family:"Vazir";
+}
+
+.min-height-20{
+    min-height:60px;
+}
+.margin-right-20{
+    margin-right:20px;
+}
+.margin-left-20{
+    margin-left:20px;
+}
+.post-category{
+    margin-left:15px;
+}
+/*.my-pic{
+    border-bottom:10px solid #1abc9c;
+}*/
+
+.button:hover{
+    color:#1abc9c;
+}
+.main-color:hover{
+    color:#1abc9c;
+}
+.input-group-btn:hover{
+    background-color:#1abc9c !important;
+}

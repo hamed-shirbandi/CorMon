@@ -8,7 +8,7 @@ using System.Globalization;
 
 namespace CorMon.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         #region Fields
 

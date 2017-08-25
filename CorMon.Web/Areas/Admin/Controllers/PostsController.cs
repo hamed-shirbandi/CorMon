@@ -6,9 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using CorMon.Application.Posts.Dto;
 using CorMon.Application.Posts;
 
-namespace CorMon.Web.Controllers
+namespace CorMon.Web.Areas.Admin.Controllers
 {
-    public class PostsController : Controller
+    [Area("Admin")]
+    public class PostsController : BaseController
     {
         #region Fields
 
@@ -65,6 +66,7 @@ namespace CorMon.Web.Controllers
                 return View(input);
             }
 
+            input.UserId = "599b295c03a89924849735b3";
             await _postService.InsertAsync(input);
 
             return RedirectToAction("index");

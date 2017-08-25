@@ -117,6 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Enum_PostLevel_Advance" xml:space="preserve">
+    <value>پیشرفته</value>
+  </data>
+  <data name="Enum_PostLevel_Intro" xml:space="preserve">
+    <value>مقدماتی</value>
+  </data>
+  <data name="Enum_PostLevel_Typical" xml:space="preserve">
+    <value>متوسط</value>
+  </data>
+  <data name="Enum_PublishStatus_Draft" xml:space="preserve">
+    <value>پیش نویس</value>
+  </data>
+  <data name="Enum_PublishStatus_Publish" xml:space="preserve">
+    <value>منتشر</value>
+  </data>
+  <data name="Enum_RobotsState_Global" xml:space="preserve">
+    <value>ایندکس محتوا و دنبال کردن لینک ها</value>
+  </data>
+  <data name="Enum_RobotsState_NoFollow" xml:space="preserve">
+    <value>فقط ایندکس کردن محتوا</value>
+  </data>
+  <data name="Enum_RobotsState_NoFollowNoIndex" xml:space="preserve">
+    <value>عدم ایندکس و دنبال کردن لینک ها</value>
+  </data>
+  <data name="Enum_RobotsState_NoIndex" xml:space="preserve">
+    <value>فقط دنبال کردن لینک ها</value>
+  </data>
+  <data name="Enum_SortOrder_Asc" xml:space="preserve">
+    <value>صعودی</value>
+  </data>
+  <data name="Enum_SortOrder_Desc" xml:space="preserve">
+    <value>نزولی</value>
+  </data>
   <data name="Post_Author" xml:space="preserve">
     <value>نویسنده</value>
   </data>

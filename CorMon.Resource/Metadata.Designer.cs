@@ -61,6 +61,33 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advance.
+        /// </summary>
+        public static string Enum_PostLevel_Advance {
+            get {
+                return ResourceManager.GetString("Enum_PostLevel_Advance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intro.
+        /// </summary>
+        public static string Enum_PostLevel_Intro {
+            get {
+                return ResourceManager.GetString("Enum_PostLevel_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Typical.
+        /// </summary>
+        public static string Enum_PostLevel_Typical {
+            get {
+                return ResourceManager.GetString("Enum_PostLevel_Typical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post_Author.
         /// </summary>
         public static string Post_Author {

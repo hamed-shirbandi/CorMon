@@ -8,4 +8,12 @@
     <PackageReference Include="mongocsharpdriver" Version="2.4.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CorMon.Resource\CorMon.Resource.csproj" />
+  </ItemGroup>
+
 </Project>

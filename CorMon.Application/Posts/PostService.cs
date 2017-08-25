@@ -6,6 +6,9 @@ using CorMon.Application.Posts.Dto;
 using CorMon.Core.Data;
 using CorMon.Core.Domain;
 using System.Linq;
+using CorMon.Core.JsonModels;
+using CorMon.Core.Extensions;
+using CorMon.Resource;
 
 namespace CorMon.Application.Posts
 {
@@ -36,15 +39,38 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public async Task InsertAsync(PostInput input)
+        public async Task<PostJsonResult> InsertAsync(PostInput input)
         {
+
+            //بررسی یکتا بودن عنوان مطلب
+            var existPost = await _postRepository.GetAsync( input.Title.Trim(), input.PostType);
+            if (existPost != null)
+                return new PostJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
+
+            //بررسی نامک -- url friendly
+            input.UrlTitle = input.UrlTitle.IsNullOrEmptyOrWhiteSpace() ? input.Title.GenerateUrlTitle() : input.UrlTitle.GenerateUrlTitle();
+
             var post = new Post
             {
                 Title=input.Title,
-                Content=input.Content
+                Content=input.Content,
+                CreateDateTime=DateTime.Now,
+                ModifiedDate=DateTime.Now,
+                PostLevel=input.PostLevel,
+                PostType=input.PostType,
+                MetaDescription=input.MetaDescription,
+                MetaKeyWords=input.MetaKeyWords,
+                PublishDateTime=input.PublishDateTime,
+                PublishStatus=input.PublishStatus,
+                RobotsState=input.RobotsState,
+                UrlTitle=input.UrlTitle,
+                ThumbnailTileUrl=input.ThumbnailTileUrl,
+                ThumbnailUrl=input.ThumbnailUrl,
+                UserId=input.UserId,
             };
 
-           await _postRepository.InsertAsync(post);
+            var savedPost= await _postRepository.InsertAsync(post);
+            return new PostJsonResult { result=true,id=savedPost.Id,message=Messages.Post_InsertOne_Success };
         }
 
 

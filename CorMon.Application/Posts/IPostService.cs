@@ -1,4 +1,5 @@
 ﻿using CorMon.Application.Posts.Dto;
+using CorMon.Core.JsonModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ namespace CorMon.Application.Posts
 {
    public interface IPostService
     {
-        Task InsertAsync(PostInput input);
+        Task<PostJsonResult> InsertAsync(PostInput input);
         Task<IEnumerable<PostOutput>> SearchAsync(string  term);
     }
 }

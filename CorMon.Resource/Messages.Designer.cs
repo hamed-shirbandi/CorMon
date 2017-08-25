@@ -59,5 +59,23 @@ namespace CorMon.Resource {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post InsertOne Success.
+        /// </summary>
+        public static string Post_InsertOne_Success {
+            get {
+                return ResourceManager.GetString("Post_InsertOne_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post Title Already Exist.
+        /// </summary>
+        public static string Post_Title_Already_Exist {
+            get {
+                return ResourceManager.GetString("Post_Title_Already_Exist", resourceCulture);
+            }
+        }
     }
 }

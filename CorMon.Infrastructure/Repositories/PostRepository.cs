@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CorMon.Infrastructure.DbContext;
 using MongoDB.Driver;
 using System.Linq;
+using CorMon.Core.Enums;
 
 namespace CorMon.Infrastructure.Repositories
 {
@@ -42,6 +43,16 @@ namespace CorMon.Infrastructure.Repositories
             return await _posts.Find(e => e.Id == id).FirstOrDefaultAsync();
         }
 
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<Post> GetAsync(string title, PostType postType)
+        {
+            return await _posts.Find(p => p.Title == title && p.PostType==postType).FirstOrDefaultAsync();
+        }
 
 
 

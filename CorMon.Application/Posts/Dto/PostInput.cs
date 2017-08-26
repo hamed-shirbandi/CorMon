@@ -9,6 +9,10 @@ namespace CorMon.Application.Posts.Dto
 {
    public class PostInput
     {
+
+        public string Id { get; set; }
+
+
         [Display(Name = "Post_Title", ResourceType =typeof(Metadata))]
         [Required(ErrorMessageResourceName = "Post_Title_Required", ErrorMessageResourceType =typeof(Metadata))]
         public string Title { get; set; }

@@ -51,6 +51,8 @@ namespace CorMon.Application.Posts
 
             return new PostInput
             {
+                
+                Id = post.Id,
                 Title = post.Title,
                 Content = post.Content,
                 PostLevel = post.PostLevel,
@@ -89,6 +91,7 @@ namespace CorMon.Application.Posts
 
             return new PostOutput
             {
+                Id = post.Id,
                 Title = post.Title,
                 Content = post.Content,
                 Author = user.DisplayName,
@@ -158,7 +161,8 @@ namespace CorMon.Application.Posts
             return posts.Select(post => 
             new PostOutput
             {
-                Title=post.Title,
+                Id = post.Id,
+                Title = post.Title,
                 Content=post.Content,
                 // Author=post.User.DisplayName,
                 PostLevel = post.PostLevel,

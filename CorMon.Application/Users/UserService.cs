@@ -52,6 +52,7 @@ namespace CorMon.Application.Users
                 UserName = user.UserName,
                 Email = user.Email,
                 Phone = user.Phone,
+                About = user.About,
 
             };
         }

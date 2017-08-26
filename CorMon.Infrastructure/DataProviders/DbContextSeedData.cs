@@ -22,10 +22,11 @@ namespace CorMon.Infrastructure.DataProviders
                 {
                     var user = new User
                     {
-                        DisplayName = "hamed shirbandi",
+                        DisplayName = "حامد شیربندی",
                         Email = "hamed.shirbandi@gmail.com",
                         Phone = "0210000000",
                         UserName = "hamed99",
+                        About = "اگر در مورد این نوشته سوال یا ابهامی وجود دارد میتوانید به ایمیل من ارسال کنید. البته در این مورد باید کمی صبور باشید. در آینده بخش نظرات اضافه خواهد شد.",
                         
                     };
 

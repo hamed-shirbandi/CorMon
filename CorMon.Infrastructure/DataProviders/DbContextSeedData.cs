@@ -1,8 +1,9 @@
 ﻿using CorMon.Core.Domain;
+using CorMon.Core.Enums;
 using CorMon.Infrastructure.DbContext;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
-
+using System;
 
 namespace CorMon.Infrastructure.DataProviders
 {
@@ -23,7 +24,8 @@ namespace CorMon.Infrastructure.DataProviders
                         DisplayName = "hamed shirbandi",
                         Email = "hamed.shirbandi@gmail.com",
                         Phone = "0210000000",
-                        UserName = "hamed99"
+                        UserName = "hamed99",
+                        
                     };
 
                     users.InsertOne(user);
@@ -31,9 +33,20 @@ namespace CorMon.Infrastructure.DataProviders
 
                     var post = new Post
                     {
-                        Title="hi core ! hi mongo !",
-                        Content="this is CorMon Project !",
-                        UserId = user.Id
+                        UserId = user.Id,
+                        Title = "لورم ایپسوم متن ساختگی با تولید سادگی",
+                        Content = "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
+                        CreateDateTime = DateTime.Now,
+                        ModifiedDateTime = DateTime.Now,
+                        PublishDateTime = DateTime.Now,
+                        MetaDescription = "لورم ایپسوم متن ساختگی با تولید سادگی",
+                        MetaKeyWords = "ایپسوم,ساختگی,تولید,سادگی",
+                        PostLevel = PostLevel.Intro,
+                        PostType = PostType.Article,
+                        PublishStatus = PublishStatus.Publish,
+                        RobotsState=RobotsState.Global,
+                        UrlTitle= "لورم-ایپسوم-متن-ساختگی-با-تولید-سادگی",
+                        
                     };
 
                     posts.InsertOne(post);

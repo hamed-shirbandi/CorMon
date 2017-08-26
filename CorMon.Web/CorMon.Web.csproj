@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Blog\" />
     <Folder Include="wwwroot\content\admin\img\Loading\" />
     <Folder Include="wwwroot\content\public\fonts\" />
     <Folder Include="wwwroot\content\public\vendors\" />

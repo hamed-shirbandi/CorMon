@@ -2,15 +2,16 @@
 
 @{
     //var loadInfoUrl = Url.Action(action: "SearchArticles", controller: "blog");
-    ViewBag.title = ViewBag.ApplicationName;
+    ViewBag.title = ViewBag.ApplicationName + " : " + "آخرین مقالات در " + @ViewBag.CategoryName;
     ViewBag.description = ViewBag.ApplicationDescription;
     ViewBag.allowRobots = RobotsState.Global;
     ViewBag.keywords = ViewBag.ApplicationKeywords;
     //ViewBag.cacheControlType = CacheControlType._private;
 }
+
 <div class="row">
     <div class="sub-title">
-        <h2 class="main-color">آخرین مقالات و یادداشت های من</h2>
+        <h2 class="main-color">آخرین مقالات در  @ViewBag.CategoryName</h2>
     </div>
 
     <div class="col-md-12 content-page">
@@ -29,8 +30,11 @@
             </div>
         }
     </div>
-    
 
 </div>
 
 
+@section Scripts
+{
+    
+}

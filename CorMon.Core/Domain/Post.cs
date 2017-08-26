@@ -46,7 +46,7 @@ namespace CorMon.Core.Domain
         /// <summary>
         /// تاریخ آخرین ویرایش مطلب
         /// </summary>
-        public DateTime ModifiedDate { get; set; }
+        public DateTime ModifiedDateTime { get; set; }
 
 
 

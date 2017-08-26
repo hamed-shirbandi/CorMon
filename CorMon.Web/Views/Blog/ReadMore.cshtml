@@ -1,0 +1,71 @@
+﻿@model PostOutput
+@{
+    var defaultUserImageUrl = Url.Content("~/Content/public/img/defaults/defaults/no-image-user.jpg");
+    var defaultUserTileImageUrl = Url.Content("~/Content/public/img/defaults/no-image-user-thumbnail.jpg");
+    var defaultPostImageUrl = Url.Content("~/Content/public/img/defaults/no-image-post.jpg");
+    var defaultPostTileImageUrl = Url.Content("~/Content/public/img/defaults/no-image-post-thumbnail.jpg");
+    var hasMore = (Model.Content != null && Model.Content.IndexOf("--more--") > -1);
+    ViewBag.title = Model.Title;
+    ViewBag.description = Model.MetaDescription;
+    ViewBag.allowRobots = Model.RobotsState;
+    ViewBag.keywords = Model.MetaKeyWords;
+    ViewBag.author = Model.Author;
+    ViewBag.lastmodified = Model.ModifiedDateTime;
+    ViewBag.expires = "never";
+    //ViewBag.cacheControlType = CacheControlType._private;
+}
+<div class="row">
+    <div class="col-md-12 content-page">
+        <div class="col-md-12 blog-post">
+            <div class="post-title">
+                <h1>@Model.Title</h1>
+            </div>
+            <div class="post-info">
+                <span>
+                    <span class="cat-meta-info margin-left-20">
+                        <span class="glyphicon glyphicon-calendar">
+                            <span class="cat-meta-info">@Model.PublishDateTime</span>
+                        </span>
+                    </span>
+                    <span class="cat-meta-info">
+                        <span class="glyphicon glyphicon-list">
+                            @*@foreach (var category in Model.CategoriesList)
+                            {
+                                @Html.ActionLink(linkText: category.Name, actionName: "articles", controllerName: "blog", htmlAttributes: new { @class = "main-color post-category", style = "" }, routeValues: new { Area = "", taxName = category.UrlTitle, taxId = category.Id, taxType = TaxType.Category })
+                            }*@
+                        </span>
+                    </span>
+                </span>
+            </div>
+            @if (hasMore)
+            {
+                <p>@Html.Raw(Model.Content.Replace("--more--", ""))</p>
+            }
+            else
+            {
+              <p>@Html.Raw(Model.Content)</p> 
+            }
+            <div class="about-author margin-top-70 margin-bottom-50">
+
+                <div class="picture">
+                    <a href="#">
+                        <img src="~/Content/site/images/testimonial/2.png" class="img-responsive" alt="وبلاگ شخصی حامد شیربندی">
+                    </a>
+                </div>
+
+                <div class="c-padding">
+                    <h3>نوشته شده توسط  <span class="main-color">حامد شیربندی</span></h3>
+                    <p>
+                        اگر در مورد این نوشته سوال یا ابهامی وجود دارد میتوانید به ایمیل من ارسال کنید. البته در این مورد باید کمی صبور باشید. در آینده بخش نظرات اضافه خواهد شد.
+                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+
+}

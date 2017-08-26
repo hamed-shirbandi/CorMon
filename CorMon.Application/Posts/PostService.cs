@@ -128,7 +128,7 @@ namespace CorMon.Application.Posts
                 Title=input.Title,
                 Content=input.Content,
                 CreateDateTime=DateTime.Now,
-                ModifiedDate=DateTime.Now,
+                ModifiedDateTime=DateTime.Now,
                 PostLevel=input.PostLevel,
                 PostType=input.PostType,
                 MetaDescription=input.MetaDescription,

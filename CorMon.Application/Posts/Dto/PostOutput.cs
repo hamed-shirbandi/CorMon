@@ -45,6 +45,7 @@ namespace CorMon.Application.Posts.Dto
 
         [Display(Name = "Post_PublishDateTime", ResourceType = typeof(Metadata))]
         public DateTime PublishDateTime { get; set; }
+        public DateTime ModifiedDateTime { get; set; }
 
         public string ThumbnailUrl { get; set; }
         public string ThumbnailTileUrl { get; set; }

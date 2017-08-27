@@ -47,9 +47,8 @@ namespace CorMon.Infrastructure.DataProviders
                             MetaDescription = "لورم ایپسوم متن ساختگی با تولید سادگی",
                             MetaKeyWords = "ایپسوم,ساختگی,تولید,سادگی",
                             PostLevel = PostLevel.Intro,
-                            PostType = PostType.Article,
                             PublishStatus = PublishStatus.Publish,
-                            RobotsState = RobotsState.Global,
+                            MetaRobots = RobotsState.Global,
                             UrlTitle = "لورم-ایپسوم-متن-ساختگی-با-تولید-سادگی",
 
                         };

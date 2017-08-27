@@ -9,8 +9,8 @@ namespace CorMon.Core.Data
 {
     public interface IPostRepository
     {
-        Task<Post> GetAsync(string id);
-        Task<Post> GetAsync(string title,PostType postType);
+        Task<Post> GetByIdAsync(string id);
+        Task<Post> GetByTitleAsync(string title);
         Task<IEnumerable<Post>> SearchAsync(string term);
         Task<Post> InsertAsync(Post post);
         Task InsertAsync(IEnumerable<Post> posts);

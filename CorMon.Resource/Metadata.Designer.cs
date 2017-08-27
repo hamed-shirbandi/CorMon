@@ -187,6 +187,15 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Post Create DateTime.
+        /// </summary>
+        public static string Post_CreateDateTime {
+            get {
+                return ResourceManager.GetString("Post_CreateDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Meta Description.
         /// </summary>
         public static string Post_MetaDescription {
@@ -201,6 +210,15 @@ namespace CorMon.Resource {
         public static string Post_MetaKeyWords {
             get {
                 return ResourceManager.GetString("Post_MetaKeyWords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post Modified DateTime.
+        /// </summary>
+        public static string Post_ModifiedDateTime {
+            get {
+                return ResourceManager.GetString("Post_ModifiedDateTime", resourceCulture);
             }
         }
         

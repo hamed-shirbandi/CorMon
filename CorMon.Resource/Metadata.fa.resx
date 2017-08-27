@@ -159,11 +159,17 @@
   <data name="Post_Content_Required" xml:space="preserve">
     <value>محتوای مطلب را وارد کنید</value>
   </data>
+  <data name="Post_CreateDateTime" xml:space="preserve">
+    <value>تاریخ ایجاد</value>
+  </data>
   <data name="Post_MetaDescription" xml:space="preserve">
     <value>توصیف</value>
   </data>
   <data name="Post_MetaKeyWords" xml:space="preserve">
     <value>کلیدواژه ها</value>
+  </data>
+  <data name="Post_ModifiedDateTime" xml:space="preserve">
+    <value>تاریخ ویرایش</value>
   </data>
   <data name="Post_PostLevel" xml:space="preserve">
     <value>سطح مطلب</value>

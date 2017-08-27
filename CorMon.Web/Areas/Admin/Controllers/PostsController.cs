@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CorMon.Application.Posts.Dto;
 using CorMon.Application.Posts;
+using CorMon.Core.Enums;
 
 namespace CorMon.Web.Areas.Admin.Controllers
 {
@@ -49,7 +50,17 @@ namespace CorMon.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            return View();
+            var model = new PostInput
+            {
+                ActionName= "Create",
+                CreateDateTime=DateTime.Now,
+                ModifiedDateTime=DateTime.Now,
+                PublishDateTime=DateTime.Now,
+                PublishStatus=PublishStatus.Draft,
+                MetaRobots= RobotsState.Global,
+
+            };
+            return View(model);
         }
 
 

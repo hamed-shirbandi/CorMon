@@ -1,0 +1,110 @@
+﻿@model PostInput
+@{
+    var defaultImgSrc = Url.Content("~/Content/public/img/defaults/no-image-post.jpg");
+    var editorPreLloader = Url.Content("~/Content/public/img/defaults/no-image-post.jpg");
+}
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="grid-container pad-t-20">
+        <div class="grid-75">
+            <div class="block">
+                <div class="block-content no-pad">
+                    <ul class="tabs">
+                        <li class="tab"><a href="#tab-1" class="active">ویرایشگر</a></li>
+                        <li class="tab"><a href="#tab-2">بهینه سازی</a></li>
+                    </ul>
+                </div>
+                <div id="tab-1">
+                    <div class="block-content">
+                        @Html.TextBoxFor(model => model.Title, new { @class = "form-input-1", placeholder = "عنوان مطلب" })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "form-message is-error" })
+
+                        @Html.TextAreaFor(model => model.Content, new { @class = "content-editor" })
+                        @Html.ValidationMessageFor(model => model.Content, "", new { @class = "form-message is-error" })
+                    </div>
+                </div>
+                <div id="tab-2">
+                    <div class="block-content">
+                        <div class="grid-50">
+
+                            @Html.LabelFor(model => model.PublishDateTime, new { @class = "" })
+                            @Html.TextBoxFor(model => model.PublishDateTime, new { @class = "form-input-1 dateTimePicker", id = "Publish-Date-Time" })
+                            @Html.ValidationMessageFor(model => model.PublishDateTime, "", new { @class = "form-message is-error" })
+
+                            @Html.LabelFor(model => model.CreateDateTime, new { @class = "" })
+                            @Html.TextBoxFor(model => model.CreateDateTime, new { @class = "form-input-1", @readonly = "readonly", disabled = "disabled", id = "Date-Created" })
+
+                            @Html.LabelFor(model => model.ModifiedDateTime, new { @class = "" })
+                            @Html.TextBoxFor(model => model.ModifiedDateTime, new { @class = "form-input-1", @readonly = "readonly", disabled = "disabled", id = "Modifie-Date" })
+
+                          
+
+                            @Html.LabelFor(model => model.UrlTitle, new { @class = "" })
+                            @Html.TextBoxFor(model => model.UrlTitle, new { @class = "form-input-1", id = "" })
+                            @Html.ValidationMessageFor(model => model.UrlTitle, "", new { @class = "form-message is-error" })
+
+
+
+                            @Html.LabelFor(model => model.MetaDescription, new { @class = "" })
+                            @Html.TextBoxFor(model => model.MetaDescription, new { @class = "form-input-1" })
+                            @Html.ValidationMessageFor(model => model.MetaDescription, "", new { @class = "form-message is-error" })
+
+                            @Html.LabelFor(model => model.MetaKeyWords, new { @class = "" })
+                            @Html.TextBoxFor(model => model.MetaKeyWords, new { id = "meta-tags-input", @class = "form-input-1" })
+                            @Html.ValidationMessageFor(model => model.MetaKeyWords, "", new { @class = "form-message is-error" })
+
+                            @Html.LabelFor(model => model.MetaRobots, new { @class = "" })
+                            @*@Html.EnumDropDownListFor(model => model.MetaRobots, new { @class = "form-input-1", id = "publish-dropdown" })*@
+                            @Html.DropDownListFor(m => m.MetaRobots, Html.GetEnumSelectList(typeof(RobotsState)))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/ post-content-->
+        <div class="grid-25">
+            <div class="block">
+                <div class="block-content no-pad">
+                    <ul class="tabs">
+                        <li class="tab"><a href="#conf-1" class="active">عمومی</a></li>
+                        <li class="tab"><a href="#conf-2">پیشرفته</a></li>
+                    </ul>
+                </div>
+                <div class="block-content">
+                    <div id="conf-1">
+                        @if (Model.ActionName == "Edit" && Model.PublishStatus == PublishStatus.Publish && Model.PublishDateTime <= DateTime.Now && Model.IsDeleted == false)
+                        {
+                            @Html.ActionLink(linkText: "نمایش زنده", actionName: "article", controllerName: "blog", routeValues: new { Area = "", id = Model.Id, title = Model.UrlTitle }, htmlAttributes: new { target = "_blank", @class = "btn btn-warning btn-block" })
+
+                        }
+                        @*@Html.EnumDropDownListFor(model => model.PublishStatus, new { @class = "form-input-1", id = "publish-dropdown" })*@
+                        @Html.DropDownListFor(m => m.PublishStatus, Html.GetEnumSelectList(typeof(PublishStatus)))
+
+
+                        <button type="submit" class="btn btn-success btn-block">انتشار</button>
+                  
+                    </div>
+                    <div id="conf-2" class="tab-panel">
+
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+

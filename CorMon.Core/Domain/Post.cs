@@ -67,7 +67,7 @@ namespace CorMon.Core.Domain
         /// <summary>
         /// وضعیت مجوز موتورهای جستجو
         /// </summary>
-        public RobotsState RobotsState { get; set; }
+        public RobotsState MetaRobots { get; set; }
 
 
 
@@ -117,12 +117,6 @@ namespace CorMon.Core.Domain
         public bool IsDeleted { get; set; }
 
         
-
-        /// <summary>
-        /// نوع مطلب
-        /// </summary>
-        public PostType PostType { get; set; }
-
 
 
    

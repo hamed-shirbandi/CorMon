@@ -10,6 +10,7 @@ namespace CorMon.Application.Posts.Dto
    public class PostInput
     {
 
+        public string ActionName { get; set; }
         public string Id { get; set; }
 
 
@@ -43,7 +44,7 @@ namespace CorMon.Application.Posts.Dto
 
         [Display(Name = "Post_RobotsState", ResourceType = typeof(Metadata))]
         [Required(ErrorMessageResourceName = "Post_RobotsState_Required", ErrorMessageResourceType = typeof(Metadata))]
-        public RobotsState RobotsState { get; set; }
+        public RobotsState MetaRobots { get; set; }
 
 
         [Display(Name = "Post_PublishStatus", ResourceType = typeof(Metadata))]
@@ -56,23 +57,19 @@ namespace CorMon.Application.Posts.Dto
         [Required(ErrorMessageResourceName = "Post_PublishDateTime_Required", ErrorMessageResourceType = typeof(Metadata))]
         public DateTime PublishDateTime { get; set; }
 
+        [Display(Name = "Post_CreateDateTime", ResourceType = typeof(Metadata))]
+        public DateTime CreateDateTime { get; set; }
 
 
-        public string ThumbnailUrl { get; set; }
-
-
-
-        public string ThumbnailTileUrl { get; set; }
-
+        [Display(Name = "Post_ModifiedDateTime", ResourceType = typeof(Metadata))]
+        public DateTime ModifiedDateTime { get; set; }
 
 
         public bool IsDeleted { get; set; }
 
 
 
-        public PostType PostType { get; set; }
-
-
+   
         public string UserId { get; set; }
 
     }

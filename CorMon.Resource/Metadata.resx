@@ -159,11 +159,17 @@
   <data name="Post_Content_Required" xml:space="preserve">
     <value>Post Content Required</value>
   </data>
+  <data name="Post_CreateDateTime" xml:space="preserve">
+    <value>Post Create DateTime</value>
+  </data>
   <data name="Post_MetaDescription" xml:space="preserve">
     <value>Meta Description</value>
   </data>
   <data name="Post_MetaKeyWords" xml:space="preserve">
     <value>Meta KeyWords</value>
+  </data>
+  <data name="Post_ModifiedDateTime" xml:space="preserve">
+    <value>Post Modified DateTime</value>
   </data>
   <data name="Post_PostLevel" xml:space="preserve">
     <value>Post Level</value>

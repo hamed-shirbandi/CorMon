@@ -48,15 +48,7 @@ namespace CorMon.Core.Enums
     }
 
 
-    public enum PostType
-    {
-        Article = 0,
-        Page = 1,
-        ShortNote = 2,
-        Report = 3,
-        New = 4
 
-    }
 
 
 

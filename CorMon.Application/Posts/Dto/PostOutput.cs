@@ -41,7 +41,7 @@ namespace CorMon.Application.Posts.Dto
         public string MetaKeyWords { get; set; }
 
         [Display(Name = "Post_RobotsState", ResourceType = typeof(Metadata))]
-        public RobotsState RobotsState { get; set; }
+        public RobotsState MetaRobots { get; set; }
 
         [Display(Name = "Post_PublishStatus", ResourceType = typeof(Metadata))]
         public PublishStatus PublishStatus { get; set; }
@@ -50,9 +50,6 @@ namespace CorMon.Application.Posts.Dto
         public DateTime PublishDateTime { get; set; }
         public DateTime ModifiedDateTime { get; set; }
 
-        public string ThumbnailUrl { get; set; }
-        public string ThumbnailTileUrl { get; set; }
         public bool IsDeleted { get; set; }
-        public PostType PostType { get; set; }
     }
 }

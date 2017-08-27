@@ -43,7 +43,7 @@ namespace CorMon.Application.Posts
         /// </summary>
         public async Task<PostInput> GetToUpdateAsync(string id)
         {
-            var post = await _postRepository.GetAsync(id);
+            var post = await _postRepository.GetByIdAsync(id);
             if (post == null)
             {
                 throw new Exception("Post not found");
@@ -56,15 +56,12 @@ namespace CorMon.Application.Posts
                 Title = post.Title,
                 Content = post.Content,
                 PostLevel = post.PostLevel,
-                PostType = post.PostType,
                 MetaDescription = post.MetaDescription,
                 MetaKeyWords = post.MetaKeyWords,
                 PublishDateTime = post.PublishDateTime,
                 PublishStatus = post.PublishStatus,
-                RobotsState = post.RobotsState,
+                MetaRobots = post.MetaRobots,
                 UrlTitle = post.UrlTitle,
-                ThumbnailTileUrl = post.ThumbnailTileUrl,
-                ThumbnailUrl = post.ThumbnailUrl,
                 UserId = post.UserId,
             };
         }
@@ -77,7 +74,7 @@ namespace CorMon.Application.Posts
         /// </summary>
         public async Task<PostOutput> GetAsync(string id)
         {
-            var post = await _postRepository.GetAsync(id);
+            var post = await _postRepository.GetByIdAsync(id);
             if (post==null || post.IsDeleted)
             {
                 throw new Exception("Post not found");
@@ -95,15 +92,12 @@ namespace CorMon.Application.Posts
                 Title = post.Title,
                 Content = post.Content,
                 PostLevel = post.PostLevel,
-                PostType = post.PostType,
                 MetaDescription = post.MetaDescription,
                 MetaKeyWords = post.MetaKeyWords,
                 PublishDateTime = post.PublishDateTime,
                 PublishStatus = post.PublishStatus,
-                RobotsState = post.RobotsState,
+                MetaRobots = post.MetaRobots,
                 UrlTitle = post.UrlTitle,
-                ThumbnailTileUrl = post.ThumbnailTileUrl,
-                ThumbnailUrl = post.ThumbnailUrl,
                 UserId = post.UserId,
                 Author = user.DisplayName,
                 AboutAuthor=user.About,
@@ -120,7 +114,7 @@ namespace CorMon.Application.Posts
         {
 
             //بررسی یکتا بودن عنوان مطلب
-            var existPost = await _postRepository.GetAsync( input.Title.Trim(), input.PostType);
+            var existPost = await _postRepository.GetByTitleAsync(input.Title.Trim());
             if (existPost != null)
                 return new PostJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
 
@@ -134,15 +128,12 @@ namespace CorMon.Application.Posts
                 CreateDateTime=DateTime.Now,
                 ModifiedDateTime=DateTime.Now,
                 PostLevel=input.PostLevel,
-                PostType=input.PostType,
                 MetaDescription=input.MetaDescription,
                 MetaKeyWords=input.MetaKeyWords,
                 PublishDateTime=input.PublishDateTime,
                 PublishStatus=input.PublishStatus,
-                RobotsState=input.RobotsState,
+                MetaRobots=input.MetaRobots,
                 UrlTitle=input.UrlTitle,
-                ThumbnailTileUrl=input.ThumbnailTileUrl,
-                ThumbnailUrl=input.ThumbnailUrl,
                 UserId=input.UserId,
             };
 
@@ -167,15 +158,12 @@ namespace CorMon.Application.Posts
                 Content=post.Content,
                 // Author=post.User.DisplayName,
                 PostLevel = post.PostLevel,
-                PostType = post.PostType,
                 MetaDescription = post.MetaDescription,
                 MetaKeyWords = post.MetaKeyWords,
                 PublishDateTime = post.PublishDateTime,
                 PublishStatus = post.PublishStatus,
-                RobotsState = post.RobotsState,
+                MetaRobots = post.MetaRobots,
                 UrlTitle = post.UrlTitle,
-                ThumbnailTileUrl = post.ThumbnailTileUrl,
-                ThumbnailUrl = post.ThumbnailUrl,
                 UserId = post.UserId,
 
             }).ToList();

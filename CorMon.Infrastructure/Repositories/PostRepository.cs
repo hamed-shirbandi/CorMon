@@ -38,7 +38,7 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public async Task<Post> GetAsync(string id)
+        public async Task<Post> GetByIdAsync(string id)
         {
             return await _posts.Find(e => e.Id == id).FirstOrDefaultAsync();
         }
@@ -49,9 +49,9 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public async Task<Post> GetAsync(string title, PostType postType)
+        public async Task<Post> GetByTitleAsync(string title)
         {
-            return await _posts.Find(p => p.Title == title && p.PostType==postType).FirstOrDefaultAsync();
+            return await _posts.Find(p => p.Title == title).FirstOrDefaultAsync();
         }
 
 

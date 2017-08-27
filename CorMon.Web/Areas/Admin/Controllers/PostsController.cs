@@ -37,7 +37,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var posts = await _postService.SearchAsync(term: "");
+            var posts = await _postService.SearchAsync(term: "",publishStatus:null,sortOrder:SortOrder.Desc);
 
             return View(posts);
         }

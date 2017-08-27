@@ -1,4 +1,5 @@
 ﻿using CorMon.Application.Posts.Dto;
+using CorMon.Core.Enums;
 using CorMon.Core.JsonModels;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,6 @@ namespace CorMon.Application.Posts
         Task<PostInput> GetToUpdateAsync(string id);
         Task<PostOutput> GetAsync(string id);
         Task<PostJsonResult> InsertAsync(PostInput input);
-        Task<IEnumerable<PostOutput>> SearchAsync(string  term);
+        Task<IEnumerable<PostOutput>> SearchAsync(string  term,PublishStatus? publishStatus, SortOrder sortOrder);
     }
 }

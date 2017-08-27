@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CorMon.Application.Posts;
+using CorMon.Core.Enums;
 
 namespace CorMon.Web.Controllers
 {
@@ -39,8 +40,7 @@ namespace CorMon.Web.Controllers
         [Route("articles")]
         public async Task<ActionResult> Articles()
         {
-
-            var posts = await _postService.SearchAsync(term:"");
+            var posts = await _postService.SearchAsync(term: "", publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
 
             return View(posts);
         }

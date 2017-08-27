@@ -6,8 +6,8 @@ using CorMon.Core.Domain;
 using System.Threading.Tasks;
 using CorMon.Infrastructure.DbContext;
 using MongoDB.Driver;
-using System.Linq;
 using CorMon.Core.Enums;
+using MongoDB.Driver.Linq;
 
 namespace CorMon.Infrastructure.Repositories
 {
@@ -81,10 +81,38 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public async Task<IEnumerable<Post>> SearchAsync(string term)
+        public async Task<IEnumerable<Post>> SearchAsync(string term, PublishStatus? publishStatus, SortOrder sortOrder)
         {
-           return  await _posts.Find(p=>p.Title.Contains(term)).ToListAsync();
-           
+            var queryable = _posts.AsQueryable();
+
+            #region براساس متن
+
+            if (!string.IsNullOrEmpty(term))
+            {
+                queryable = queryable.Where(p => p.Title.Contains(term));
+            }
+
+            #endregion
+
+            #region براساس وضعیت انتشار
+
+            if (publishStatus.HasValue)
+            {
+                queryable = queryable.Where(p => p.PublishStatus == publishStatus);
+            }
+
+            #endregion
+
+
+            #region مرتب سازی
+
+            queryable = sortOrder == SortOrder.Asc ? queryable.OrderBy(p => p.Id) : queryable.OrderByDescending(p => p.Id);
+
+
+            #endregion
+
+
+            return await queryable.ToListAsync();
         }
 
 

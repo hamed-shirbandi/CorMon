@@ -9,6 +9,7 @@ using System.Linq;
 using CorMon.Core.JsonModels;
 using CorMon.Core.Extensions;
 using CorMon.Resource;
+using CorMon.Core.Enums;
 
 namespace CorMon.Application.Posts
 {
@@ -147,9 +148,9 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public async Task<IEnumerable<PostOutput>> SearchAsync(string term)
+        public async Task<IEnumerable<PostOutput>> SearchAsync(string term, PublishStatus? publishStatus, SortOrder sortOrder)
         {
-            var posts = await _postRepository.SearchAsync(term);
+            var posts = await _postRepository.SearchAsync(term,publishStatus, sortOrder);
             return posts.Select(post => 
             new PostOutput
             {

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using System.Globalization;
 using CorMon.Application.Posts;
+using CorMon.Core.Enums;
 
 namespace CorMon.Web.Controllers
 {
@@ -39,7 +40,7 @@ namespace CorMon.Web.Controllers
         /// </summary>
         public async Task<IActionResult> Index()
         {
-            var posts = await _postService.SearchAsync(term: "");
+            var posts = await _postService.SearchAsync(term: "", publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
 
             return View(posts);
         }

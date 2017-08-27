@@ -23,8 +23,13 @@
             <div class="post-info">
                 <span>
                     <span class="cat-meta-info margin-left-20">
+                        <span class="glyphicon glyphicon-stats">
+                            <span class="cat-meta-info">@Model.PostLevel.GetDisplayName()</span>
+                        </span>
+                    </span>
+                    <span class="cat-meta-info margin-left-20">
                         <span class="glyphicon glyphicon-calendar">
-                            <span class="cat-meta-info">@Model.PublishDateTime</span>
+                            <span class="cat-meta-info">@Model.PublishDateTime.ToPersianFullDate()</span>
                         </span>
                     </span>
                     <span class="cat-meta-info">
@@ -56,7 +61,7 @@
                 <div class="c-padding">
                     <h3>نوشته شده توسط  <span class="main-color">@Model.Author</span></h3>
                     <p>
-                        @Model.About
+                        @Model.AboutAuthor
                     </p>
                 </div>
             </div>

@@ -94,7 +94,6 @@ namespace CorMon.Application.Posts
                 Id = post.Id,
                 Title = post.Title,
                 Content = post.Content,
-                Author = user.DisplayName,
                 PostLevel = post.PostLevel,
                 PostType = post.PostType,
                 MetaDescription = post.MetaDescription,
@@ -106,6 +105,8 @@ namespace CorMon.Application.Posts
                 ThumbnailTileUrl = post.ThumbnailTileUrl,
                 ThumbnailUrl = post.ThumbnailUrl,
                 UserId = post.UserId,
+                Author = user.DisplayName,
+                AboutAuthor=user.About,
             };
         }
 

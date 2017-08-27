@@ -13,6 +13,9 @@ namespace CorMon.Application.Posts.Dto
 
         [Display(Name = "Post_Author", ResourceType = typeof(Metadata))]
         public string Author { get; set; }
+
+        public string AboutAuthor { get; set; }
+
         public string UserId { get; set; }
 
 

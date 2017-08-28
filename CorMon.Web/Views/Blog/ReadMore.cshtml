@@ -7,7 +7,7 @@
     var hasMore = (Model.Content != null && Model.Content.IndexOf("--more--") > -1);
     ViewBag.title = Model.Title;
     ViewBag.description = Model.MetaDescription;
-    ViewBag.allowRobots = Model.RobotsState;
+    ViewBag.allowRobots = Model.MetaRobots;
     ViewBag.keywords = Model.MetaKeyWords;
     ViewBag.author = Model.Author;
     ViewBag.lastmodified = Model.ModifiedDateTime;

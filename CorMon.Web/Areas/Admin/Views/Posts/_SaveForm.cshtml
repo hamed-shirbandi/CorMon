@@ -2,7 +2,7 @@
 @{
 }
 
-<form asp-action="Create">
+<form class="form" asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.Id)
@@ -56,8 +56,7 @@
                             @Html.ValidationMessageFor(model => model.MetaKeyWords, "", new { @class = "form-message is-error" })
 
                             @Html.LabelFor(model => model.MetaRobots, new { @class = "" })
-                            @*@Html.EnumDropDownListFor(model => model.MetaRobots, new { @class = "form-input-1", id = "publish-dropdown" })*@
-                            @Html.DropDownListFor(m => m.MetaRobots, Html.GetEnumSelectList(typeof(RobotsState)))
+                            @Html.DropDownListFor(m => m.MetaRobots, Html.GetEnumSelectList(typeof(RobotsState)), new { @class = "form-input-1", id = "publish-dropdown" })
                         </div>
                     </div>
                 </div>
@@ -79,7 +78,7 @@
 
                         }
                         @*@Html.EnumDropDownListFor(model => model.PublishStatus, new { @class = "form-input-1", id = "publish-dropdown" })*@
-                        @Html.DropDownListFor(m => m.PublishStatus, Html.GetEnumSelectList(typeof(PublishStatus)))
+                        @Html.DropDownListFor(m => m.PublishStatus, Html.GetEnumSelectList(typeof(PublishStatus)),new { @class = "form-input-1", id = "publish-dropdown" })
 
 
                         <button type="submit" class="btn btn-success btn-block">انتشار</button>
@@ -97,11 +96,6 @@
 
 </form>
 
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
 
 
 

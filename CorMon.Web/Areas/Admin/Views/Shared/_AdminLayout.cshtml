@@ -9,6 +9,7 @@
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link href="~/Content/admin/css/main.css" rel="stylesheet" />
+    <script src="~/scripts/public/vendors/ckeditor/ckeditor.js"></script>
     @RenderSection("Styles", required: false)
 </head>
 <body class="">
@@ -23,8 +24,6 @@
                     </li>
                 </ul>
                 <!-- Avatar -->
-
-
 
                 <ul class="nav-bar is-left nav-profile">
                     <li>
@@ -141,6 +140,7 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/scripts/public/vendors/slimscroll/jquery.slimscroll.js"></script>
     <script src="~/scripts/admin/core/cormon.core.js"></script>
+    <script src="~/scripts/public/vendors/velocity/velocity.min.js"></script>
     <script src="~/scripts/admin/app/cormon.app.js"></script>
     <script src="~/scripts/public/plugins/tab.js"></script>
     @RenderSection("Scripts", required: false)

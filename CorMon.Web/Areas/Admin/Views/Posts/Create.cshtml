@@ -9,4 +9,13 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            //CKEDITOR.replace('Content');
+            CKEDITOR.replace('Content', {
+                customConfig: '~/scripts/public/vendors/ckeditor/config.js'
+            });
+    });
+
+    </script>
 }

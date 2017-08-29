@@ -56,9 +56,10 @@ namespace CorMon.Infrastructure.DataProviders
                         var cat = new Taxonomy
                         {
                             Name = "دسته بندی شماره " + i,
-                            Description="توضیح تست برای دسته بندی",
-                            PostCount=0,
-                            Type=TaxonomyType.Category
+                            Description = "توضیح تست برای دسته بندی",
+                            PostCount = 0,
+                            Type = TaxonomyType.Category,
+                            UrlTitle = "دسته-بندی-شماره-"+i,
                         };
                         taxonomies.Add(cat);
 
@@ -68,7 +69,8 @@ namespace CorMon.Infrastructure.DataProviders
                             Name = "برچسب شماره " + i,
                             Description = "توضیح تست برای برچسب",
                             PostCount = 0,
-                            Type = TaxonomyType.Tag
+                            Type = TaxonomyType.Tag,
+                            UrlTitle = "برچسب-شماره-" + i,
                         };
                         taxonomies.Add(tag);
 
@@ -81,7 +83,7 @@ namespace CorMon.Infrastructure.DataProviders
 
 
                 #endregion
-                
+
                 #region Posts
 
 
@@ -123,7 +125,7 @@ namespace CorMon.Infrastructure.DataProviders
                     var filter = Builders<Taxonomy>.Filter.Empty;
                     var update = Builders<Taxonomy>.Update.Inc(t => t.PostCount, 10);
                     var result = _taxonomies.UpdateMany(filter, update);
-                    
+
                 }
 
 

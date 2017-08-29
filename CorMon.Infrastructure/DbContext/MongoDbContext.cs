@@ -44,9 +44,12 @@ namespace CorMon.Infrastructure.DbContext
         /// <summary>
         /// 
         /// </summary>
-        public IMongoCollection<TEntity> GetCollection<TEntity>() where TEntity : BaseEntity
+        public IMongoCollection<TEntity> GetCollection<TEntity>(string name = "") where TEntity : BaseEntity
         {
-            return _database.GetCollection<TEntity>(typeof(TEntity).Name.ToLower() + "s");
+            if (string.IsNullOrEmpty(name))
+                name = typeof(TEntity).Name.ToLower() + "s";
+
+            return _database.GetCollection<TEntity>(name);
         }
 
 
@@ -56,9 +59,12 @@ namespace CorMon.Infrastructure.DbContext
         /// <summary>
         /// 
         /// </summary>
-        public void CreateCollection<TEntity>() where TEntity : BaseEntity
+        public void CreateCollection<TEntity>(string name = "") where TEntity : BaseEntity
         {
-             _database.CreateCollection(typeof(TEntity).Name.ToLower() + "s");
+            if (string.IsNullOrEmpty(name))
+                name = typeof(TEntity).Name.ToLower() + "s";
+
+            _database.CreateCollection(name);
         }
 
 

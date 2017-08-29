@@ -1,5 +1,6 @@
 ﻿using CorMon.Core.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace CorMon.Core.Domain
 {
@@ -19,6 +20,8 @@ namespace CorMon.Core.Domain
         public string Title { get; set; }
 
 
+
+
         /// <summary>
         /// نویسنده - نام نمایشی کاربر ارسال کننده
         /// </summary>
@@ -31,6 +34,8 @@ namespace CorMon.Core.Domain
         /// نمایش عنوان در آدرس بار
         /// </summary>
         public string UrlTitle { get; set; }
+
+
 
 
         /// <summary>
@@ -80,7 +85,7 @@ namespace CorMon.Core.Domain
 
 
         /// <summary>
-        ///وضعیت انتشار مطلب. مثلا : پیش نویس - انتشار و ...
+        ///وضعیت انتشار مطلب ...
         /// </summary>
         public PublishStatus PublishStatus { get; set; }
 
@@ -117,5 +122,14 @@ namespace CorMon.Core.Domain
         /// کلید  کاربر
         /// </summary>
         public string UserId { get; set; }
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string[] TaxonomyIds { get; set; }
+
     }
 }

@@ -29,7 +29,11 @@ namespace CorMon.Infrastructure.DataProviders
                     dbContext.CreateCollection<User>();
                 }
 
-
+                // == dbContext.GetCollection<Taxonomy>(name: "taxonomies")
+                if (!collections.Contains("taxonomies"))
+                {
+                    dbContext.CreateCollection<Taxonomy>(name: "taxonomies");
+                }
             }
         }
     }

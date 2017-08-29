@@ -38,10 +38,10 @@ else
                     </span>
                     <span class="cat-meta-info">
                         <span class="glyphicon glyphicon-list">
-                            @*@foreach (var category in item.CategoriesList)
+                            @foreach (var category in item.Categoories)
                             {
-                                @Html.ActionLink(linkText: category.Name, actionName: "articles", controllerName: "blog", htmlAttributes: new { @class = "main-color post-category", style = "" }, routeValues: new { Area = "", taxName = category.UrlTitle, taxId = category.Id, taxType = TaxType.Category })
-                            }*@
+                                @Html.ActionLink(linkText: category.Name, actionName: "articles", controllerName: "blog", htmlAttributes: new { @class = "main-color post-category", style = "" }, routeValues: new { Area = "", taxName = category.UrlTitle, taxId = category.Id, taxType = TaxonomyType.Category })
+                            }
                         </span>
                     </span>
                 </span>

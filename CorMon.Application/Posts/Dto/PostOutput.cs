@@ -1,4 +1,5 @@
-﻿using CorMon.Core.Enums;
+﻿using CorMon.Application.Taxonomies.Dto;
+using CorMon.Core.Enums;
 using CorMon.Resource;
 using System;
 using System.Collections.Generic;
@@ -51,5 +52,8 @@ namespace CorMon.Application.Posts.Dto
         public DateTime ModifiedDateTime { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public IEnumerable<TaxonomyOutput> Categoories { get; set; }
+        public IEnumerable<TaxonomyOutput> Tags { get; set; }
     }
 }

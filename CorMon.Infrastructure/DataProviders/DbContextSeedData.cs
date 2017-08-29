@@ -93,7 +93,9 @@ namespace CorMon.Infrastructure.DataProviders
 
                     List<Post> posts = new List<Post>();
                     var user = _users.AsQueryable().FirstOrDefault();
-                    var taxonomyIds = _taxonomies.AsQueryable().Select(t => t.Id).ToArray();
+                    var taxonomies = _taxonomies.Find(t => true).ToList();
+                    var tagIds = taxonomies.Where(t=>t.Type==TaxonomyType.Tag).Select(t => t.Id).ToArray();
+                    var categoryIds = taxonomies.Where(t=>t.Type==TaxonomyType.Category).Select(t => t.Id).ToArray();
 
                     for (int i = 0; i < 10; i++)
                     {
@@ -111,8 +113,9 @@ namespace CorMon.Infrastructure.DataProviders
                             PostLevel = PostLevel.Intro,
                             PublishStatus = PublishStatus.Publish,
                             MetaRobots = RobotsState.Global,
-                            UrlTitle = "لورم-ایپسوم-متن-ساختگی-با-تولید-سادگی",
-                            TaxonomyIds = taxonomyIds
+                            UrlTitle = "لورم-ایپسوم-متن-ساختگی-با-تولید-سادگی-"+i,
+                            TagIds = tagIds,
+                            CategoryIds=categoryIds,
 
                         };
                         posts.Add(post);

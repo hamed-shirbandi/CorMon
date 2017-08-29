@@ -10,6 +10,7 @@ using CorMon.Core.JsonModels;
 using CorMon.Core.Extensions;
 using CorMon.Resource;
 using CorMon.Core.Enums;
+using CorMon.Application.Taxonomies.Dto;
 
 namespace CorMon.Application.Posts
 {
@@ -18,6 +19,7 @@ namespace CorMon.Application.Posts
         #region Fields
 
         private readonly IPostRepository _postRepository;
+        private readonly ITaxonomyRepository _taxonomyRepository;
         private readonly IUserRepository _userRepository;
 
 
@@ -25,10 +27,11 @@ namespace CorMon.Application.Posts
 
         #region Ctor
 
-        public PostService(IPostRepository postRepository, IUserRepository userRepository)
+        public PostService(IPostRepository postRepository, IUserRepository userRepository, ITaxonomyRepository taxonomyRepository)
         {
             _postRepository = postRepository;
             _userRepository = userRepository;
+            _taxonomyRepository = taxonomyRepository;
         }
 
 
@@ -199,8 +202,7 @@ namespace CorMon.Application.Posts
         public async Task<IEnumerable<PostOutput>> SearchAsync(string term, PublishStatus? publishStatus, SortOrder sortOrder)
         {
             var posts = await _postRepository.SearchAsync(term, publishStatus, sortOrder);
-            return posts.Select(post =>
-            new PostOutput
+            return posts.Select(post => new PostOutput
             {
                 Id = post.Id,
                 Title = post.Title,
@@ -214,11 +216,42 @@ namespace CorMon.Application.Posts
                 MetaRobots = post.MetaRobots,
                 UrlTitle = post.UrlTitle,
                 UserId = post.UserId,
+                Categoories = GetPostAllTaxonomies(post.CategoryIds),
+                Tags = GetPostAllTaxonomies(post.CategoryIds),
 
             }).ToList();
         }
 
 
+
+
+
+
+
+
+
+        #endregion
+
+
+        #region Private Methods
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private IEnumerable<TaxonomyOutput> GetPostAllTaxonomies(string[] taxIds)
+        {
+            var taxs = _taxonomyRepository.GetListByIds(taxIds);
+            return taxs.Select(tax => new TaxonomyOutput
+            {
+                Id = tax.Id,
+                Name = tax.Name,
+                Description = tax.Description,
+                PostCount = tax.PostCount,
+                Type = tax.Type,
+                UrlTitle = tax.UrlTitle,
+            });
+        }
 
 
 

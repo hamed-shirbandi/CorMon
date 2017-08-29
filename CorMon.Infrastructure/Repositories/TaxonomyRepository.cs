@@ -8,6 +8,7 @@ using CorMon.Infrastructure.DbContext;
 using MongoDB.Driver;
 using CorMon.Core.Enums;
 using MongoDB.Driver.Linq;
+using System.Linq;
 
 namespace CorMon.Infrastructure.Repositories
 {
@@ -23,7 +24,7 @@ namespace CorMon.Infrastructure.Repositories
 
         public TaxonomyRepository(IMongoDbContext dbContext)
         {
-            _taxonomies = dbContext.GetCollection<Taxonomy>();
+            _taxonomies = dbContext.GetCollection<Taxonomy>(name:"taxonomies");
         }
 
 
@@ -40,6 +41,16 @@ namespace CorMon.Infrastructure.Repositories
         public async Task<Taxonomy> GetByIdAsync(string id)
         {
             return await _taxonomies.Find(e => e.Id == id).FirstOrDefaultAsync();
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public  Taxonomy GetById(string id)
+        {
+            return  _taxonomies.Find(e => e.Id == id).FirstOrDefault();
         }
 
 
@@ -135,6 +146,27 @@ namespace CorMon.Infrastructure.Repositories
         public Task UpdateAsync(IEnumerable<Taxonomy> taxs)
         {
             throw new NotImplementedException();
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<IEnumerable<Taxonomy>> GetListByIdsAsync(string[] taxIds)
+        {
+            return await _taxonomies.Find(t => taxIds.Contains(t.Id)).ToListAsync();
+        }
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IEnumerable<Taxonomy> GetListByIds(string[] taxIds)
+        {
+            return _taxonomies.Find(t => taxIds.Contains(t.Id)).ToList(); 
         }
 
 

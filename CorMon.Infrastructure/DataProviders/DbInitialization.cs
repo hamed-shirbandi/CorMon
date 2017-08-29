@@ -1,9 +1,7 @@
 ﻿using CorMon.Core.Domain;
 using CorMon.Infrastructure.DbContext;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace CorMon.Infrastructure.DataProviders
 {

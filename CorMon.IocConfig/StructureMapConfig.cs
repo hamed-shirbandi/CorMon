@@ -23,6 +23,8 @@ namespace CorMon.IocConfig
                 config.For<IMongoClient>().Use<MongoClient>();
                 config.For<IUserService>().Use<UserService>();
                 config.For<IUserRepository>().Use<UserRepository>();
+                config.For<ITaxonomyRepository>().Use<TaxonomyRepository>();
+                
             });
             
 

@@ -129,7 +129,14 @@ namespace CorMon.Core.Domain
         /// <summary>
         /// 
         /// </summary>
-        public string[] TaxonomyIds { get; set; }
+        public string[] TagIds { get; set; }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string[] CategoryIds { get; set; }
 
     }
 }

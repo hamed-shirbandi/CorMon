@@ -94,7 +94,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Update(string id)
         {
             var post = await _postService.GetToUpdateAsync(id);
-            post.ActionName = "update";
+            post.ActionName = "Update";
             return View(post);
         }
 

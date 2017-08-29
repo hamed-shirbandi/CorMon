@@ -5,15 +5,15 @@ namespace CorMon.Core.Enums
 {
     public enum PostLevel
     {
-        [Display(Name ="Enum_PostLevel_Intro" ,ResourceType =typeof(Metadata))]
+        [Display(Name = "Enum_PostLevel_Intro", ResourceType =typeof(Metadata))]
         Intro = 0,
-        [Display(Name = "Enum_Typical_Intro", ResourceType = typeof(Metadata))]
+        [Display(Name = "Enum_PostLevel_Typical", ResourceType = typeof(Metadata))]
         Typical = 1,
-        [Display(Name = "Enum_Advance_Intro", ResourceType = typeof(Metadata))]
+        [Display(Name = "Enum_PostLevel_Advance", ResourceType = typeof(Metadata))]
         Advance = 2,
     }
 
-
+     
     public enum SortOrder
     {
         [Display(Name = "Enum_SortOrder_Desc", ResourceType = typeof(Metadata))]

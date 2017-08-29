@@ -2,7 +2,7 @@
 @{
 }
 
-<form class="form" asp-action="Create">
+<form class="form" asp-action="@Model.ActionName">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.Id)
@@ -77,8 +77,9 @@
                             @Html.ActionLink(linkText: "نمایش زنده", actionName: "article", controllerName: "blog", routeValues: new { Area = "", id = Model.Id, title = Model.UrlTitle }, htmlAttributes: new { target = "_blank", @class = "btn btn-warning btn-block" })
 
                         }
+
                         @Html.DropDownListFor(m => m.PublishStatus, Html.GetEnumSelectList(typeof(PublishStatus)), new { @class = "form-input-1", id = "publish-dropdown" })
-                        @Html.DropDownListFor(m => m.PostLevel, Html.GetEnumSelectList(typeof(PostLevel)),new { @class = "form-input-1", id = "publish-dropdown" })
+                        @Html.DropDownListFor(m => m.PostLevel, Html.GetEnumSelectList(typeof(PostLevel)),new { @class = "form-input-1", id = "" })
 
                         <button type="submit" class="btn btn-success btn-block">انتشار</button>
                   

@@ -12,9 +12,9 @@ namespace CorMon.Core.Data
         Task<Post> GetByIdAsync(string id);
         Task<Post> GetByTitleAsync(string title);
         Task<IEnumerable<Post>> SearchAsync(string term, PublishStatus? publishStatus, SortOrder sortOrder);
-        Task<Post> InsertAsync(Post post);
-        Task InsertAsync(IEnumerable<Post> posts);
-        Task<Post> UpdateAsync(Post post);
+        Task CreateAsync(Post post);
+        Task CreateAsync(IEnumerable<Post> posts);
+        Task UpdateAsync(Post post);
         Task UpdateAsync(IEnumerable<Post> posts);
     }
 }

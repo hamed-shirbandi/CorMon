@@ -52,7 +52,7 @@ namespace CorMon.Application.Posts
 
             return new PostInput
             {
-                
+
                 Id = post.Id,
                 Title = post.Title,
                 Content = post.Content,
@@ -64,10 +64,10 @@ namespace CorMon.Application.Posts
                 MetaRobots = post.MetaRobots,
                 UrlTitle = post.UrlTitle,
                 UserId = post.UserId,
-                Author=post.Author,
-                ModifiedDateTime=post.ModifiedDateTime,
-                CreateDateTime=post.CreateDateTime,
-                
+                Author = post.Author,
+                ModifiedDateTime = post.ModifiedDateTime,
+                CreateDateTime = post.CreateDateTime,
+
             };
         }
 
@@ -80,12 +80,12 @@ namespace CorMon.Application.Posts
         public async Task<PostOutput> GetAsync(string id)
         {
             var post = await _postRepository.GetByIdAsync(id);
-            if (post==null || post.IsDeleted)
+            if (post == null || post.IsDeleted)
             {
                 throw new Exception("Post not found");
             }
 
-            var user =await _userRepository.GetAsync(post.UserId);
+            var user = await _userRepository.GetAsync(post.UserId);
             if (post == null || post.IsDeleted)
             {
                 throw new Exception("User not found");
@@ -105,8 +105,8 @@ namespace CorMon.Application.Posts
                 UrlTitle = post.UrlTitle,
                 UserId = post.UserId,
                 Author = user.DisplayName,
-                AboutAuthor=user.About,
-                ModifiedDateTime=post.ModifiedDateTime,
+                AboutAuthor = user.About,
+                ModifiedDateTime = post.ModifiedDateTime,
             };
         }
 
@@ -134,7 +134,8 @@ namespace CorMon.Application.Posts
             post.PostLevel = input.PostLevel;
             post.UrlTitle = input.UrlTitle;
 
-            return new PostJsonResult {result=true,message=Messages.Post_Update_Success };
+            await _postRepository.UpdateAsync(post);
+            return new PostJsonResult { result = true, message = Messages.Post_Update_Success };
 
 
         }
@@ -158,23 +159,23 @@ namespace CorMon.Application.Posts
 
             var post = new Post
             {
-                Title=input.Title,
-                Author= input.Author,
-                Content=input.Content,
-                CreateDateTime=DateTime.Now,
-                ModifiedDateTime=DateTime.Now,
-                PostLevel=input.PostLevel,
-                MetaDescription=input.MetaDescription,
-                MetaKeyWords=input.MetaKeyWords,
-                PublishDateTime=input.PublishDateTime,
-                PublishStatus=input.PublishStatus,
-                MetaRobots=input.MetaRobots,
-                UrlTitle=input.UrlTitle,
-                UserId=input.UserId,
+                Title = input.Title,
+                Author = input.Author,
+                Content = input.Content,
+                CreateDateTime = DateTime.Now,
+                ModifiedDateTime = DateTime.Now,
+                PostLevel = input.PostLevel,
+                MetaDescription = input.MetaDescription,
+                MetaKeyWords = input.MetaKeyWords,
+                PublishDateTime = input.PublishDateTime,
+                PublishStatus = input.PublishStatus,
+                MetaRobots = input.MetaRobots,
+                UrlTitle = input.UrlTitle,
+                UserId = input.UserId,
             };
 
-            var savedPost= await _postRepository.InsertAsync(post);
-            return new PostJsonResult { result=true,id=savedPost.Id,message= Messages.Post_Create_Success };
+            await _postRepository.CreateAsync(post);
+            return new PostJsonResult { result = true, id = post.Id, message = Messages.Post_Create_Success };
         }
 
 
@@ -185,13 +186,13 @@ namespace CorMon.Application.Posts
         /// </summary>
         public async Task<IEnumerable<PostOutput>> SearchAsync(string term, PublishStatus? publishStatus, SortOrder sortOrder)
         {
-            var posts = await _postRepository.SearchAsync(term,publishStatus, sortOrder);
-            return posts.Select(post => 
+            var posts = await _postRepository.SearchAsync(term, publishStatus, sortOrder);
+            return posts.Select(post =>
             new PostOutput
             {
                 Id = post.Id,
                 Title = post.Title,
-                Content=post.Content,
+                Content = post.Content,
                 Author = post.Author,
                 PostLevel = post.PostLevel,
                 MetaDescription = post.MetaDescription,

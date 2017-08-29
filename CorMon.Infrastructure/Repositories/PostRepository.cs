@@ -59,10 +59,10 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public async Task<Post> InsertAsync(Post post)
+        public async Task CreateAsync(Post post)
         {
-            await _posts.InsertOneAsync(post);
-            return post;
+          await _posts.InsertOneAsync(post);
+        
         }
 
 
@@ -71,9 +71,9 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public Task InsertAsync(IEnumerable<Post> posts)
+        public async Task CreateAsync(IEnumerable<Post> posts)
         {
-            throw new NotImplementedException();
+         
         }
 
 
@@ -121,9 +121,9 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public Task<Post> UpdateAsync(Post post)
+        public async Task UpdateAsync(Post post)
         {
-            throw new NotImplementedException();
+          await _posts.ReplaceOneAsync(x => x.Id == post.Id, post, new UpdateOptions() { IsUpsert = false });
         }
 
 

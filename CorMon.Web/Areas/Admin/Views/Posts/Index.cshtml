@@ -7,10 +7,10 @@
 <div class="grid-content">
     <div class="block">
         <div class="block-bar">
-            <form class="form" asp-action="Create">
+            <form class="form" asp-action="search">
                 <a href="@Url.Action("Create", "Posts", new { })" class="btn btn-success">ایجاد مطلب جدید</a>
                 <input type="text" value="" placeholder="بخشی از عنوان را وارد کنید" name="searchBy" id="searchBy" />
-                @*@Html.DropDownList(Html.GetEnumSelectList(typeof(PublishStatus)), new { @class = "form-input-1", id = "publish-dropdown" })*@
+                @Html.DropDownList("publishStatus", Html.GetEnumSelectList(typeof(PublishStatus)),"همه مطالب", new { @class = "", id = "publish-dropdown" })
 
                 <input type="submit" class="btn btn-primary" value="جستجو" />
             </form>
@@ -23,74 +23,4 @@
 
 
 @section Scripts{
-    <script src=@Url.Content("~/Scripts/admin/pages/lezan.page.posts.js")></script>
-}
-@section InfoBlock{
-    <div class="wrapper-content-header">
-        <h3 class="title">@ViewBag.Title</h3>
-        @*<a class="btn btn-default info-block-btn" role="button">
-                <span class="si si-info"></span>
-                راهنما
-            </a>*@
-    </div>
-    @*<div class="info-block">
-            <div class="tabs-vertical">
-                <ul class="tabs">
-                    <li class="tab">
-                        <a class="active" href="#search-bar-tab">نوار جستجو</a>
-                    </li>
-
-                    <li class="tab">
-                        <a href="#other-tab">سایر</a>
-                    </li>
-                </ul>
-                <div class="tabs-content">
-
-                    <div id="search-bar-tab">
-                        <p>
-                            <h6>فیلتر گذاری</h6>
-                            توسط این بخش مشخص می شود که شما به دنبال کدام مطالب هستید.به طور مثال با انتخاب پیش نویس فقط مطالب پیش نویس واکشی شده و نمایش داده می شوند
-                        </p>
-                        <p>
-                            <h6>مرتب سازی</h6>
-                            مشخص میکنیم که مرتب سازی براساس کدام فیلد مطالب باشد و نحوه ی مرتب سازی به چه صورت باشد. برای مثال میتوان گفت بر اساس تاریخ ایجاد و به صورت نزولی
-                        </p>
-                        <p>
-                            <h6>جستجو بر اساس متن ورودی</h6>
-                            اگر به دنبال خبر خاصی هستید کافی است تا تمام یا قسمتی از عنوان آن را در ورودی مربوطه بنویسید
-                        </p>
-                        <p>
-                            <h6>عملیات گروهی</h6>
-                            می توان یک یا چند آیتم را انتخاب کرده و عملیات مورد نظر را روی آن اعمال کرد
-                        </p>
-                    </div>
-
-                    <div id="other-tab">
-                        <p>
-                            <h6>عملیات</h6>
-                            هر آیتمی دارای یک قسمت عملیات است که از آن می توان برای مدیریت آن آیتم استفاده کرد.
-                        </p>
-                        <p>
-                            <h6>ویرایش</h6>
-                          برای ویرایش کردن مشخصات خبر
-                        </p>
-
-                        <p>
-                            <h6>زباله</h6>
-                            برای ارسال خبر به زباله دان
-                        </p>
-                        <p>
-                            <h6>بازیافت</h6>
-                            برای بازیابی خبر و خارج کردن آن از زباله دان
-                        </p>
-
-                        <p>
-                            <h6>حذف</h6>
-                          برای حذف دائم خبر
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>*@
 }

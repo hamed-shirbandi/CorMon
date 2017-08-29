@@ -1,9 +1,7 @@
 ﻿using CorMon.Core.Enums;
 using CorMon.Resource;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace CorMon.Application.Posts.Dto
 {

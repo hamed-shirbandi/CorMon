@@ -1,7 +1,6 @@
 ﻿using CorMon.Core.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using CorMon.Resource;
+using System.ComponentModel.DataAnnotations;
 
 namespace CorMon.Application.Taxonomies.Dto
 {
@@ -12,5 +11,9 @@ namespace CorMon.Application.Taxonomies.Dto
         public string Description { get; set; }
         public int PostCount { get; set; }
         public TaxonomyType Type { get; set; }
+
+        [Display(Name = "Post_UrlTitle", ResourceType = typeof(Metadata))]
+        public string UrlTitle { get; set; }
+
     }
 }

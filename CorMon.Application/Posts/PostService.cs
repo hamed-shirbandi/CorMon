@@ -113,34 +113,6 @@ namespace CorMon.Application.Posts
 
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public async Task<PostJsonResult> UpdateAsync(PostInput input)
-        {
-            var post = await _postRepository.GetByIdAsync(input.Id);
-            if (post == null || post.IsDeleted)
-            {
-                throw new Exception("Post not found");
-            }
-
-            post.Title = input.Title;
-            post.Content = input.Content;
-            post.PublishDateTime = input.PublishDateTime;
-            post.PublishStatus = input.PublishStatus;
-            post.MetaDescription = input.MetaDescription;
-            post.MetaKeyWords = input.MetaKeyWords;
-            post.MetaRobots = input.MetaRobots;
-            post.PostLevel = input.PostLevel;
-            post.UrlTitle = input.UrlTitle;
-
-            await _postRepository.UpdateAsync(post);
-            return new PostJsonResult { result = true, message = Messages.Post_Update_Success };
-
-
-        }
-
-
 
 
         /// <summary>
@@ -177,6 +149,46 @@ namespace CorMon.Application.Posts
             await _postRepository.CreateAsync(post);
             return new PostJsonResult { result = true, id = post.Id, message = Messages.Post_Create_Success };
         }
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<PostJsonResult> UpdateAsync(PostInput input)
+        {
+            var post = await _postRepository.GetByIdAsync(input.Id);
+            if (post == null || post.IsDeleted)
+            {
+                throw new Exception("Post not found");
+            }
+
+            //بررسی یکتا بودن عنوان 
+            var existPost = await _postRepository.GetByTitleAsync(input.Title.Trim());
+            if (existPost != null && existPost.Id != input.Id)
+                return new PostJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
+
+
+            post.UrlTitle = input.UrlTitle.IsNullOrEmptyOrWhiteSpace() ? input.Title.GenerateUrlTitle() : input.UrlTitle.GenerateUrlTitle();
+            post.Title = input.Title;
+            post.Content = input.Content;
+            post.PublishDateTime = input.PublishDateTime;
+            post.PublishStatus = input.PublishStatus;
+            post.MetaDescription = input.MetaDescription;
+            post.MetaKeyWords = input.MetaKeyWords;
+            post.MetaRobots = input.MetaRobots;
+            post.PostLevel = input.PostLevel;
+            post.UrlTitle = input.UrlTitle;
+
+            await _postRepository.UpdateAsync(post);
+            return new PostJsonResult { result = true, message = Messages.Post_Update_Success };
+
+
+        }
+
+
+
 
 
 

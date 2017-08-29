@@ -11,5 +11,7 @@ namespace CorMon.Core.Domain
         public string Description { get; set; }
         public int PostCount { get; set; }
         public TaxonomyType Type { get; set; }
+        public string UrlTitle { get; set; }
+
     }
 }

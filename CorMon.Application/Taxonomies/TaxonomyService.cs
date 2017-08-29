@@ -9,6 +9,7 @@ using CorMon.Core.Data;
 using CorMon.Resource;
 using CorMon.Core.Domain;
 using System.Linq;
+using CorMon.Core.Extensions;
 
 namespace CorMon.Application.Taxonomies
 {
@@ -56,32 +57,10 @@ namespace CorMon.Application.Taxonomies
                 Description = tax.Description,
                 PostCount = tax.PostCount,
                 Type = tax.Type,
+                UrlTitle = tax.UrlTitle,
             };
         }
 
-
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public async Task<PostJsonResult> UpdateAsync(TaxonomyInput input)
-        {
-            var tax = await _taxonomyRepository.GetByIdAsync(input.Id);
-            if (tax == null)
-            {
-                throw new Exception("Taxonomy not found");
-            }
-
-            tax.Name = input.Name;
-            tax.Description = input.Name;
-         
-
-            await _taxonomyRepository.UpdateAsync(tax);
-            return new PostJsonResult { result = true, message = Messages.Post_Update_Success };
-
-
-        }
 
 
 
@@ -97,8 +76,8 @@ namespace CorMon.Application.Taxonomies
             if (existTax != null)
                 return new PostJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
 
-            ////بررسی نامک -- url friendly
-            //input.UrlTitle = input.UrlTitle.IsNullOrEmptyOrWhiteSpace() ? input.Title.GenerateUrlTitle() : input.UrlTitle.GenerateUrlTitle();
+            //بررسی نامک -- url friendly
+            input.UrlTitle = input.UrlTitle.IsNullOrEmptyOrWhiteSpace() ? input.Name.GenerateUrlTitle() : input.UrlTitle.GenerateUrlTitle();
 
             var post = new Taxonomy
             {
@@ -107,11 +86,48 @@ namespace CorMon.Application.Taxonomies
                 Description = input.Description,
                 PostCount = input.PostCount,
                 Type = input.Type,
+                UrlTitle = input.UrlTitle,
             };
 
             await _taxonomyRepository.CreateAsync(post);
             return new PostJsonResult { result = true, id = post.Id, message = Messages.Post_Create_Success };
         }
+
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<PostJsonResult> UpdateAsync(TaxonomyInput input)
+        {
+            var tax = await _taxonomyRepository.GetByIdAsync(input.Id);
+            if (tax == null)
+            {
+                throw new Exception("Taxonomy not found");
+            }
+
+            //بررسی یکتا بودن عنوان 
+            var existTax = await _taxonomyRepository.GetByNameAsync(input.Name.Trim());
+            if (existTax != null && existTax.Id != input.Id)
+                return new PostJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
+
+
+            //بررسی نامک -- url friendly
+            tax.UrlTitle = input.UrlTitle.IsNullOrEmptyOrWhiteSpace() ? input.Name.GenerateUrlTitle() : input.UrlTitle.GenerateUrlTitle();
+            tax.Name = input.Name;
+            tax.Description = input.Name;
+
+
+            await _taxonomyRepository.UpdateAsync(tax);
+            return new PostJsonResult { result = true, message = Messages.Post_Update_Success };
+
+
+        }
+
+
 
 
 
@@ -130,6 +146,7 @@ namespace CorMon.Application.Taxonomies
                 Description = tax.Description,
                 PostCount = tax.PostCount,
                 Type = tax.Type,
+                UrlTitle = tax.UrlTitle,
 
             }).ToList();
         }

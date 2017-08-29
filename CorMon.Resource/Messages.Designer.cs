@@ -63,9 +63,9 @@ namespace CorMon.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Post InsertOne Success.
         /// </summary>
-        public static string Post_InsertOne_Success {
+        public static string Post_Create_Success {
             get {
-                return ResourceManager.GetString("Post_InsertOne_Success", resourceCulture);
+                return ResourceManager.GetString("Post_Create_Success", resourceCulture);
             }
         }
         
@@ -75,6 +75,15 @@ namespace CorMon.Resource {
         public static string Post_Title_Already_Exist {
             get {
                 return ResourceManager.GetString("Post_Title_Already_Exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post Update Success.
+        /// </summary>
+        public static string Post_Update_Success {
+            get {
+                return ResourceManager.GetString("Post_Update_Success", resourceCulture);
             }
         }
     }

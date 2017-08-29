@@ -33,6 +33,8 @@ namespace CorMon.Web.Controllers
 
 
 
+
+
         /// <summary>
         /// نمایش لیست  نقل قول ها
         /// </summary>
@@ -63,6 +65,8 @@ namespace CorMon.Web.Controllers
             return View("ReadMore", post);
 
         }
+
+
 
 
 

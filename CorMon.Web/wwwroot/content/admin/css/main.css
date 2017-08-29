@@ -123,7 +123,7 @@
   height: 600px !important; }
 
 .text-truncate {
-  width: 120px;
+  width: 300px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }

@@ -1,0 +1,58 @@
+﻿@model  IEnumerable<PostOutput>
+
+@if (Model.Count() == 0)
+{
+    <div id="no-item-alert-area" class="grid-container">
+        <div class="alert alert-info">
+            <h4>هیچ موردی برای نمایش وجود ندارد</h4>
+        </div>
+    </div>
+}
+else
+{
+    <div class="block-content has-table">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>@Html.LabelFor(model => model.FirstOrDefault().Title)</th>
+                        <th>@Html.LabelFor(model => model.FirstOrDefault().PublishDateTime)</th>
+                        <th>@Html.LabelFor(model => model.FirstOrDefault().PublishStatus)</th>
+                        <th>@Html.LabelFor(model => model.FirstOrDefault().Author)</th>
+                        <th><label>عملیات</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var post in Model)
+                    {
+                        PostOutput post1 = post;
+                        <tr data-table-row-id="@post.Id">
+                            <td title="@post.Title">
+                                @if (post.PublishStatus == PublishStatus.Publish && post.PublishDateTime <= DateTime.Now && post.IsDeleted == false)
+                                {
+                                    <div class="text-truncate">@Html.ActionLink(linkText: post.Title, actionName: "article", controllerName: "blog", routeValues: new { Area = "", id = post.Id, title = post.UrlTitle }, htmlAttributes: new { target = "_blank" })</div>
+                                }
+                                else
+                                {
+                                    <div class="text-truncate">@post.Title</div>
+                                }
+                            </td>
+
+                            <td class="font-s12">@post.PublishDateTime.ToPersianFullDate()</td>
+                            <td class="font-s12">@post.PublishStatus.GetDisplayName()</td>
+                            <td class="font-s12">@post.Author</td>
+                            <td>
+                                <div class="btn-group-xs">
+                                    <a href="@Url.Action( "update", new { id = post.Id }) " class=" btn btn-primary btn-xs btn-xs-circle">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

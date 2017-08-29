@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Post_InsertOne_Success" xml:space="preserve">
+  <data name="Post_Create_Success" xml:space="preserve">
     <value>Post InsertOne Success</value>
   </data>
   <data name="Post_Title_Already_Exist" xml:space="preserve">
     <value>Post Title Already Exist</value>
+  </data>
+  <data name="Post_Update_Success" xml:space="preserve">
+    <value>Post Update Success</value>
   </data>
 </root>

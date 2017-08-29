@@ -78,10 +78,50 @@ namespace CorMon.Web.Areas.Admin.Controllers
             }
 
             input.UserId = "599b295c03a89924849735b3";
-            await _postService.InsertAsync(input);
+            await _postService.CreateAsync(input);
 
             return RedirectToAction("index");
         }
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> Update(string id)
+        {
+            var post = await _postService.GetToUpdateAsync(id);
+            post.ActionName = "update";
+            return View(post);
+        }
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> Update(PostInput input)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(input);
+            }
+
+            await _postService.UpdateAsync(input);
+
+            return RedirectToAction("index");
+        }
+
+
+
+
+
 
         #endregion
     }

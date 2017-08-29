@@ -19,6 +19,13 @@ namespace CorMon.Core.Domain
         public string Title { get; set; }
 
 
+        /// <summary>
+        /// نویسنده - نام نمایشی کاربر ارسال کننده
+        /// </summary>
+        public string Author { get; set; }
+
+
+
 
         /// <summary>
         /// نمایش عنوان در آدرس بار
@@ -92,21 +99,6 @@ namespace CorMon.Core.Domain
         /// تعداد مشاهده شدن های مطلب
         /// </summary>
         public int VisitCount { get; set; }
-
-
-
-        /// <summary>
-        ///آدرس تصویر مربوط به مطلب در اندازه بزرگ
-        /// </summary>
-        public string ThumbnailUrl { get; set; }
-
-
-
-
-        /// <summary>
-        ///آدرس تصویر مربوط به مطلب در اندازه کوچک
-        /// </summary>
-        public string ThumbnailTileUrl { get; set; }
 
 
 

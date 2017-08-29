@@ -64,6 +64,10 @@ namespace CorMon.Application.Posts
                 MetaRobots = post.MetaRobots,
                 UrlTitle = post.UrlTitle,
                 UserId = post.UserId,
+                Author=post.Author,
+                ModifiedDateTime=post.ModifiedDateTime,
+                CreateDateTime=post.CreateDateTime,
+                
             };
         }
 
@@ -102,6 +106,7 @@ namespace CorMon.Application.Posts
                 UserId = post.UserId,
                 Author = user.DisplayName,
                 AboutAuthor=user.About,
+                ModifiedDateTime=post.ModifiedDateTime,
             };
         }
 
@@ -111,7 +116,36 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public async Task<PostJsonResult> InsertAsync(PostInput input)
+        public async Task<PostJsonResult> UpdateAsync(PostInput input)
+        {
+            var post = await _postRepository.GetByIdAsync(input.Id);
+            if (post == null || post.IsDeleted)
+            {
+                throw new Exception("Post not found");
+            }
+
+            post.Title = input.Title;
+            post.Content = input.Content;
+            post.PublishDateTime = input.PublishDateTime;
+            post.PublishStatus = input.PublishStatus;
+            post.MetaDescription = input.MetaDescription;
+            post.MetaKeyWords = input.MetaKeyWords;
+            post.MetaRobots = input.MetaRobots;
+            post.PostLevel = input.PostLevel;
+            post.UrlTitle = input.UrlTitle;
+
+            return new PostJsonResult {result=true,message=Messages.Post_Update_Success };
+
+
+        }
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<PostJsonResult> CreateAsync(PostInput input)
         {
 
             //بررسی یکتا بودن عنوان مطلب
@@ -125,6 +159,7 @@ namespace CorMon.Application.Posts
             var post = new Post
             {
                 Title=input.Title,
+                Author= input.Author,
                 Content=input.Content,
                 CreateDateTime=DateTime.Now,
                 ModifiedDateTime=DateTime.Now,
@@ -139,7 +174,7 @@ namespace CorMon.Application.Posts
             };
 
             var savedPost= await _postRepository.InsertAsync(post);
-            return new PostJsonResult { result=true,id=savedPost.Id,message= Messages.Post_InsertOne_Success };
+            return new PostJsonResult { result=true,id=savedPost.Id,message= Messages.Post_Create_Success };
         }
 
 
@@ -157,7 +192,7 @@ namespace CorMon.Application.Posts
                 Id = post.Id,
                 Title = post.Title,
                 Content=post.Content,
-                // Author=post.User.DisplayName,
+                Author = post.Author,
                 PostLevel = post.PostLevel,
                 MetaDescription = post.MetaDescription,
                 MetaKeyWords = post.MetaKeyWords,
@@ -169,6 +204,9 @@ namespace CorMon.Application.Posts
 
             }).ToList();
         }
+
+
+
 
 
 

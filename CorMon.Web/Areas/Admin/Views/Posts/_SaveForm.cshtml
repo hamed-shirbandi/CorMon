@@ -72,14 +72,13 @@
                 </div>
                 <div class="block-content">
                     <div id="conf-1">
-                        @if (Model.ActionName == "Edit" && Model.PublishStatus == PublishStatus.Publish && Model.PublishDateTime <= DateTime.Now && Model.IsDeleted == false)
+                        @if (Model.ActionName == "Update" && Model.PublishStatus == PublishStatus.Publish && Model.PublishDateTime <= DateTime.Now && Model.IsDeleted == false)
                         {
                             @Html.ActionLink(linkText: "نمایش زنده", actionName: "article", controllerName: "blog", routeValues: new { Area = "", id = Model.Id, title = Model.UrlTitle }, htmlAttributes: new { target = "_blank", @class = "btn btn-warning btn-block" })
 
                         }
-                        @*@Html.EnumDropDownListFor(model => model.PublishStatus, new { @class = "form-input-1", id = "publish-dropdown" })*@
-                        @Html.DropDownListFor(m => m.PublishStatus, Html.GetEnumSelectList(typeof(PublishStatus)),new { @class = "form-input-1", id = "publish-dropdown" })
-
+                        @Html.DropDownListFor(m => m.PublishStatus, Html.GetEnumSelectList(typeof(PublishStatus)), new { @class = "form-input-1", id = "publish-dropdown" })
+                        @Html.DropDownListFor(m => m.PostLevel, Html.GetEnumSelectList(typeof(PostLevel)),new { @class = "form-input-1", id = "publish-dropdown" })
 
                         <button type="submit" class="btn btn-success btn-block">انتشار</button>
                   

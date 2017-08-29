@@ -1,0 +1,21 @@
+﻿@model PostInput
+
+@{
+    ViewBag.Title = "ویرایش مطلب";
+}
+
+@Html.Partial("_SaveForm", Model)
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            //CKEDITOR.replace('Content');
+            CKEDITOR.replace('Content', {
+                customConfig: '~/scripts/public/vendors/ckeditor/config.js'
+            });
+    });
+
+    </script>
+}

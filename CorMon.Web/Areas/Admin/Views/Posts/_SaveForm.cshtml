@@ -2,7 +2,7 @@
 @{
 }
 
-<form class="form" asp-action="@Model.ActionName">
+<form class="form" asp-action="@Model.ActionName" data-ajax="true" data-ajax-method="POST" data-ajax-loading="#global-ajax-loading">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.Id)

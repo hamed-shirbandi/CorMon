@@ -7,9 +7,12 @@ using CorMon.Application.Posts.Dto;
 using CorMon.Application.Posts;
 using CorMon.Core.Enums;
 using CorMon.Application.Taxonomies;
+using CorMon.Web.Helpers;
+using CorMon.Web.Extensions;
 
 namespace CorMon.Web.Areas.Admin.Controllers
 {
+
     [Area("Admin")]
     public class PostsController : BaseController
     {
@@ -18,7 +21,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
         private readonly IPostService _postService;
         private readonly ITaxonomyService _taxonomyService;
 
-        
+
         #endregion
 
         #region Ctor
@@ -40,7 +43,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var posts = await _postService.SearchAsync(term: "",publishStatus:null,sortOrder:SortOrder.Desc);
+            var posts = await _postService.SearchAsync(term: "", publishStatus: null, sortOrder: SortOrder.Desc);
 
             return View(posts);
         }
@@ -61,8 +64,8 @@ namespace CorMon.Web.Areas.Admin.Controllers
                 PublishDateTime = DateTime.Now,
                 PublishStatus = PublishStatus.Draft,
                 MetaRobots = RobotsState.Global,
-                Categories =await _taxonomyService.GetCategoriesSelectListAsync(),
-                TagsPrefill=new string[] {},
+                Categories = await _taxonomyService.GetCategoriesSelectListAsync(),
+                TagsPrefill = new string[] { },
             };
 
             return View(model);
@@ -75,17 +78,22 @@ namespace CorMon.Web.Areas.Admin.Controllers
         /// 
         /// </summary>
         [HttpPost]
-        public async Task<IActionResult> Create(PostInput input)
+        [ValidateAntiForgeryToken]
+        public async Task<JavaScriptResult> Create(PostInput input)
         {
             if (!ModelState.IsValid)
             {
-                return View(input);
+                var errors = ModelState.GetErrors();
+                return ScriptBox.ShowMessage(errors, MsgType.error);
+
             }
 
             input.UserId = "599b295c03a89924849735b3";
-            await _postService.CreateAsync(input);
+            var response = await _postService.CreateAsync(input);
+            if (!response.result)
+                return ScriptBox.ShowMessage(response.message, MsgType.error);
 
-            return RedirectToAction("index");
+            return ScriptBox.RedirectToUrl(url: "/admin/posts/update", values:new { id=response.id},message:response.message);
         }
 
 
@@ -116,12 +124,16 @@ namespace CorMon.Web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(input);
+                var errors = ModelState.GetErrors();
+                return ScriptBox.ShowMessage(errors, MsgType.error);
+
             }
 
-            await _postService.UpdateAsync(input);
+            var response = await _postService.UpdateAsync(input);
+            if (!response.result)
+                return ScriptBox.ShowMessage(response.message, MsgType.error);
 
-            return RedirectToAction("index");
+            return ScriptBox.ReloadPage(message: response.message);
         }
 
 

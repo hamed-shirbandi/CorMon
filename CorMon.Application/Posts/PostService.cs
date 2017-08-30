@@ -38,7 +38,7 @@ namespace CorMon.Application.Posts
 
         #endregion
 
-        #region Methods
+        #region Public Methods
 
 
 

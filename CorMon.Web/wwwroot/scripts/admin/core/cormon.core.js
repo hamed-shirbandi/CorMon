@@ -70,7 +70,7 @@
             },
         autoCompilation: function (element, url) {
                 if (url === undefined) {
-                    url = '/admin/Taxonomies/GetTags?search=%QUERY'
+                    url = '/admin/Taxonomies/GetTags?term=%QUERY'
                 }
                 if (element === undefined) {
                     element = "#tags .typeahead";

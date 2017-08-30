@@ -35,7 +35,7 @@ namespace CorMon.Infrastructure.DbContext
 
         #endregion
 
-        #region Methods
+        #region Public Methods
 
 
 

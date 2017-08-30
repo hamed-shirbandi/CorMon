@@ -15,9 +15,7 @@
         $(document).ready(function () {
 
             //Initial CK EDITOR
-            CKEDITOR.replace('Content', {
-                customConfig: '~/scripts/public/vendors/ckeditor/config.js'
-            });
+            CKEDITOR.replace('Content');
 
             $("#add-tag").click(function () {
                 $(".tm-input").tagsManager('pushTag', $(".tm-input").val());
@@ -30,9 +28,11 @@
                 hiddenTagListName: 'tags',
             });
 
-           
-          
+
+
     });
 
     </script>
+    <script src="~/scripts/admin/pages/cormon.page.post.js"></script>
+
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CorMon.Application.Posts;
 using CorMon.Core.Enums;
+using CorMon.Application.Taxonomies;
 
 namespace CorMon.Web.Controllers
 {
@@ -13,17 +14,18 @@ namespace CorMon.Web.Controllers
         #region Fields
 
         private readonly IPostService _postService;
+        private readonly ITaxonomyService _taxonomyService;
+
 
         #endregion
 
-
         #region Ctor
 
-        public BlogController( IPostService postService)
+        public BlogController(IPostService postService, ITaxonomyService taxonomyService)
         {
             _postService = postService;
+            _taxonomyService = taxonomyService;
         }
-
 
         #endregion
 

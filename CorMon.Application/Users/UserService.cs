@@ -26,7 +26,7 @@ namespace CorMon.Application.Users
 
         #endregion
 
-        #region Methods
+        #region Public Methods
 
 
 

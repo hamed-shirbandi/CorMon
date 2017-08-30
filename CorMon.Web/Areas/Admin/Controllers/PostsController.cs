@@ -31,7 +31,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
         #endregion
 
-        #region Methods
+        #region Public Methods
 
 
         /// <summary>

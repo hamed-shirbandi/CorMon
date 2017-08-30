@@ -27,7 +27,7 @@ namespace CorMon.Core.Extensions
 
         #endregion
 
-        #region Methods
+        #region Public Methods
 
 
 

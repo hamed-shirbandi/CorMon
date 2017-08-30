@@ -12,7 +12,7 @@ namespace CorMon.Core.Data
         Task<Taxonomy> GetByIdAsync(string id);
         Taxonomy GetById(string id);
         Task<Taxonomy> GetByNameAsync(string name);
-
+        Task<IEnumerable<Taxonomy>> GetAllAsync(TaxonomyType type);
         Task<IEnumerable<Taxonomy>> GetListByIdsAsync(string[] taxIds);
         IEnumerable<Taxonomy> GetListByIds(string[] taxIds);
         Task<IEnumerable<Taxonomy>> SearchAsync(string term, TaxonomyType? type, SortOrder sortOrder);

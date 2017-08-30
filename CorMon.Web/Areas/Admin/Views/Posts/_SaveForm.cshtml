@@ -82,7 +82,41 @@
                         @Html.DropDownListFor(m => m.PostLevel, Html.GetEnumSelectList(typeof(PostLevel)),new { @class = "form-input-1", id = "" })
 
                         <button type="submit" class="btn btn-success btn-block">انتشار</button>
-                  
+                        <div class="line"></div>
+                        @Html.ActionLink("صفحه برچسب ها", "Index", "Taxonomy", new { type = TaxonomyType.Tag }, new { @class = "pull-left", target = "_blank" })
+                        <h4> برچسب</h4>
+                        <div id="tags">
+                            <input type="text" name="tags-input" data-provide="typeahead" id="tags-input" value="" class="tm-input typeahead form-input-1" placeholder="نام برچسب" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-success btn-block" id="add-tag">اضافه</button>
+                            </span>
+                        </div>
+                        <div id="tag-container">
+
+                        </div>
+                         <div class="line"></div>
+                            @Html.ActionLink("صفحه گروه ها", "Index", "Taxonomy", new { type = TaxonomyType.Category }, new { @class = "pull-left", target = "_blank" })
+                            <h4>گروه </h4>
+                            @if (Model.Categories.Length > 0)
+                            {
+                                <ul class="list-reset">
+                                    @for (int i = 0; i < Model.Categories.Length; i++)
+                                    {
+                                        <li>
+                                            @Html.CheckBoxFor(model => model.Categories[i].Selected)
+                                            @Html.DisplayFor(model => model.Categories[i].Text)
+                                            @Html.HiddenFor(model => model.Categories[i].Value)
+                                        </li>
+                                    }
+                                
+                                </ul>
+                            }
+                            else
+                            {
+                                <div class="alert alert-info">
+                                    <small>هیچ گروهی وجود ندارد</small>
+                                </div>
+                            }
                     </div>
                     <div id="conf-2" class="tab-panel">
 

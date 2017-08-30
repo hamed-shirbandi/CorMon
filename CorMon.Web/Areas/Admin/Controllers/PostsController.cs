@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using CorMon.Application.Posts.Dto;
 using CorMon.Application.Posts;
 using CorMon.Core.Enums;
+using CorMon.Application.Taxonomies;
 
 namespace CorMon.Web.Areas.Admin.Controllers
 {
@@ -15,15 +16,17 @@ namespace CorMon.Web.Areas.Admin.Controllers
         #region Fields
 
         private readonly IPostService _postService;
+        private readonly ITaxonomyService _taxonomyService;
 
-
+        
         #endregion
 
         #region Ctor
 
-        public PostsController(IPostService postService)
+        public PostsController(IPostService postService, ITaxonomyService taxonomyService)
         {
             _postService = postService;
+            _taxonomyService = taxonomyService;
         }
 
         #endregion
@@ -52,14 +55,15 @@ namespace CorMon.Web.Areas.Admin.Controllers
         {
             var model = new PostInput
             {
-                ActionName= "Create",
-                CreateDateTime=DateTime.Now,
-                ModifiedDateTime=DateTime.Now,
-                PublishDateTime=DateTime.Now,
-                PublishStatus=PublishStatus.Draft,
-                MetaRobots= RobotsState.Global,
-
+                ActionName = "Create",
+                CreateDateTime = DateTime.Now,
+                ModifiedDateTime = DateTime.Now,
+                PublishDateTime = DateTime.Now,
+                PublishStatus = PublishStatus.Draft,
+                MetaRobots = RobotsState.Global,
+                Categories =await _taxonomyService.GetCategoriesSelectListAsync(),
             };
+
             return View(model);
         }
 
@@ -94,6 +98,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Update(string id)
         {
             var post = await _postService.GetToUpdateAsync(id);
+            post.Categories = await _taxonomyService.GetCategoriesSelectListAsync(post.CategoryIds);
             post.ActionName = "Update";
             return View(post);
         }

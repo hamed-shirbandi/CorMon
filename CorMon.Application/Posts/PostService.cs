@@ -70,9 +70,13 @@ namespace CorMon.Application.Posts
                 Author = post.Author,
                 ModifiedDateTime = post.ModifiedDateTime,
                 CreateDateTime = post.CreateDateTime,
-
+                TagsPrefill= GetPostTaxonomiesNameArray(post.TagIds),
+                CategoryIds=post.CategoryIds,
+                TagIds=post.TagIds,
+                
             };
         }
+
 
 
 
@@ -110,8 +114,8 @@ namespace CorMon.Application.Posts
                 Author = user.DisplayName,
                 AboutAuthor = user.About,
                 ModifiedDateTime = post.ModifiedDateTime,
-                Categoories = GetPostAllTaxonomies(post.CategoryIds),
-                Tags = GetPostAllTaxonomies(post.CategoryIds),
+                Categoories = GetPostTaxonomies(post.CategoryIds),
+                Tags = GetPostTaxonomies(post.CategoryIds),
             };
         }
 
@@ -218,8 +222,8 @@ namespace CorMon.Application.Posts
                 MetaRobots = post.MetaRobots,
                 UrlTitle = post.UrlTitle,
                 UserId = post.UserId,
-                Categoories = GetPostAllTaxonomies(post.CategoryIds),
-                Tags = GetPostAllTaxonomies(post.CategoryIds),
+                Categoories = GetPostTaxonomies(post.CategoryIds),
+                Tags = GetPostTaxonomies(post.CategoryIds),
 
             }).ToList();
         }
@@ -241,7 +245,7 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        private IEnumerable<TaxonomyOutput> GetPostAllTaxonomies(string[] taxIds)
+        private IEnumerable<TaxonomyOutput> GetPostTaxonomies(string[] taxIds)
         {
             var taxs = _taxonomyRepository.GetListByIds(taxIds);
             return taxs.Select(tax => new TaxonomyOutput
@@ -256,6 +260,16 @@ namespace CorMon.Application.Posts
         }
 
 
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private string[] GetPostTaxonomiesNameArray(string[] tagIds)
+        {
+            var taxs = GetPostTaxonomies(tagIds);
+            return taxs.Select(t => t.Name).ToArray();
+        }
 
 
 

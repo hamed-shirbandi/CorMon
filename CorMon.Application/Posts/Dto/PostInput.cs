@@ -1,11 +1,13 @@
 ﻿using CorMon.Core.Enums;
+using CorMon.Core.Helpers;
 using CorMon.Resource;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CorMon.Application.Posts.Dto
 {
-   public class PostInput
+    public class PostInput
     {
 
         public string ActionName { get; set; }
@@ -15,8 +17,8 @@ namespace CorMon.Application.Posts.Dto
         public string Author { get; set; }
 
 
-        [Display(Name = "Post_Title", ResourceType =typeof(Metadata))]
-        [Required(ErrorMessageResourceName = "Post_Title_Required", ErrorMessageResourceType =typeof(Metadata))]
+        [Display(Name = "Post_Title", ResourceType = typeof(Metadata))]
+        [Required(ErrorMessageResourceName = "Post_Title_Required", ErrorMessageResourceType = typeof(Metadata))]
         public string Title { get; set; }
 
 
@@ -67,10 +69,56 @@ namespace CorMon.Application.Posts.Dto
 
 
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsDeleted { get; set; }
-        
-   
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string UserId { get; set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string[] TagIds { get; set; }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string[] CategoryIds { get; set; }
+
+
+
+
+        /// <summary>
+        ///
+        /// </summary>
+        //[Display(Name = "PostTags", ResourceType = typeof(Metadata))]
+        public string[] TagsPrefill { get; set; }
+
+
+        /// <summary>
+        ///
+        /// </summary>
+        public string Tags { get; set; }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ///  //[Display(Name = "Post_Categories", ResourceType = typeof(Metadata))]
+        public SelectListItem[] Categories { get; set; }
+
+
 
     }
 }

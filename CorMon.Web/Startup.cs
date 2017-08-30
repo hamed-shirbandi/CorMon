@@ -36,7 +36,7 @@ namespace CorMon.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error/Unknown");
             }
             
 

@@ -171,6 +171,16 @@ namespace CorMon.Infrastructure.Repositories
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<IEnumerable<Taxonomy>> GetAllAsync(TaxonomyType type)
+        {
+            return await _taxonomies.Find(t => t.Type == type).ToListAsync();
+        }
+
+
+
         #endregion
 
 

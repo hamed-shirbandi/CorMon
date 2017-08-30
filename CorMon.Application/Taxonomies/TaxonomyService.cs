@@ -10,6 +10,7 @@ using CorMon.Resource;
 using CorMon.Core.Domain;
 using System.Linq;
 using CorMon.Core.Extensions;
+using CorMon.Core.Helpers;
 
 namespace CorMon.Application.Taxonomies
 {
@@ -149,6 +150,28 @@ namespace CorMon.Application.Taxonomies
                 UrlTitle = tax.UrlTitle,
 
             }).ToList();
+        }
+        
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<SelectListItem[]> GetCategoriesSelectListAsync(string[] categoryIds = null)
+        {
+            if (categoryIds==null)
+                categoryIds = new string[] { };
+
+            var categories = await _taxonomyRepository.GetAllAsync(TaxonomyType.Category);
+            return categories.Select(t=> new SelectListItem
+            {
+                Selected= categoryIds.Contains(t.Id),
+                Text=t.Name,
+                Value=t.Id
+
+            }).ToArray();
         }
 
 

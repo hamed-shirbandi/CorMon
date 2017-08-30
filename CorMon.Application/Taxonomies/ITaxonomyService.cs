@@ -1,5 +1,6 @@
 ﻿using CorMon.Application.Taxonomies.Dto;
 using CorMon.Core.Enums;
+using CorMon.Core.Helpers;
 using CorMon.Core.JsonModels;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace CorMon.Application.Taxonomies
         Task<PostJsonResult> CreateAsync(TaxonomyInput input);
         Task<PostJsonResult> UpdateAsync(TaxonomyInput input);
         Task<IEnumerable<TaxonomyInput>> SearchAsync(string term, TaxonomyType? type, SortOrder sortOrder);
+        Task<SelectListItem[]> GetCategoriesSelectListAsync(string[] categoryIds=null);
     }
 }

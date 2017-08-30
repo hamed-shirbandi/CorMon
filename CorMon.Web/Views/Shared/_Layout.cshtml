@@ -30,15 +30,12 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class=""><a href="@Url.Action(action: "index",controller:"home")">بلاگ</a></li>
+                    <li class=""><a href="@Url.Action(action: "articles",controller:"blog")">بلاگ</a></li>
                     <li class=""><a href="@Url.Action(action: "categories",controller: "blog")">گروه ها</a></li>
                     <li class=""><a href="@Url.Action(action: "tags",controller:"blog")">تگ ها</a></li>
                 </ul>
-               @*@Html.Partial("_GetSearchForm")*@
-                @*<ul class="nav navbar-nav navbar-left">
-                    <li class="@if(action=="about" && controller=="home") { <text>active</text>} "><a href="@Url.Action(actionName: "index",controllerName:"about")">درباره</a></li>
-                    <li class="@if(action=="contact" && controller=="home") { <text>active</text>} "><a href="@Url.Action(actionName: "index",controllerName:"contact")">تماس</a></li>
-                </ul>*@
+               @Html.Partial("_GetSearchForm")
+              
             </div>
         </div>
     </nav>

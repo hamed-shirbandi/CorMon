@@ -7,7 +7,7 @@
     $globalAjaxLoading = $body.find("#global-ajax-loading");
 
 
-    var LEZAN = {
+    var CORMON = {
         list: function () {
                 var dataStore = [], listSize = 0;
 
@@ -70,7 +70,7 @@
             },
         autoCompilation: function (element, url) {
                 if (url === undefined) {
-                    url = '/admin/Taxonomy/GetTags?search=%QUERY'
+                    url = '/admin/Taxonomies/GetTags?search=%QUERY'
                 }
                 if (element === undefined) {
                     element = "#tags .typeahead";
@@ -88,138 +88,9 @@
                     source: tags.ttAdapter()
                 });
             },
-        cropper: {
-            $image: 'undefined',
-            $inputImage: 'undefined',
-            crope: function (aspect) {
-                $image = $(".img-cropper").find("img");
-                $inputImage = $('input[type="file"]');
-                if (window.FileReader) {
-                    $inputImage.change(function () {
-                        var fileReader = new FileReader(),
-                            files = this.files,
-                            file;
-
-                        if (!files.length) {
-                            return;
-                        }
-                        file = files[0];
-                        if (/^image\/\w+$/.test(file.type)) {
-                            fileReader.readAsDataURL(file);
-                            fileReader.onload = function () {
-                                $image.cropper("reset", true).cropper("replace", this.result);
-                                $inputImage.val("");
-                            };
-                        }
-                    });
-                }
-                $image.cropper({
-                    aspectRatio: aspect,
-                    zoomable: false,
-                    data: {}
-                });
-            },
-            getImage: function ($el) {
-                var img = $image.cropper("getDataURL", "image/jpeg");
-                if (typeof img !== 'undefined') {
-                    $('input[name=' + $el + ']').val(img);
-                }
-            }
-        },
-        editor: {
-            simpleEditor: function () {
-                $.FroalaEditor.DefineIcon('readmore', { NAME: 'plus' });
-                $.FroalaEditor.RegisterCommand('readmore', {
-                    title: 'Read More',
-                    focus: false,
-                    undo: false,
-                    refreshAfterCallback: true,
-                    callback: function () {
-                        this.html.insert('--more--');
-                    }
-                });
-                $('.content-editor').froalaEditor({
-                    key: 'Cfqjjdfi1hxC10obc==',
-                    enter: $.FroalaEditor.ENTER_BR,
-                    toolbarButtons: ['fullscreen', 'quote', 'bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize', 'color', 'emoticons', 'paragraphFormat', 'paragraphStyle', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'insertTable', 'insertFile', 'undo', 'redo', 'html', 'insertLink', 'insertImage', 'insertVideo', '|', 'readmore'],
-                    fileUploadURL: fileUpload,
-                    imageManagerLoadURL: imagesLoad,
-                    imageManagerDeleteURL: imageDelete,
-                    imageUploadURL: imageUpload,
-                    heightMin: 250,
-                    language: 'fa',
-                    placeholderText: '',
-                    fontFamily: {
-                        "Tahoma": "Tahoma",
-                        "Arial": "Arial",
-                        "Vardena": "Vardena"
-                    },
-                    fontSizeSelection: true,      
-                    fontSize: ['8', '9', '10', '11', '12', '14', '16', '18', '21', '24', '30', '34', '36', '48', '60', '72', '96'],
-                    imageStyles: {
-                        blockCenter: 'وسط چین'
-                    }
-                });
-            },
-            fullEditor: function (
-                imageUpload,
-                imagesLoad,
-                fileUpload,
-                imageDelete,
-                preloader,
-                autoSaveURL,
-                saveParam) {
-
-                $.FroalaEditor.DefineIcon('readmore', { NAME: 'plus' });
-                $.FroalaEditor.RegisterCommand('readmore', {
-                    title: 'Read More',
-                    focus: false,
-                    undo: false,
-                    refreshAfterCallback: true,
-                    callback: function () {
-                        this.html.insert('--more--');
-                    }
-                });
-                $('.content-editor').froalaEditor({
-                    key: 'Cfqjjdfi1hxC10obc==',
-                    enter: $.FroalaEditor.ENTER_BR,
-                    toolbarButtons: ['fullscreen', 'quote', 'bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize', 'color', 'emoticons', 'paragraphFormat', 'paragraphStyle', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'insertTable', 'insertFile', 'undo', 'redo', 'html', 'insertLink', 'insertImage', 'insertVideo', '|', 'readmore'],
-                    fileUploadURL: fileUpload,
-                    imageManagerLoadURL: imagesLoad,
-                    imageManagerDeleteURL: imageDelete,
-                    imageUploadURL: imageUpload,
-                    heightMin: 250,
-                    language: 'fa',
-                    placeholderText: '',
-                    fontFamily: {
-                        "Tahoma": "Tahoma",
-                        "Arial": "Arial",
-                        "Vardena": "Vardena"
-                    },
-                    fontSizeSelection: true,
-                    fontSize: ['8', '9', '10', '11', '12', '14', '16', '18', '21', '24', '30', '34', '36', '48', '60', '72', '96'],
-                    imageStyles: {
-                        blockCenter: 'وسط چین'
-                    },
-                   // autosave: false,
-                   // autosaveInterval: 10000,
-                    //saveParam: 'content',
-                   // toolbarSticky: true,
-                    direction: 'rtl',
-                    //toolbarStickyOffset: 50,
-                    //saveURL: autoSaveURL,
-                    saveRequestType: 'POST'
-                });
-            },
-            destroyEditor: function () {
-                if ($('.content-editor').data('fa.editable')) {
-                    $('.content-editor').froalaEditor('destroy');
-                }
-            }
-        },
         dataTable: function () {
 
-            var list = new LEZAN.list();
+            var list = new CORMON.list();
 
             // Table row select all.
             $document.on("change", ".select-all", function (e) {
@@ -276,6 +147,6 @@
             }
         }
     };
-    window.LEZAN = LEZAN;
+    window.CORMON = CORMON;
     window.$body = $body;
 }(window, jQuery))

@@ -62,6 +62,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
                 PublishStatus = PublishStatus.Draft,
                 MetaRobots = RobotsState.Global,
                 Categories =await _taxonomyService.GetCategoriesSelectListAsync(),
+                TagsPrefill=new string[] {},
             };
 
             return View(model);

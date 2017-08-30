@@ -10,12 +10,25 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
+        jQuery.validator.setDefaults({ ignore: ":hidden:not(textarea)" });
+
         $(document).ready(function () {
-            //CKEDITOR.replace('Content');
+
+            //Initial CK EDITOR
             CKEDITOR.replace('Content', {
                 customConfig: '~/scripts/public/vendors/ckeditor/config.js'
             });
+
+              // Initial tag manager
+            $("#tags-input").tagsManager({
+                prefilled: [@Html.Raw(string.Join(",",Model.TagsPrefill.Select(x=>"'"+ x +"'")))],
+                tagsContainer: "#tag-container",
+                hiddenTagListName: 'tags',
+            });
+
     });
 
     </script>
+<script src="~/scripts/admin/pages/cormon.page.post.js"></script>
+
 }

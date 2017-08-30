@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link href="~/Content/admin/css/main.css" rel="stylesheet" />
     <script src="~/scripts/public/vendors/ckeditor/ckeditor.js"></script>
+    <link href="~/scripts/public/vendors/typeahead/typeahead.css" rel="stylesheet" />
+    <link href="~/scripts/public/vendors/tagmanager/tagmanager.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
 <body class="">
@@ -139,10 +141,14 @@
     <!-- /wrapper -->
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/scripts/public/vendors/slimscroll/jquery.slimscroll.js"></script>
-    <script src="~/scripts/admin/core/cormon.core.js"></script>
     <script src="~/scripts/public/vendors/velocity/velocity.min.js"></script>
     <script src="~/scripts/admin/app/cormon.app.js"></script>
+    <script src="~/scripts/admin/core/cormon.core.js"></script>
+
     <script src="~/scripts/public/plugins/tab.js"></script>
+    <script src="~/scripts/public/vendors/typeahead/typeahead.bundle.js"></script>
+    <script src="~/scripts/public/vendors/tagmanager/tagmanager.js"></script>
+
     @RenderSection("Scripts", required: false)
     <script>
         (function ($) {

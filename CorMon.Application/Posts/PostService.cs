@@ -110,6 +110,8 @@ namespace CorMon.Application.Posts
                 Author = user.DisplayName,
                 AboutAuthor = user.About,
                 ModifiedDateTime = post.ModifiedDateTime,
+                Categoories = GetPostAllTaxonomies(post.CategoryIds),
+                Tags = GetPostAllTaxonomies(post.CategoryIds),
             };
         }
 

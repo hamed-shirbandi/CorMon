@@ -76,15 +76,16 @@
                     element = "#tags .typeahead";
                 }
                 var tags = new Bloodhound({
-                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Name'),
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
                     remote: { url: url }
                 });
                 tags.initialize();
+
                 // Find element and run plugin
                 $(element).typeahead({ hint: false }, {
                     name: 'tags',
-                    displayKey: 'Name',
+                    displayKey: 'name',
                     source: tags.ttAdapter()
                 });
             },

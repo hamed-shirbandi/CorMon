@@ -12,6 +12,7 @@ using CorMon.Application.Taxonomies;
 
 namespace CorMon.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class TaxonomiesController : BaseController
     {
         #region Fields

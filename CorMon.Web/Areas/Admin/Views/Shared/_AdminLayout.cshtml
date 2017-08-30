@@ -103,7 +103,9 @@
                                         گروه ها
                                     </a>
                                     <ul class="sidebar__nav__sub">
-                                            <li><a href="@Url.Action(action: "index", controller: "Taxonomy", values: new { Area = "admin", type ="", entity = "" })">مطالب</a></li>
+                                        <li><a href="@Url.Action(action: "create", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Category  })"> دسته بندی جدید</a></li>
+
+                                            <li><a href="@Url.Action(action: "index", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Category })">همه دسته بندی ها</a></li>
                                     </ul>
                                 </li>
 
@@ -113,7 +115,8 @@
                                         برچسب ها
                                     </a>
                                     <ul class="sidebar__nav__sub">
-                                            <li><a href="@Url.Action(action: "index", controller: "Taxonomy", values: new { Area = "admin", type = "", entity = "" })">مطالب</a></li>
+                                        <li><a href="@Url.Action(action: "create", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Tag  })"> برچسب جدید</a></li>
+                                            <li><a href="@Url.Action(action: "index", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Tag  })">همه برچسب ها</a></li>
                                     </ul>
                                 </li>
                         </ul>
@@ -146,6 +149,7 @@
     <script src="~/scripts/public/vendors/tagmanager/tagmanager.js"></script>
     <script src="~/scripts/admin/core/cormon.core.js"></script>
     <script src="~/scripts/admin/app/cormon.app.js"></script>
+    <script src="~/scripts/admin/pages/cormon.page.post.js"></script>
     <script src="~/scripts/public/plugins/tab.js"></script>
 
     @RenderSection("Scripts", required: false)

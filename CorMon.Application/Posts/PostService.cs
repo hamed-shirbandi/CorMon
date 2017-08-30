@@ -11,6 +11,7 @@ using CorMon.Core.Extensions;
 using CorMon.Resource;
 using CorMon.Core.Enums;
 using CorMon.Application.Taxonomies.Dto;
+using CorMon.Core.Helpers;
 
 namespace CorMon.Application.Posts
 {
@@ -70,10 +71,10 @@ namespace CorMon.Application.Posts
                 Author = post.Author,
                 ModifiedDateTime = post.ModifiedDateTime,
                 CreateDateTime = post.CreateDateTime,
-                TagsPrefill= GetPostTaxonomiesNameArray(post.TagIds),
-                CategoryIds=post.CategoryIds,
-                TagIds=post.TagIds,
-                
+                TagsPrefill = GetPostTaxonomiesNameArray(post.TagIds),
+                CategoryIds = post.CategoryIds,
+                TagIds = post.TagIds,
+
             };
         }
 
@@ -153,11 +154,17 @@ namespace CorMon.Application.Posts
                 MetaRobots = input.MetaRobots,
                 UrlTitle = input.UrlTitle,
                 UserId = input.UserId,
+                CategoryIds = AddTagsToPost(input.Categories),
+                TagIds = await AddTagsToPostAsync(input.Tags),
+
             };
 
             await _postRepository.CreateAsync(post);
             return new PostJsonResult { result = true, id = post.Id, message = Messages.Post_Create_Success };
         }
+
+ 
+
 
 
 
@@ -189,7 +196,10 @@ namespace CorMon.Application.Posts
             post.MetaRobots = input.MetaRobots;
             post.PostLevel = input.PostLevel;
             post.UrlTitle = input.UrlTitle;
-
+            post.CategoryIds = input.CategoryIds;
+            post.TagIds = await AddTagsToPostAsync(input.Tags);
+            post.CategoryIds = AddTagsToPost(input.Categories);
+           
             await _postRepository.UpdateAsync(post);
             return new PostJsonResult { result = true, message = Messages.Post_Update_Success };
 
@@ -247,6 +257,9 @@ namespace CorMon.Application.Posts
         /// </summary>
         private IEnumerable<TaxonomyOutput> GetPostTaxonomies(string[] taxIds)
         {
+            if (taxIds==null)
+                return new List<TaxonomyOutput>();
+
             var taxs = _taxonomyRepository.GetListByIds(taxIds);
             return taxs.Select(tax => new TaxonomyOutput
             {
@@ -271,6 +284,58 @@ namespace CorMon.Application.Posts
             return taxs.Select(t => t.Name).ToArray();
         }
 
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private async Task<string[]> AddTagsToPostAsync(string tags)
+        {
+            if (tags==null)
+                return new string[] { };
+
+
+            var tagsArray = tags.Split(",");
+            var existingTags = await _taxonomyRepository.GetAllAsync(TaxonomyType.Tag);
+            List<string> outputTagIds = new List<string>();
+
+            foreach (var tag in tagsArray)
+            {
+                var existingTag = existingTags.FirstOrDefault(t => t.Name == tag);
+                if (existingTag != null)
+                    outputTagIds.Add(existingTag.Id);
+                else
+                {
+                    var newTag = new Taxonomy
+                    {
+                        Name = tag,
+                        Type = TaxonomyType.Tag,
+                        UrlTitle = tag.GenerateUrlTitle(),
+                    };
+                    await _taxonomyRepository.CreateAsync(newTag);
+
+                    outputTagIds.Add(newTag.Id);
+                }
+            }
+
+            return outputTagIds.ToArray();
+        }
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private  string[] AddTagsToPost(SelectListItem[] categories)
+        {
+           return categories.Where(c=>c.Selected).Select(c=>c.Value).ToArray();
+         
+            
+        }
 
 
         #endregion

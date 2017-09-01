@@ -15,6 +15,7 @@ namespace CorMon.Web.Controllers
 
         private readonly IPostService _postService;
         private readonly ITaxonomyService _taxonomyService;
+        private int recordsPerPage;
 
 
         #endregion
@@ -25,6 +26,8 @@ namespace CorMon.Web.Controllers
         {
             _postService = postService;
             _taxonomyService = taxonomyService;
+            recordsPerPage = 5;
+
         }
 
         #endregion
@@ -38,13 +41,13 @@ namespace CorMon.Web.Controllers
 
 
         /// <summary>
-        /// نمایش لیست  نقل قول ها
+        /// نمایش لیست  ‍‍‍‍پست ها
         /// </summary>
         [HttpGet]
         [Route("articles")]
         public async Task<ActionResult> Articles()
         {
-            var posts = await _postService.SearchAsync(term: "", publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
+            var posts = await _postService.SearchAsync(page: 0, recordsPerPage: recordsPerPage, term: "", publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
 
             return View(posts);
         }
@@ -54,7 +57,30 @@ namespace CorMon.Web.Controllers
 
 
 
- 
+
+
+        /// <summary>
+        /// جستجوی پست ها
+        /// </summary>
+        [HttpGet]
+        public async Task<ActionResult> SearchArticles(int page = 1, string term = "")
+        {
+
+            var posts = await _postService.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: term, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
+
+            if (posts == null || !posts.Any())
+                return Content("no-more-info");
+
+            ViewBag.IsAjaxRequest = true;
+            return PartialView("_ArticlesList", posts);
+
+        }
+
+
+
+
+
+
         /// <summary>
         /// نمایش جزییات مطلب
         /// </summary>
@@ -64,7 +90,7 @@ namespace CorMon.Web.Controllers
 
             var post = await _postService.GetAsync(id);
    
-            return View("ReadMore", post);
+            return View(post);
 
         }
 

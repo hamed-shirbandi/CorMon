@@ -61,8 +61,8 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task CreateAsync(Post post)
         {
-          await _posts.InsertOneAsync(post);
-        
+            await _posts.InsertOneAsync(post);
+
         }
 
 
@@ -73,7 +73,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task CreateAsync(IEnumerable<Post> posts)
         {
-         
+
         }
 
 
@@ -81,7 +81,7 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public async Task<IEnumerable<Post>> SearchAsync(string term, PublishStatus? publishStatus, SortOrder sortOrder)
+        public IEnumerable<Post> Search(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount)
         {
             var queryable = _posts.AsQueryable();
 
@@ -103,6 +103,64 @@ namespace CorMon.Infrastructure.Repositories
 
             #endregion
 
+            #region مرتب سازی
+
+            queryable = sortOrder == SortOrder.Asc ? queryable.OrderBy(p => p.Id) : queryable.OrderByDescending(p => p.Id);
+
+
+            #endregion
+
+
+            #region دریافت تعداد کل صفحات
+
+            TotalItemCount = queryable.CountAsync().Result;
+            pageSize = (int)Math.Ceiling((double)TotalItemCount / recordsPerPage);
+
+            page = page > pageSize || page < 1 ? 1 : page;
+
+            #endregion
+
+            #region دریافت تعداد رکوردهای مورد تیاز
+
+
+            var skiped = (page - 1) * recordsPerPage;
+            queryable = queryable.Skip(skiped).Take(recordsPerPage);
+
+
+            #endregion
+
+
+
+            return queryable.ToList();
+        }
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<IEnumerable<Post>> SearchAsync(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder)
+        {
+            var queryable = _posts.AsQueryable();
+
+            #region براساس متن
+
+            if (!string.IsNullOrEmpty(term))
+            {
+                queryable = queryable.Where(p => p.Title.Contains(term));
+            }
+
+            #endregion
+
+            #region براساس وضعیت انتشار
+
+            if (publishStatus.HasValue)
+            {
+                queryable = queryable.Where(p => p.PublishStatus == publishStatus);
+            }
+
+            #endregion
 
             #region مرتب سازی
 
@@ -112,8 +170,22 @@ namespace CorMon.Infrastructure.Repositories
             #endregion
 
 
+
+            #region دریافت تعداد رکوردهای مورد تیاز
+
+            var skiped = page * recordsPerPage;
+
+
+            queryable = queryable.Skip(skiped).Take(recordsPerPage);
+
+
+            #endregion
+
+
+
             return await queryable.ToListAsync();
         }
+
 
 
 
@@ -123,7 +195,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task UpdateAsync(Post post)
         {
-          await _posts.ReplaceOneAsync(x => x.Id == post.Id, post, new UpdateOptions() { IsUpsert = false });
+            await _posts.ReplaceOneAsync(x => x.Id == post.Id, post, new UpdateOptions() { IsUpsert = false });
         }
 
 
@@ -136,6 +208,7 @@ namespace CorMon.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
 
 
 

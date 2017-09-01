@@ -20,7 +20,9 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
         private readonly IPostService _postService;
         private readonly ITaxonomyService _taxonomyService;
-
+        private int recordsPerPage;
+        private int pageSize;
+        private int TotalItemCount;
 
         #endregion
 
@@ -30,6 +32,9 @@ namespace CorMon.Web.Areas.Admin.Controllers
         {
             _postService = postService;
             _taxonomyService = taxonomyService;
+            pageSize = 0;
+            recordsPerPage = 5;
+            TotalItemCount = 0;
         }
 
         #endregion
@@ -43,12 +48,48 @@ namespace CorMon.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var posts = await _postService.SearchAsync(term: "", publishStatus: null, sortOrder: SortOrder.Desc);
+            var posts =  _postService.Search(page:1,recordsPerPage: recordsPerPage, term: "", publishStatus: null, sortOrder: SortOrder.Desc,pageSize:out pageSize,TotalItemCount:out TotalItemCount);
+
+            #region ViewBags
+
+            ViewBag.PageSize = pageSize;
+            ViewBag.CurrentPage = 1;
+            ViewBag.TotalItemCount = TotalItemCount;
+
+
+            #endregion
 
             return View(posts);
         }
 
 
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Search(int page = 1, string term = "", PublishStatus? publishStatus = null, SortOrder sortOrder = SortOrder.Desc)
+        {
+            var posts = _postService.Search(page: page, recordsPerPage: recordsPerPage, term: term, publishStatus: publishStatus, sortOrder: sortOrder, pageSize: out pageSize, TotalItemCount: out TotalItemCount);
+
+            #region ViewBags
+
+
+            ViewBag.PageSize = pageSize;
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalItemCount = TotalItemCount;
+
+
+            #endregion
+
+            return PartialView("_PostList", posts);
+
+
+
+        }
 
         /// <summary>
         /// 

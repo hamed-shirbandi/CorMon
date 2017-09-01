@@ -215,9 +215,10 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public async Task<IEnumerable<PostOutput>> SearchAsync(string term, PublishStatus? publishStatus, SortOrder sortOrder)
+        public IEnumerable<PostOutput> Search(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount)
         {
-            var posts = await _postRepository.SearchAsync(term, publishStatus, sortOrder);
+          
+            var posts = _postRepository.Search(page:page,recordsPerPage:recordsPerPage,term:term, publishStatus: publishStatus, sortOrder: sortOrder,pageSize:out pageSize,TotalItemCount: out TotalItemCount);
             return posts.Select(post => new PostOutput
             {
                 Id = post.Id,
@@ -239,6 +240,35 @@ namespace CorMon.Application.Posts
         }
 
 
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<IEnumerable<PostOutput>>  SearchAsync(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder)
+        {
+
+            var posts =await _postRepository.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: term, publishStatus: publishStatus, sortOrder: sortOrder);
+            return posts.Select(post => new PostOutput
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                Author = post.Author,
+                PostLevel = post.PostLevel,
+                MetaDescription = post.MetaDescription,
+                MetaKeyWords = post.MetaKeyWords,
+                PublishDateTime = post.PublishDateTime,
+                PublishStatus = post.PublishStatus,
+                MetaRobots = post.MetaRobots,
+                UrlTitle = post.UrlTitle,
+                UserId = post.UserId,
+                Categoories = GetPostTaxonomies(post.CategoryIds),
+                Tags = GetPostTaxonomies(post.CategoryIds),
+
+            }).ToList();
+        }
 
 
 

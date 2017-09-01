@@ -1,0 +1,36 @@
+﻿@using MvcPagedList.Core;
+
+@PagedList.Pager(actionName: "search", controllerName: "posts", areaName : "admin",
+    routeValues: new
+    {
+
+        term = Context.Request.Query["term"],
+        sortOrder = Context.Request.Query["sortOrder"],
+        publishStatus = Context.Request.Query["publishStatus"],
+
+    },
+    ajaxAttributes: new
+    {
+        data_ajax = "true",
+        data_ajax_loading = "#global-ajax-loading",
+        data_ajax_update = "#ajax-show-list",
+        data_ajax_method = "GET",
+        data_ajax_mode = "replace"
+
+
+    },
+    pagerOptions: new PagerOptions
+    {
+        currentPage = (int)ViewBag.CurrentPage,
+        PageCount = (int)ViewBag.PageSize,
+        TotalItemCount = (int)ViewBag.TotalItemCount,
+        DisplayMode = PagedListDisplayMode.IfNeeded,
+        DisplayInfoArea = true,
+        LinkToNextPageFormat = "next",
+        LinkToPreviousPageFormat = "prev",
+        CurrentLocationFormat = "page",
+        PageCountFormat = "of",
+        TotalItemCountFormat = "total count",
+        WrapperClasses = "text-center",
+
+    } )

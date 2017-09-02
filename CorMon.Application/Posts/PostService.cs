@@ -94,7 +94,7 @@ namespace CorMon.Application.Posts
             }
 
             var user = await _userRepository.GetAsync(post.UserId);
-            if (post == null || post.IsDeleted)
+            if (user == null)
             {
                 throw new Exception("User not found");
             }

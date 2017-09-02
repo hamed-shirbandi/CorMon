@@ -12,8 +12,8 @@ namespace CorMon.Application.Taxonomies
   public  interface ITaxonomyService
     {
         Task<TaxonomyInput> GetAsync(string id);
-        Task<PostJsonResult> CreateAsync(TaxonomyInput input);
-        Task<PostJsonResult> UpdateAsync(TaxonomyInput input);
+        Task<PublicJsonResult> CreateAsync(TaxonomyInput input);
+        Task<PublicJsonResult> UpdateAsync(TaxonomyInput input);
         Task<IEnumerable<TaxonomyInput>> SearchAsync(string term, TaxonomyType? type, SortOrder sortOrder);
         Task<SelectListItem[]> GetCategoriesSelectListAsync(string[] categoryIds=null);
     }

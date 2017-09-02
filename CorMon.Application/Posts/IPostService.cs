@@ -12,8 +12,8 @@ namespace CorMon.Application.Posts
     {
         Task<PostInput> GetToUpdateAsync(string id);
         Task<PostOutput> GetAsync(string id);
-        Task<PostJsonResult> CreateAsync(PostInput input);
-        Task<PostJsonResult> UpdateAsync(PostInput input);
+        Task<PublicJsonResult> CreateAsync(PostInput input);
+        Task<PublicJsonResult> UpdateAsync(PostInput input);
         IEnumerable<PostOutput> Search(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount);
         Task<IEnumerable<PostOutput>> SearchAsync(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder);
     }

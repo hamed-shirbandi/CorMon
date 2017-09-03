@@ -8,7 +8,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
     <PackageReference Include="MvcPagedList.Core" Version="1.0.3" />
-    <PackageReference Include="PersianDateTime" Version="1.1.5082.36395" />
+    <PackageReference Include="PersianDateTime.Core" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

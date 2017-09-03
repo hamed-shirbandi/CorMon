@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="mongocsharpdriver" Version="2.4.4" />
-    <PackageReference Include="PersianDateTime" Version="1.1.5082.36395" />
   </ItemGroup>
 
   <ItemGroup>

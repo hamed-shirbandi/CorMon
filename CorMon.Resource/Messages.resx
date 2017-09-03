@@ -126,4 +126,7 @@
   <data name="Post_Update_Success" xml:space="preserve">
     <value>Post Update Success</value>
   </data>
+  <data name="User_Update_Success" xml:space="preserve">
+    <value>User Update Success</value>
+  </data>
 </root>

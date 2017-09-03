@@ -86,5 +86,14 @@ namespace CorMon.Resource {
                 return ResourceManager.GetString("Post_Update_Success", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Update Success.
+        /// </summary>
+        public static string User_Update_Success {
+            get {
+                return ResourceManager.GetString("User_Update_Success", resourceCulture);
+            }
+        }
     }
 }

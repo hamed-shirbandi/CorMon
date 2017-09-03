@@ -69,13 +69,13 @@ namespace CorMon.Application.Taxonomies
         /// <summary>
         /// 
         /// </summary>
-        public async Task<PostJsonResult> CreateAsync(TaxonomyInput input)
+        public async Task<PublicJsonResult> CreateAsync(TaxonomyInput input)
         {
 
             //بررسی یکتا بودن عنوان 
             var existTax = await _taxonomyRepository.GetByNameAsync(input.Name.Trim());
             if (existTax != null)
-                return new PostJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
+                return new PublicJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
 
             //بررسی نامک -- url friendly
             input.UrlTitle = input.UrlTitle.IsNullOrEmptyOrWhiteSpace() ? input.Name.GenerateUrlTitle() : input.UrlTitle.GenerateUrlTitle();
@@ -91,7 +91,7 @@ namespace CorMon.Application.Taxonomies
             };
 
             await _taxonomyRepository.CreateAsync(post);
-            return new PostJsonResult { result = true, id = post.Id, message = Messages.Post_Create_Success };
+            return new PublicJsonResult { result = true, id = post.Id, message = Messages.Post_Create_Success };
         }
 
 
@@ -102,7 +102,7 @@ namespace CorMon.Application.Taxonomies
         /// <summary>
         /// 
         /// </summary>
-        public async Task<PostJsonResult> UpdateAsync(TaxonomyInput input)
+        public async Task<PublicJsonResult> UpdateAsync(TaxonomyInput input)
         {
             var tax = await _taxonomyRepository.GetByIdAsync(input.Id);
             if (tax == null)
@@ -113,7 +113,7 @@ namespace CorMon.Application.Taxonomies
             //بررسی یکتا بودن عنوان 
             var existTax = await _taxonomyRepository.GetByNameAsync(input.Name.Trim());
             if (existTax != null && existTax.Id != input.Id)
-                return new PostJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
+                return new PublicJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
 
 
             //بررسی نامک -- url friendly
@@ -123,7 +123,7 @@ namespace CorMon.Application.Taxonomies
 
 
             await _taxonomyRepository.UpdateAsync(tax);
-            return new PostJsonResult { result = true, message = Messages.Post_Update_Success };
+            return new PublicJsonResult { result = true, message = Messages.Post_Update_Success };
 
 
         }

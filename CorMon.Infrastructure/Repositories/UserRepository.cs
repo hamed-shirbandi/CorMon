@@ -42,8 +42,21 @@ namespace CorMon.Infrastructure.Repositories
             return await _users.Find(e => e.Id == id).FirstOrDefaultAsync();
         }
 
-        
-        
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task UpdateAsync(User user)
+        {
+            await _users.ReplaceOneAsync(x => x.Id == user.Id, user, new UpdateOptions() { IsUpsert = false });
+
+        }
+
+
+
 
 
         #endregion

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CorMon.Core.JsonModels
 {
-  public class PostJsonResult
+  public class PublicJsonResult
     {
         public string message { get; set; }
         public bool result { get; set; }

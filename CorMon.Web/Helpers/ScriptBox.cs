@@ -1,4 +1,4 @@
-﻿using CorMon.Core.Enums;
+﻿using CorMon.Web.Enums;
 using System;
 using System.Linq;
 

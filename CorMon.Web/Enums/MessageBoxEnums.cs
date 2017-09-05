@@ -1,5 +1,5 @@
 ﻿
-namespace CorMon.Core.Enums
+namespace CorMon.Web.Enums
 {
     public enum MsgType
     {

@@ -40,7 +40,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task<Post> GetByIdAsync(string id)
         {
-            return await _posts.Find(e => e.Id == id).FirstOrDefaultAsync();
+            return await _posts.Find(p => p.Id == id).FirstOrDefaultAsync();
         }
 
 
@@ -110,7 +110,6 @@ namespace CorMon.Infrastructure.Repositories
 
             #endregion
 
-
             #region دریافت تعداد کل صفحات
 
             TotalItemCount = queryable.CountAsync().Result;
@@ -169,8 +168,6 @@ namespace CorMon.Infrastructure.Repositories
 
             #endregion
 
-
-
             #region دریافت تعداد رکوردهای مورد تیاز
 
             var skiped = page * recordsPerPage;
@@ -180,8 +177,6 @@ namespace CorMon.Infrastructure.Repositories
 
 
             #endregion
-
-
 
             return await queryable.ToListAsync();
         }
@@ -195,7 +190,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task UpdateAsync(Post post)
         {
-            await _posts.ReplaceOneAsync(x => x.Id == post.Id, post, new UpdateOptions() { IsUpsert = false });
+            await _posts.ReplaceOneAsync(p => p.Id == post.Id, post, new UpdateOptions() { IsUpsert = false });
         }
 
 
@@ -204,7 +199,7 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public Task UpdateAsync(IEnumerable<Post> posts)
+        public async Task UpdateAsync(IEnumerable<Post> posts)
         {
             throw new NotImplementedException();
         }

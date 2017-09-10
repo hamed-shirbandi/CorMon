@@ -40,7 +40,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task<Taxonomy> GetByIdAsync(string id)
         {
-            return await _taxonomies.Find(e => e.Id == id).FirstOrDefaultAsync();
+            return await _taxonomies.Find(t => t.Id == id).FirstOrDefaultAsync();
         }
 
 
@@ -50,7 +50,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public  Taxonomy GetById(string id)
         {
-            return  _taxonomies.Find(e => e.Id == id).FirstOrDefault();
+            return  _taxonomies.Find(t => t.Id == id).FirstOrDefault();
         }
 
 
@@ -60,7 +60,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task<Taxonomy> GetByNameAsync(string name)
         {
-            return await _taxonomies.Find(p => p.Name == name).FirstOrDefaultAsync();
+            return await _taxonomies.Find(t => t.Name == name).FirstOrDefaultAsync();
         }
 
 
@@ -100,7 +100,7 @@ namespace CorMon.Infrastructure.Repositories
 
             if (!string.IsNullOrEmpty(term))
             {
-                queryable = queryable.Where(p => p.Name.Contains(term));
+                queryable = queryable.Where(t => t.Name.Contains(term));
             }
 
             #endregion
@@ -109,7 +109,7 @@ namespace CorMon.Infrastructure.Repositories
 
             if (type.HasValue)
             {
-                queryable = queryable.Where(p => p.Type == type);
+                queryable = queryable.Where(t => t.Type == type);
             }
 
             #endregion
@@ -134,7 +134,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task UpdateAsync(Taxonomy tax)
         {
-          await _taxonomies.ReplaceOneAsync(x => x.Id == tax.Id, tax, new UpdateOptions() { IsUpsert = false });
+          await _taxonomies.ReplaceOneAsync(t => t.Id == tax.Id, tax, new UpdateOptions() { IsUpsert = false });
         }
 
 

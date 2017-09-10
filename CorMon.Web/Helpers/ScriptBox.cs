@@ -22,14 +22,18 @@ namespace CorMon.Web.Helpers
         /// <summary>
         /// 
         /// </summary>
-        public static JavaScriptResult RedirectToUrl(string url, object values, string message = "", MsgType messageType=MsgType.success)
+        public static JavaScriptResult RedirectToUrl(string url, object values=null, string message = "", MsgType messageType=MsgType.success)
         {
             var script = string.Empty;
+            var @params = string.Empty;
 
             if (!string.IsNullOrEmpty(message))
                  script = GetMessageScript(message: message, type:messageType, modal:true,layout:MessageAlignment.topCenter,dismissQueue:false);
-            string @params = String.Join("&", values.GetType().GetProperties().Select(p => p.Name + "=" + p.GetValue(values, null)));
-             script+= $"window.location.href='{url}?{@params}';";
+
+            if (values != null)
+                @params = String.Join("&", values.GetType().GetProperties().Select(p => p.Name + "=" + p.GetValue(values, null)));
+
+            script += $"window.location.href='{url}?{@params}';";
 
             return new JavaScriptResult(script: script);
         }

@@ -13,10 +13,16 @@
         jQuery.validator.setDefaults({ ignore: ":hidden:not(textarea)" });
 
         $(document).ready(function () {
+            
 
             //Initial CK EDITOR
-            CKEDITOR.replace('Content');
+            //CKEDITOR.replace('Content');
 
+            CKEDITOR.replace('Content', {
+                customConfig: 'config.js'
+            });
+
+     
             $("#add-tag").click(function () {
                 $(".tm-input").tagsManager('pushTag', $(".tm-input").val());
             });

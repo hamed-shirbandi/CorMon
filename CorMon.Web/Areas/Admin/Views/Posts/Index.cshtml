@@ -1,7 +1,7 @@
 ﻿@model  IEnumerable<PostOutput>
 
 @{
-    ViewBag.Title = "لیست مطالب";
+    ViewBag.Title = ViewBag.IsTrashed==true?"لیست مطالب حذف شده" :"لیست مطالب";
 
 }
 <div class="grid-content">
@@ -10,6 +10,7 @@
             <form class="form" asp-action="search">
                 <a href="@Url.Action("Create", "Posts", new { })" class="btn btn-success">ایجاد مطلب جدید</a>
                 <input type="text" value="" placeholder="بخشی از عنوان را وارد کنید" name="searchBy" id="searchBy" />
+                <input type="hidden" name="isTrashed" value="@ViewBag.IsTrashed" />
                 @Html.DropDownList("publishStatus", Html.GetEnumSelectList(typeof(PublishStatus)),"همه مطالب", new { @class = "", id = "publish-dropdown" })
 
                 <input type="submit" class="btn btn-primary" value="جستجو" />

@@ -39,7 +39,7 @@
                             @Html.LabelFor(model => model.ModifiedDateTime, new { @class = "" })
                             @Html.TextBoxFor(model => model.ModifiedDateTime, new { @class = "form-input-1", @readonly = "readonly", disabled = "disabled", id = "Modifie-Date" })
 
-                          
+
 
                             @Html.LabelFor(model => model.UrlTitle, new { @class = "" })
                             @Html.TextBoxFor(model => model.UrlTitle, new { @class = "form-input-1", id = "" })
@@ -72,56 +72,65 @@
                 </div>
                 <div class="block-content">
                     <div id="conf-1">
-                        @if (Model.ActionName == "Update" && Model.PublishStatus == PublishStatus.Publish && Model.PublishDateTime <= DateTime.Now && Model.IsDeleted == false)
+                        @if (Model.ActionName == "Update" && Model.PublishStatus == PublishStatus.Publish && Model.PublishDateTime <= DateTime.Now && Model.IsTrashed == false)
                         {
                             @Html.ActionLink(linkText: "نمایش زنده", actionName: "article", controllerName: "blog", routeValues: new { Area = "", id = Model.Id, title = Model.UrlTitle }, htmlAttributes: new { target = "_blank", @class = "btn btn-warning btn-block" })
 
                         }
 
                         @Html.DropDownListFor(m => m.PublishStatus, Html.GetEnumSelectList(typeof(PublishStatus)), new { @class = "form-input-1", id = "publish-dropdown" })
-                        @Html.DropDownListFor(m => m.PostLevel, Html.GetEnumSelectList(typeof(PostLevel)),new { @class = "form-input-1", id = "" })
+                        @Html.DropDownListFor(m => m.PostLevel, Html.GetEnumSelectList(typeof(PostLevel)), new { @class = "form-input-1", id = "" })
 
                         <button type="submit" class="btn btn-success btn-block">انتشار</button>
+                        <a data-ajax="true" data-ajax_loading="#global-ajax-loading" data-ajax-method="POST" data-ajax-confirm="آیا از حذف پست مطمئن هستید؟" href="@Url.Action( "Delete", new { id = Model.Id }) " class=" btn btn-danger btn-block">
+                            حذف
+                        </a>
+                        @if (Model.IsTrashed)
+                        {
+                            <a data-ajax="true" data-ajax_loading="#global-ajax-loading" data-ajax-method="POST" href="@Url.Action( "Recycle", new { id = Model.Id }) " class=" btn btn-success btn-block">
+                                بازیافت
+                            </a>
+                        }
                         <div class="line"></div>
                         @Html.ActionLink("صفحه برچسب ها", "Index", "Taxonomy", new { type = TaxonomyType.Tag }, new { @class = "pull-left", target = "_blank" })
                         <h4> برچسب</h4>
                         <div id="tags">
                             <input type="text" name="tags-input" data-provide="typeahead" id="tags-input" value="" class="tm-input typeahead form-input-1" placeholder="نام برچسب" />
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-success btn-block" id="add-tag">اضافه</button>
+                                <button type="button" class="btn btn-primary btn-block" id="add-tag">اضافه</button>
                             </span>
                         </div>
                         <div id="tag-container">
 
                         </div>
-                         <div class="line"></div>
-                            @Html.ActionLink("صفحه گروه ها", "Index", "Taxonomy", new { type = TaxonomyType.Category }, new { @class = "pull-left", target = "_blank" })
-                            <h4>گروه </h4>
-                            @if (Model.Categories.Length > 0)
-                            {
-                                <ul class="list-reset">
-                                    @for (int i = 0; i < Model.Categories.Length; i++)
-                                    {
-                                        <li>
-                                            @Html.CheckBoxFor(model => model.Categories[i].Selected)
-                                            @Html.DisplayFor(model => model.Categories[i].Text)
-                                            @Html.HiddenFor(model => model.Categories[i].Value)
-                                        </li>
-                                    }
-                                
-                                </ul>
-                            }
-                            else
-                            {
-                                <div class="alert alert-info">
-                                    <small>هیچ گروهی وجود ندارد</small>
-                                </div>
-                            }
+                        <div class="line"></div>
+                        @Html.ActionLink("صفحه گروه ها", "Index", "Taxonomy", new { type = TaxonomyType.Category }, new { @class = "pull-left", target = "_blank" })
+                        <h4>گروه </h4>
+                        @if (Model.Categories.Length > 0)
+                        {
+                            <ul class="list-reset">
+                                @for (int i = 0; i < Model.Categories.Length; i++)
+                                {
+                                    <li>
+                                        @Html.CheckBoxFor(model => model.Categories[i].Selected)
+                                        @Html.DisplayFor(model => model.Categories[i].Text)
+                                        @Html.HiddenFor(model => model.Categories[i].Value)
+                                    </li>
+                                }
+
+                            </ul>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">
+                                <small>هیچ گروهی وجود ندارد</small>
+                            </div>
+                        }
                     </div>
                     <div id="conf-2" class="tab-panel">
 
                     </div>
-                    
+
 
                 </div>
             </div>

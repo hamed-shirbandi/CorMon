@@ -81,9 +81,15 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public IEnumerable<Post> Search(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount)
+        public IEnumerable<Post> Search(int page, int recordsPerPage, string term, bool isTrashed, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount)
         {
             var queryable = _posts.AsQueryable();
+
+            #region براساس وضعیت زباله
+
+            queryable = queryable.Where(p=>p.IsTrashed== isTrashed);
+
+            #endregion
 
             #region براساس متن
 
@@ -139,9 +145,15 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public async Task<IEnumerable<Post>> SearchAsync(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder)
+        public async Task<IEnumerable<Post>> SearchAsync(int page, int recordsPerPage, string term, bool isTrashed, PublishStatus? publishStatus, SortOrder sortOrder)
         {
             var queryable = _posts.AsQueryable();
+
+            #region براساس وضعیت زباله
+
+            queryable = queryable.Where(p => p.IsTrashed == isTrashed);
+
+            #endregion
 
             #region براساس متن
 
@@ -202,6 +214,18 @@ namespace CorMon.Infrastructure.Repositories
         public async Task UpdateAsync(IEnumerable<Post> posts)
         {
             throw new NotImplementedException();
+        }
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task DeleteAsync(string id)
+        {
+            await _posts.DeleteOneAsync(p=>p.Id==id);
         }
 
 

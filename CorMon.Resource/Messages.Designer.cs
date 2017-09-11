@@ -70,6 +70,24 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Post Delete Success.
+        /// </summary>
+        public static string Post_Delete_Success {
+            get {
+                return ResourceManager.GetString("Post_Delete_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post Recycle Success.
+        /// </summary>
+        public static string Post_Recycle_Success {
+            get {
+                return ResourceManager.GetString("Post_Recycle_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post Title Already Exist.
         /// </summary>
         public static string Post_Title_Already_Exist {

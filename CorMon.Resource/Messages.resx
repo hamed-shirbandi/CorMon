@@ -120,6 +120,12 @@
   <data name="Post_Create_Success" xml:space="preserve">
     <value>Post InsertOne Success</value>
   </data>
+  <data name="Post_Delete_Success" xml:space="preserve">
+    <value>Post Delete Success</value>
+  </data>
+  <data name="Post_Recycle_Success" xml:space="preserve">
+    <value>Post Recycle Success</value>
+  </data>
   <data name="Post_Title_Already_Exist" xml:space="preserve">
     <value>Post Title Already Exist</value>
   </data>

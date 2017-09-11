@@ -14,7 +14,10 @@ namespace CorMon.Application.Posts
         Task<PostOutput> GetAsync(string id);
         Task<PublicJsonResult> CreateAsync(PostInput input);
         Task<PublicJsonResult> UpdateAsync(PostInput input);
-        IEnumerable<PostOutput> Search(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount);
-        Task<IEnumerable<PostOutput>> SearchAsync(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder);
+        IEnumerable<PostOutput> Search(int page, int recordsPerPage, string term, bool isTrashed, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount);
+        Task<IEnumerable<PostOutput>> SearchAsync(int page, int recordsPerPage, string term, bool isTrashed, PublishStatus? publishStatus, SortOrder sortOrder);
+        Task<PublicJsonResult> DeleteAsync(string id);
+        Task<PublicJsonResult> RecycleAsync(string id);
+        
     }
 }

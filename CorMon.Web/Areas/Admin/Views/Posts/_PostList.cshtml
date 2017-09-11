@@ -25,10 +25,10 @@ else
                 <tbody>
                     @foreach (var post in Model)
                     {
-                        PostOutput post1 = post;
+
                         <tr data-table-row-id="@post.Id">
                             <td title="@post.Title">
-                                @if (post.PublishStatus == PublishStatus.Publish && post.PublishDateTime <= DateTime.Now && post.IsDeleted == false)
+                                @if (post.PublishStatus == PublishStatus.Publish && post.PublishDateTime <= DateTime.Now && post.IsTrashed == false)
                                 {
                                     <div class="text-truncate">@Html.ActionLink(linkText: post.Title, actionName: "article", controllerName: "blog", routeValues: new { Area = "", id = post.Id, title = post.UrlTitle }, htmlAttributes: new { target = "_blank" })</div>
                                 }
@@ -46,9 +46,15 @@ else
                                     <a href="@Url.Action( "update", new { id = post.Id }) " class=" btn btn-primary btn-xs btn-xs-circle">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="@Url.Action( "delete", new { id = post.Id }) " class=" btn btn-danger btn-xs btn-xs-circle">
+                                    <a data-ajax="true" data-ajax_loading="#global-ajax-loading" data-ajax-method="POST" data-ajax-confirm="آیا از حذف پست مطمئن هستید؟" href="@Url.Action( "Delete", new { id = post.Id }) " class=" btn btn-danger btn-xs btn-xs-circle">
                                         <i class="fa fa-trash"></i>
                                     </a>
+                                    @if (post.IsTrashed)
+                                    {
+                                        <a data-ajax="true" data-ajax_loading="#global-ajax-loading" data-ajax-method="POST" href="@Url.Action( "Recycle", new { id = post.Id }) " class=" btn btn-success btn-xs btn-xs-circle">
+                                            <i class="fa fa-recycle"></i>
+                                        </a>
+                                    }
                                 </div>
                             </td>
                         </tr>

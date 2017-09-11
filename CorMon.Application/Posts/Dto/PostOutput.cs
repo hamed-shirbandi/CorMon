@@ -51,7 +51,7 @@ namespace CorMon.Application.Posts.Dto
         public DateTime PublishDateTime { get; set; }
         public DateTime ModifiedDateTime { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool IsTrashed { get; set; }
 
         public IEnumerable<TaxonomyOutput> Categoories { get; set; }
         public IEnumerable<TaxonomyOutput> Tags { get; set; }

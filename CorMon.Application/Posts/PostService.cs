@@ -74,7 +74,7 @@ namespace CorMon.Application.Posts
                 TagsPrefill = GetPostTaxonomiesNameArray(post.TagIds),
                 CategoryIds = post.CategoryIds,
                 TagIds = post.TagIds,
-
+                IsTrashed=post.IsTrashed,
             };
         }
 
@@ -88,7 +88,7 @@ namespace CorMon.Application.Posts
         public async Task<PostOutput> GetAsync(string id)
         {
             var post = await _postRepository.GetByIdAsync(id);
-            if (post == null || post.IsDeleted)
+            if (post == null || post.IsTrashed)
             {
                 throw new Exception("Post not found");
             }
@@ -117,6 +117,7 @@ namespace CorMon.Application.Posts
                 ModifiedDateTime = post.ModifiedDateTime,
                 Categoories = GetPostTaxonomies(post.CategoryIds),
                 Tags = GetPostTaxonomies(post.CategoryIds),
+                IsTrashed = post.IsTrashed,
             };
         }
 
@@ -175,7 +176,7 @@ namespace CorMon.Application.Posts
         public async Task<PublicJsonResult> UpdateAsync(PostInput input)
         {
             var post = await _postRepository.GetByIdAsync(input.Id);
-            if (post == null || post.IsDeleted)
+            if (post == null)
             {
                 throw new Exception("Post not found");
             }
@@ -215,10 +216,10 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public IEnumerable<PostOutput> Search(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount)
+        public IEnumerable<PostOutput> Search(int page, int recordsPerPage, string term,bool isTrashed, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount)
         {
           
-            var posts = _postRepository.Search(page:page,recordsPerPage:recordsPerPage,term:term, publishStatus: publishStatus, sortOrder: sortOrder,pageSize:out pageSize,TotalItemCount: out TotalItemCount);
+            var posts = _postRepository.Search(page:page,recordsPerPage:recordsPerPage,term:term,isTrashed:isTrashed, publishStatus: publishStatus, sortOrder: sortOrder,pageSize:out pageSize,TotalItemCount: out TotalItemCount);
             return posts.Select(post => new PostOutput
             {
                 Id = post.Id,
@@ -235,6 +236,7 @@ namespace CorMon.Application.Posts
                 UserId = post.UserId,
                 Categoories = GetPostTaxonomies(post.CategoryIds),
                 Tags = GetPostTaxonomies(post.CategoryIds),
+                IsTrashed = post.IsTrashed,
 
             }).ToList();
         }
@@ -246,10 +248,10 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public async Task<IEnumerable<PostOutput>>  SearchAsync(int page, int recordsPerPage, string term, PublishStatus? publishStatus, SortOrder sortOrder)
+        public async Task<IEnumerable<PostOutput>>  SearchAsync(int page, int recordsPerPage, string term, bool isTrashed, PublishStatus? publishStatus, SortOrder sortOrder)
         {
 
-            var posts =await _postRepository.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: term, publishStatus: publishStatus, sortOrder: sortOrder);
+            var posts =await _postRepository.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: term, isTrashed: isTrashed, publishStatus: publishStatus, sortOrder: sortOrder);
             return posts.Select(post => new PostOutput
             {
                 Id = post.Id,
@@ -266,12 +268,65 @@ namespace CorMon.Application.Posts
                 UserId = post.UserId,
                 Categoories = GetPostTaxonomies(post.CategoryIds),
                 Tags = GetPostTaxonomies(post.CategoryIds),
+                IsTrashed = post.IsTrashed,
 
             }).ToList();
         }
 
 
 
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+
+        public async Task<PublicJsonResult> DeleteAsync(string id)
+        {
+            var post = await _postRepository.GetByIdAsync(id);
+            if (post == null )
+            {
+                throw new Exception("Post not found");
+            }
+
+            if (post.IsTrashed)
+            {
+                await _postRepository.DeleteAsync(id);
+            }
+            else
+            {
+                post.IsTrashed = true;
+               await _postRepository.UpdateAsync(post);
+            }
+
+
+            return new PublicJsonResult { result=true,message=Messages.Post_Delete_Success};
+        }
+
+
+
+
+
+        
+
+        /// <summary>
+        /// 
+        /// </summary>
+
+        public async Task<PublicJsonResult> RecycleAsync(string id)
+        {
+            var post = await _postRepository.GetByIdAsync(id);
+            if (post == null)
+            {
+                throw new Exception("Post not found");
+            }
+
+            post.IsTrashed = false;
+            await _postRepository.UpdateAsync(post);
+
+            return new PublicJsonResult { result = true, message = Messages.Post_Recycle_Success };
+        }
 
 
 

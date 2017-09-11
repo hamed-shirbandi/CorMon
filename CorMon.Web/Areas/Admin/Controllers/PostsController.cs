@@ -9,6 +9,7 @@ using CorMon.Core.Enums;
 using CorMon.Application.Taxonomies;
 using CorMon.Web.Helpers;
 using CorMon.Web.Extensions;
+using CorMon.Web.Enums;
 
 namespace CorMon.Web.Areas.Admin.Controllers
 {
@@ -46,12 +47,13 @@ namespace CorMon.Web.Areas.Admin.Controllers
         /// 
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool isTrashed=false)
         {
-            var posts =  _postService.Search(page:1,recordsPerPage: recordsPerPage, term: "", publishStatus: null, sortOrder: SortOrder.Desc,pageSize:out pageSize,TotalItemCount:out TotalItemCount);
+            var posts =  _postService.Search(page:1,recordsPerPage: recordsPerPage, term: "",isTrashed: isTrashed, publishStatus: null, sortOrder: SortOrder.Desc,pageSize:out pageSize,TotalItemCount:out TotalItemCount);
 
             #region ViewBags
 
+            ViewBag.IsTrashed = isTrashed;
             ViewBag.PageSize = pageSize;
             ViewBag.CurrentPage = 1;
             ViewBag.TotalItemCount = TotalItemCount;
@@ -71,13 +73,13 @@ namespace CorMon.Web.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Search(int page = 1, string term = "", PublishStatus? publishStatus = null, SortOrder sortOrder = SortOrder.Desc)
+        public ActionResult Search(int page = 1, string term = "",bool isTrashed=false, PublishStatus? publishStatus = null, SortOrder sortOrder = SortOrder.Desc)
         {
-            var posts = _postService.Search(page: page, recordsPerPage: recordsPerPage, term: term, publishStatus: publishStatus, sortOrder: sortOrder, pageSize: out pageSize, TotalItemCount: out TotalItemCount);
+            var posts = _postService.Search(page: page, recordsPerPage: recordsPerPage, term: term, isTrashed: isTrashed, publishStatus: publishStatus, sortOrder: sortOrder, pageSize: out pageSize, TotalItemCount: out TotalItemCount);
 
             #region ViewBags
 
-
+            ViewBag.IsTrashed = isTrashed;
             ViewBag.PageSize = pageSize;
             ViewBag.CurrentPage = page;
             ViewBag.TotalItemCount = TotalItemCount;
@@ -90,6 +92,11 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
 
         }
+
+
+
+
+
 
         /// <summary>
         /// 
@@ -111,6 +118,9 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
             return View(model);
         }
+
+
+
 
 
 
@@ -157,6 +167,8 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
 
 
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -167,19 +179,53 @@ namespace CorMon.Web.Areas.Admin.Controllers
             {
                 var errors = ModelState.GetErrors();
                 return ScriptBox.ShowMessage(errors, MsgType.error);
-
             }
 
             var response = await _postService.UpdateAsync(input);
             if (!response.result)
                 return ScriptBox.ShowMessage(response.message, MsgType.error);
 
-            return ScriptBox.ReloadPage(message: response.message);
+            return ScriptBox.ReloadPage();
         }
 
 
 
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+           
+            var response = await _postService.DeleteAsync(id);
+            if (!response.result)
+                return ScriptBox.ShowMessage(response.message, MsgType.error);
+
+            return ScriptBox.RedirectToUrl(url: "/admin/posts");
+
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> Recycle(string id)
+        {
+
+            var response = await _postService.RecycleAsync(id);
+            if (!response.result)
+                return ScriptBox.ShowMessage(response.message, MsgType.error);
+
+            return ScriptBox.ReloadPage();
+        }
+
+
+
+        
 
 
         #endregion

@@ -7,6 +7,7 @@
         term = Context.Request.Query["term"],
         sortOrder = Context.Request.Query["sortOrder"],
         publishStatus = Context.Request.Query["publishStatus"],
+        isTrashed= @ViewBag.IsTrashed,
 
     },
     ajaxAttributes: new

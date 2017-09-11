@@ -73,7 +73,7 @@ namespace CorMon.Application.Posts.Dto
         /// <summary>
         /// 
         /// </summary>
-        public bool IsDeleted { get; set; }
+        public bool IsTrashed { get; set; }
 
 
 

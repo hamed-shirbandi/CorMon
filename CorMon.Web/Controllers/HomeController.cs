@@ -42,7 +42,7 @@ namespace CorMon.Web.Controllers
         /// </summary>
         public async Task<IActionResult> Index()
         {
-            var posts = await _postService.SearchAsync(page:0,recordsPerPage:recordsPerPage,term: "", publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
+            var posts = await _postService.SearchAsync(page:0,recordsPerPage:recordsPerPage,term: "",isTrashed:false, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
 
             return View(posts);
         }

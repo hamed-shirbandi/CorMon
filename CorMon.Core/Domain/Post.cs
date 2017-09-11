@@ -111,7 +111,7 @@ namespace CorMon.Core.Domain
         /// <summary>
         /// زباله 
         /// </summary> 
-        public bool IsDeleted { get; set; }
+        public bool IsTrashed { get; set; }
 
         
 

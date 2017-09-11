@@ -92,9 +92,9 @@
                                         مطالب
                                     </a>
                                     <ul class="sidebar__nav__sub">
-                                            <li><a href="@Url.Action(action: "create", controller: "posts", values: new { Area = "admin", postType ="" })">مطلب جدید</a></li>
-                                            <li><a href="@Url.Action(action: "index", controller: "posts", values: new { Area = "admin", postType ="" })">همه مطالب</a></li>
-                                            <li><a href="@Url.Action(action: "index", controller: "posts", values: new { Area = "admin", trashState ="", postType = "" })">زباله دان</a></li>
+                                            <li><a href="@Url.Action(action: "create", controller: "posts", values: new { Area = "admin" })">مطلب جدید</a></li>
+                                            <li><a href="@Url.Action(action: "index", controller: "posts", values: new { Area = "admin"})">همه مطالب</a></li>
+                                            <li><a href="@Url.Action(action: "index", controller: "posts", values: new { Area = "admin", isTrashed =true})">زباله دان</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -130,7 +130,9 @@
         <div class="wrapper-inner">
             <div class="wrapper-content">
                 <!--info block-->
-                @RenderSection("InfoBlock", required: false)
+                <div class="wrapper-content-header">
+                    <h3 class="title">@ViewBag.Title</h3>
+                </div>
                 <!--/info block-->
                 @RenderBody()
                 <!-- ajax loading -->

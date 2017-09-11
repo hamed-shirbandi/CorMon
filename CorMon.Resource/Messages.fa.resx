@@ -118,10 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Post_Create_Success" xml:space="preserve">
-    <value>عملیات ایجاد مطلب با موفقیت انجام شد</value>
+    <value>عملیات ایجاد پست با موفقیت انجام شد</value>
+  </data>
+  <data name="Post_Delete_Success" xml:space="preserve">
+    <value>عملیات حذف پست با موفقیت انجام شد</value>
+  </data>
+  <data name="Post_Recycle_Success" xml:space="preserve">
+    <value>عملیات بازیابی پست با موفقیت انجام شد</value>
   </data>
   <data name="Post_Title_Already_Exist" xml:space="preserve">
-    <value>یک مطلب با همین عنوان قبلا ثبت شده است</value>
+    <value>یک پست با همین عنوان قبلا ثبت شده است</value>
   </data>
   <data name="Post_Update_Success" xml:space="preserve">
     <value>عملیات ویرایش پست با موفقیت انجام شد</value>

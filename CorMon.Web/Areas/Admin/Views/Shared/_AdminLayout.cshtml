@@ -120,6 +120,36 @@
                                             <li><a href="@Url.Action(action: "index", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Tag  })">همه برچسب ها</a></li>
                                     </ul>
                                 </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" role="button">
+                                    <span class="si si-tag"></span>
+                                    کاربران
+                                </a>
+                                <ul class="sidebar__nav__sub">
+                                    <li><a href="@Url.Action(action: "create", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Tag  })"> برچسب جدید</a></li>
+                                    <li><a href="@Url.Action(action: "index", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Tag  })">همه برچسب ها</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" role="button">
+                                    <span class="si si-tag"></span>
+                                    آمار
+                                </a>
+                                <ul class="sidebar__nav__sub">
+                                    <li><a href="@Url.Action(action: "create", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Tag  })"> برچسب جدید</a></li>
+                                    <li><a href="@Url.Action(action: "index", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Tag  })">همه برچسب ها</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" role="button">
+                                    <span class="si si-tag"></span>
+                                    تنظیمات
+                                </a>
+                                <ul class="sidebar__nav__sub">
+                                    <li><a href="@Url.Action(action: "create", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Tag  })"> برچسب جدید</a></li>
+                                    <li><a href="@Url.Action(action: "index", controller: "Taxonomies", values: new { Area = "admin", type =TaxonomyType.Tag  })">همه برچسب ها</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -158,7 +188,8 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
-
+    <script src="~/scripts/public/vendors/chartjs/Chart.Core.js"></script>
+    <script src="~/scripts/public/vendors/chartjs/Chart.Bar.js"></script>
     @RenderSection("Scripts", required: false)
     <script>
         (function ($) {

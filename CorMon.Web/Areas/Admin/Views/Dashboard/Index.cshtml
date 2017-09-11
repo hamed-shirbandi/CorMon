@@ -45,5 +45,100 @@
             </div>
         </div>
     </div>
-
+    <div class="grid-50 tablet-grid-50 mobile-grid-100">
+        <div class="block  block-scroll">
+            <div class="block-header">
+                <h4>آمار بازدید روزهای اخیر</h4>
+            </div>
+            <div class="block-content block-scroll height-400">
+                <canvas id="last-days-chart-area" class="chart-canvas" />
+            </div>
+        </div>
+    </div>
+    <div class="grid-50 tablet-grid-50 mobile-grid-100">
+        <div class="block">
+            <div class="block-header">
+                <h4> آخرین ورود های شما</h4>
+            </div>
+            <div class="block-content has-table block-scroll height-400">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <img class="img-avatar img-avatar48" src="http://www.codeblock.ir/Content/public/img/flags/IR.png" title="ISLAMIC REPUBLIC OF IRAN" alt="ISLAMIC REPUBLIC OF IRAN">
+                                    </td>
+                                    <td><p class="font-s10">84.241.37.215</p></td>
+                                    <td><p class="font-s10">دوشنبه 20 شهریور 1396 ساعت 10:36:58</p> </td>
+                                    <td>
+                                        <span data-browser-type="Chrome"></span>
+                                        <span data-search-engine-type="NoSearchEngine"></span>
+                                        <span data-os-type="Other"></span>
+                                        <span data-device-type="Pc"></span>
+                                    </td>
+                                </tr>
+                            }
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+@section Scripts{
+    <script>
+
+
+        var lastDaysBarChartLables = [];
+        var lastDaysBarChartDataset = [];
+        var lastDaysBarChartData = [];
+
+         
+           lastDaysBarChartLables.push("10/6/96");
+           lastDaysBarChartDataset.push(55);
+
+           lastDaysBarChartLables.push("11/6/96");
+           lastDaysBarChartDataset.push(100);
+
+           lastDaysBarChartLables.push("12/6/96");
+           lastDaysBarChartDataset.push(109);
+
+           lastDaysBarChartLables.push("13/6/96");
+           lastDaysBarChartDataset.push(70);
+
+           lastDaysBarChartLables.push("14/6/96");
+           lastDaysBarChartDataset.push(85);
+
+           lastDaysBarChartLables.push("15/6/96");
+           lastDaysBarChartDataset.push(90);
+
+
+        lastDaysBarChartData = {
+            labels: lastDaysBarChartLables,
+            datasets: [
+                {
+                    label: "My First dataset",
+                    fillColor: "#3e51b5",
+                    strokeColor: "#3646a8",
+                    highlightFill: "#3646a8",
+                    highlightStroke: "#3646a8",
+                    data: lastDaysBarChartDataset
+                }
+            ]
+        };
+
+        (function ($) {
+
+
+            //Statistic Radar chart
+            var ctx = document.getElementById("last-days-chart-area").getContext("2d");
+            var chart = new Chart(ctx).Bar(lastDaysBarChartData,null);
+
+        })(jQuery);
+    </script>
+}

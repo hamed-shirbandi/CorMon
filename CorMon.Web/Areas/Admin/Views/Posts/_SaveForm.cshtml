@@ -85,7 +85,7 @@
                         <a data-ajax="true" data-ajax_loading="#global-ajax-loading" data-ajax-method="POST" data-ajax-confirm="آیا از حذف پست مطمئن هستید؟" href="@Url.Action( "Delete", new { id = Model.Id }) " class=" btn btn-danger btn-block">
                             حذف
                         </a>
-                        @if (Model.IsTrashed)
+                        @if (!string.IsNullOrEmpty(Model.Id) && Model.IsTrashed)
                         {
                             <a data-ajax="true" data-ajax_loading="#global-ajax-loading" data-ajax-method="POST" href="@Url.Action( "Recycle", new { id = Model.Id }) " class=" btn btn-success btn-block">
                                 بازیافت

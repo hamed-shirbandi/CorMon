@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CorMon.Core.Extensions
 {
-   public static class DataExtensions
+    public static class DataExtensions
     {
 
 
@@ -16,10 +16,13 @@ namespace CorMon.Core.Extensions
         {
             var collection = name;
             if (string.IsNullOrEmpty(collection))
+            {
                 collection = typeof(T).Name;
 
-            if (!collection.EndsWith("s"))
-                collection = collection + "s";
+                if (!collection.EndsWith("s"))
+                    collection = collection + "s";
+            }
+
 
             return collections.Contains(collection);
         }

@@ -23,7 +23,7 @@ namespace CorMon.Infrastructure.DataProviders
                     dbContext.CreateCollection<User>();
 
                 if (!collections.Has<Taxonomy>(name: "taxonomies"))
-                    dbContext.CreateCollection<User>();
+                    dbContext.CreateCollection<Taxonomy>();
 
             }
         }

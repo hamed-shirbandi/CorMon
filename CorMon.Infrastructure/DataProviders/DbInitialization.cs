@@ -1,4 +1,5 @@
 ﻿using CorMon.Core.Domain;
+using CorMon.Core.Extensions;
 using CorMon.Infrastructure.DbContext;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,24 +15,16 @@ namespace CorMon.Infrastructure.DataProviders
                 var dbContext = serviceScope.ServiceProvider.GetService<IMongoDbContext>();
                 var collections = dbContext.ListCollections();
 
-                // == dbContext.GetCollection<Post>()
-                if (!collections.Contains(typeof(Post).Name.ToLower()+"s"))
-                {
-                    dbContext.CreateCollection<Post>(); 
-                }
 
+                if (!collections.Has<Post>())
+                    dbContext.CreateCollection<Post>();
 
-                // == dbContext.GetCollection<User>()
-                if (!collections.Contains(typeof(User).Name.ToLower() + "s"))
-                {
+                if (!collections.Has<User>())
                     dbContext.CreateCollection<User>();
-                }
 
-                // == dbContext.GetCollection<Taxonomy>(name: "taxonomies")
-                if (!collections.Contains("taxonomies"))
-                {
-                    dbContext.CreateCollection<Taxonomy>(name: "taxonomies");
-                }
+                if (!collections.Has<Taxonomy>(name: "taxonomies"))
+                    dbContext.CreateCollection<User>();
+
             }
         }
     }

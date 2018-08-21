@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{500772FC-BE27-4D64-A058-77DBB2B8A945}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.Web.Api", "CorMon.Web.Api\CorMon.Web.Api.csproj", "{6D1ACDB2-0BF4-4166-880D-3BD42203F26F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{82D0BEE8-A084-4E63-A92F-84A788A7E01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82D0BEE8-A084-4E63-A92F-84A788A7E01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82D0BEE8-A084-4E63-A92F-84A788A7E01B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D1ACDB2-0BF4-4166-880D-3BD42203F26F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D1ACDB2-0BF4-4166-880D-3BD42203F26F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D1ACDB2-0BF4-4166-880D-3BD42203F26F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D1ACDB2-0BF4-4166-880D-3BD42203F26F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{F8D1DA8B-5BE2-4FE8-A2D7-F1ADD3868F4B} = {14E82702-68C1-4585-A5B3-783A8EB8E6A0}
 		{8AEAE485-24B5-44B3-B824-8044EC891FB0} = {500772FC-BE27-4D64-A058-77DBB2B8A945}
 		{82D0BEE8-A084-4E63-A92F-84A788A7E01B} = {500772FC-BE27-4D64-A058-77DBB2B8A945}
+		{6D1ACDB2-0BF4-4166-880D-3BD42203F26F} = {85F9EA2C-4F75-4388-A56A-BB689C226886}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1AA7C160-88A3-4F7E-9632-671246E2A6EC}

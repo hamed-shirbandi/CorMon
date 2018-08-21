@@ -1,16 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using CorMon.Infrastructure.DataProviders;
+using CorMon.IocConfig;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CorMon.Infrastructure.DataProviders;
-using System.Globalization;
-using Microsoft.AspNetCore.Localization;
-using CorMon.IocConfig;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
-namespace CorMon.Web
+namespace CorMon.Web.Api
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
@@ -20,6 +31,7 @@ namespace CorMon.Web
             services.AddMvc();
             return services.ConfigureIocContainer();
         }
+
 
 
 
@@ -35,9 +47,10 @@ namespace CorMon.Web
             }
             else
             {
-                app.UseExceptionHandler("/Error/Unknown");
+               // app.UseExceptionHandler("/Error/Unknown");
             }
-            
+
+
             app.UseStaticFiles();
 
             serviceScopeFactory.InitialDatabase();
@@ -45,15 +58,10 @@ namespace CorMon.Web
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("areaRoute", "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
-
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Values}/{action=Get}/{id?}");
             });
         }
-
-
-
     }
 }

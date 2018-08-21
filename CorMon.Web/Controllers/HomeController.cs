@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Localization;
@@ -19,7 +18,6 @@ namespace CorMon.Web.Controllers
 
         #endregion
 
-
         #region Ctor
 
         public HomeController(IPostService postService)
@@ -30,7 +28,6 @@ namespace CorMon.Web.Controllers
 
 
         #endregion
-
 
         #region Public Methods
 
@@ -50,16 +47,6 @@ namespace CorMon.Web.Controllers
 
         
 
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IActionResult SetLanguage(string lang = "en-US")
-        {
-            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(new CultureInfo(lang))), new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
-            return RedirectToAction("Index");
-        }
 
         #endregion
 

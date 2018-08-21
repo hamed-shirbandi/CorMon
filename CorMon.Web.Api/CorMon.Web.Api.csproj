@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CorMon.Application\CorMon.Application.csproj" />
+    <ProjectReference Include="..\CorMon.Core\CorMon.Core.csproj" />
+    <ProjectReference Include="..\CorMon.Infrastructure\CorMon.Infrastructure.csproj" />
+    <ProjectReference Include="..\CorMon.IocConfig\CorMon.IocConfig.csproj" />
+    <ProjectReference Include="..\CorMon.Resource\CorMon.Resource.csproj" />
+  </ItemGroup>
+
+</Project>

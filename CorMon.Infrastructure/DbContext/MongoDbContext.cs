@@ -24,8 +24,8 @@ namespace CorMon.Infrastructure.DbContext
 
         public MongoDbContext(IConfiguration configuration)
         {
-            _dbName = configuration["database"];
-            _connectionString = configuration["mongoconnection"];
+            _dbName = configuration["Mongo:Database"];
+            _connectionString = configuration["Mongo:Connection"];
             MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(_connectionString));
             _client = new MongoClient(settings);
             _database = _client.GetDatabase(_dbName);

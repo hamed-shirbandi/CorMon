@@ -47,6 +47,7 @@ namespace CorMon.Web.Controllers
         [Route("articles")]
         public async Task<ActionResult> Articles()
         {
+
             var posts = await _postService.SearchAsync(page: 0, recordsPerPage: recordsPerPage, term: "",isTrashed:false, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
 
             return View(posts);

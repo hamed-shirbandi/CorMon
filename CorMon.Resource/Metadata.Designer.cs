@@ -61,7 +61,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advance.
+        ///   Looks up a localized string similar to پیشرفته.
         /// </summary>
         public static string Enum_PostLevel_Advance {
             get {
@@ -70,7 +70,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Intro.
+        ///   Looks up a localized string similar to مقدماتی.
         /// </summary>
         public static string Enum_PostLevel_Intro {
             get {
@@ -79,7 +79,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Typical.
+        ///   Looks up a localized string similar to متوسط.
         /// </summary>
         public static string Enum_PostLevel_Typical {
             get {
@@ -88,7 +88,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Draft.
+        ///   Looks up a localized string similar to پیش نویس.
         /// </summary>
         public static string Enum_PublishStatus_Draft {
             get {
@@ -97,7 +97,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Publish.
+        ///   Looks up a localized string similar to منتشر.
         /// </summary>
         public static string Enum_PublishStatus_Publish {
             get {
@@ -106,7 +106,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Global.
+        ///   Looks up a localized string similar to ایندکس محتوا و دنبال کردن لینک ها.
         /// </summary>
         public static string Enum_RobotsState_Global {
             get {
@@ -115,7 +115,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Follow.
+        ///   Looks up a localized string similar to فقط ایندکس کردن محتوا.
         /// </summary>
         public static string Enum_RobotsState_NoFollow {
             get {
@@ -124,7 +124,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Follow - No Index.
+        ///   Looks up a localized string similar to عدم ایندکس و دنبال کردن لینک ها.
         /// </summary>
         public static string Enum_RobotsState_NoFollowNoIndex {
             get {
@@ -133,7 +133,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Index.
+        ///   Looks up a localized string similar to فقط دنبال کردن لینک ها.
         /// </summary>
         public static string Enum_RobotsState_NoIndex {
             get {
@@ -142,7 +142,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asc.
+        ///   Looks up a localized string similar to صعودی.
         /// </summary>
         public static string Enum_SortOrder_Asc {
             get {
@@ -151,7 +151,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Desc.
+        ///   Looks up a localized string similar to نزولی.
         /// </summary>
         public static string Enum_SortOrder_Desc {
             get {
@@ -160,7 +160,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post_Author.
+        ///   Looks up a localized string similar to نویسنده.
         /// </summary>
         public static string Post_Author {
             get {
@@ -169,7 +169,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Content.
+        ///   Looks up a localized string similar to محتوی.
         /// </summary>
         public static string Post_Content {
             get {
@@ -178,7 +178,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post Content Required.
+        ///   Looks up a localized string similar to محتوای مطلب را وارد کنید.
         /// </summary>
         public static string Post_Content_Required {
             get {
@@ -187,7 +187,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post Create DateTime.
+        ///   Looks up a localized string similar to تاریخ ایجاد.
         /// </summary>
         public static string Post_CreateDateTime {
             get {
@@ -196,7 +196,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meta Description.
+        ///   Looks up a localized string similar to توصیف.
         /// </summary>
         public static string Post_MetaDescription {
             get {
@@ -205,7 +205,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Meta KeyWords.
+        ///   Looks up a localized string similar to کلیدواژه ها.
         /// </summary>
         public static string Post_MetaKeyWords {
             get {
@@ -214,7 +214,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post Modified DateTime.
+        ///   Looks up a localized string similar to تاریخ ویرایش.
         /// </summary>
         public static string Post_ModifiedDateTime {
             get {
@@ -223,7 +223,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post Level.
+        ///   Looks up a localized string similar to سطح مطلب.
         /// </summary>
         public static string Post_PostLevel {
             get {
@@ -232,7 +232,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post Level Required.
+        ///   Looks up a localized string similar to سطح مطلب را مشخص کنید.
         /// </summary>
         public static string Post_PostLevel_Required {
             get {
@@ -241,7 +241,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Publish DateTime.
+        ///   Looks up a localized string similar to تاریخ انتشار.
         /// </summary>
         public static string Post_PublishDateTime {
             get {
@@ -250,7 +250,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Publish DateTime Required.
+        ///   Looks up a localized string similar to تاریخ انتشار را وارد کنید.
         /// </summary>
         public static string Post_PublishDateTime_Required {
             get {
@@ -259,7 +259,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Publish Status.
+        ///   Looks up a localized string similar to وضعیت انتشار.
         /// </summary>
         public static string Post_PublishStatus {
             get {
@@ -268,7 +268,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Publish Status Required.
+        ///   Looks up a localized string similar to وضعیت انتشار را مشخص کنید.
         /// </summary>
         public static string Post_PublishStatus_Required {
             get {
@@ -277,7 +277,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Robots State.
+        ///   Looks up a localized string similar to وضعیت موتورهای جستجو.
         /// </summary>
         public static string Post_RobotsState {
             get {
@@ -286,7 +286,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Robots State Required.
+        ///   Looks up a localized string similar to وضعیت موتورهای جستجو را مشخص کنید.
         /// </summary>
         public static string Post_RobotsState_Required {
             get {
@@ -295,7 +295,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title.
+        ///   Looks up a localized string similar to عنوان.
         /// </summary>
         public static string Post_Title {
             get {
@@ -304,7 +304,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post Title Required.
+        ///   Looks up a localized string similar to عنوان مطلب را وارد کنید.
         /// </summary>
         public static string Post_Title_Required {
             get {
@@ -313,7 +313,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Url Title.
+        ///   Looks up a localized string similar to نامک.
         /// </summary>
         public static string Post_UrlTitle {
             get {

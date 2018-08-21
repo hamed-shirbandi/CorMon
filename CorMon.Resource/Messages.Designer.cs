@@ -61,7 +61,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post InsertOne Success.
+        ///   Looks up a localized string similar to عملیات ایجاد پست با موفقیت انجام شد.
         /// </summary>
         public static string Post_Create_Success {
             get {
@@ -70,7 +70,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post Delete Success.
+        ///   Looks up a localized string similar to عملیات حذف پست با موفقیت انجام شد.
         /// </summary>
         public static string Post_Delete_Success {
             get {
@@ -79,7 +79,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post Recycle Success.
+        ///   Looks up a localized string similar to عملیات بازیابی پست با موفقیت انجام شد.
         /// </summary>
         public static string Post_Recycle_Success {
             get {
@@ -88,7 +88,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post Title Already Exist.
+        ///   Looks up a localized string similar to یک پست با همین عنوان قبلا ثبت شده است.
         /// </summary>
         public static string Post_Title_Already_Exist {
             get {
@@ -97,7 +97,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post Update Success.
+        ///   Looks up a localized string similar to عملیات ویرایش پست با موفقیت انجام شد.
         /// </summary>
         public static string Post_Update_Success {
             get {
@@ -106,7 +106,7 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Update Success.
+        ///   Looks up a localized string similar to عملیات ویرایش کاربر با موفقیت انجام شد.
         /// </summary>
         public static string User_Update_Success {
             get {

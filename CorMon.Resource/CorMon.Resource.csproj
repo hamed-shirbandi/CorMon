@@ -25,9 +25,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Metadata.fa.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Metadata.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Metadata.Designer.cs</LastGenOutput>

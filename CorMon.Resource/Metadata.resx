@@ -118,90 +118,90 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Enum_PostLevel_Advance" xml:space="preserve">
-    <value>Advance</value>
+    <value>پیشرفته</value>
   </data>
   <data name="Enum_PostLevel_Intro" xml:space="preserve">
-    <value>Intro</value>
+    <value>مقدماتی</value>
   </data>
   <data name="Enum_PostLevel_Typical" xml:space="preserve">
-    <value>Typical</value>
+    <value>متوسط</value>
   </data>
   <data name="Enum_PublishStatus_Draft" xml:space="preserve">
-    <value>Draft</value>
+    <value>پیش نویس</value>
   </data>
   <data name="Enum_PublishStatus_Publish" xml:space="preserve">
-    <value>Publish</value>
+    <value>منتشر</value>
   </data>
   <data name="Enum_RobotsState_Global" xml:space="preserve">
-    <value>Global</value>
+    <value>ایندکس محتوا و دنبال کردن لینک ها</value>
   </data>
   <data name="Enum_RobotsState_NoFollow" xml:space="preserve">
-    <value>No Follow</value>
+    <value>فقط ایندکس کردن محتوا</value>
   </data>
   <data name="Enum_RobotsState_NoFollowNoIndex" xml:space="preserve">
-    <value>No Follow - No Index</value>
+    <value>عدم ایندکس و دنبال کردن لینک ها</value>
   </data>
   <data name="Enum_RobotsState_NoIndex" xml:space="preserve">
-    <value>No Index</value>
+    <value>فقط دنبال کردن لینک ها</value>
   </data>
   <data name="Enum_SortOrder_Asc" xml:space="preserve">
-    <value>Asc</value>
+    <value>صعودی</value>
   </data>
   <data name="Enum_SortOrder_Desc" xml:space="preserve">
-    <value>Desc</value>
+    <value>نزولی</value>
   </data>
   <data name="Post_Author" xml:space="preserve">
-    <value>Post_Author</value>
+    <value>نویسنده</value>
   </data>
   <data name="Post_Content" xml:space="preserve">
-    <value>Content</value>
+    <value>محتوی</value>
   </data>
   <data name="Post_Content_Required" xml:space="preserve">
-    <value>Post Content Required</value>
+    <value>محتوای مطلب را وارد کنید</value>
   </data>
   <data name="Post_CreateDateTime" xml:space="preserve">
-    <value>Post Create DateTime</value>
+    <value>تاریخ ایجاد</value>
   </data>
   <data name="Post_MetaDescription" xml:space="preserve">
-    <value>Meta Description</value>
+    <value>توصیف</value>
   </data>
   <data name="Post_MetaKeyWords" xml:space="preserve">
-    <value>Meta KeyWords</value>
+    <value>کلیدواژه ها</value>
   </data>
   <data name="Post_ModifiedDateTime" xml:space="preserve">
-    <value>Post Modified DateTime</value>
+    <value>تاریخ ویرایش</value>
   </data>
   <data name="Post_PostLevel" xml:space="preserve">
-    <value>Post Level</value>
+    <value>سطح مطلب</value>
   </data>
   <data name="Post_PostLevel_Required" xml:space="preserve">
-    <value>Post Level Required</value>
+    <value>سطح مطلب را مشخص کنید</value>
   </data>
   <data name="Post_PublishDateTime" xml:space="preserve">
-    <value>Publish DateTime</value>
+    <value>تاریخ انتشار</value>
   </data>
   <data name="Post_PublishDateTime_Required" xml:space="preserve">
-    <value>Publish DateTime Required</value>
+    <value>تاریخ انتشار را وارد کنید</value>
   </data>
   <data name="Post_PublishStatus" xml:space="preserve">
-    <value>Publish Status</value>
+    <value>وضعیت انتشار</value>
   </data>
   <data name="Post_PublishStatus_Required" xml:space="preserve">
-    <value>Publish Status Required</value>
+    <value>وضعیت انتشار را مشخص کنید</value>
   </data>
   <data name="Post_RobotsState" xml:space="preserve">
-    <value>Robots State</value>
+    <value>وضعیت موتورهای جستجو</value>
   </data>
   <data name="Post_RobotsState_Required" xml:space="preserve">
-    <value>Robots State Required</value>
+    <value>وضعیت موتورهای جستجو را مشخص کنید</value>
   </data>
   <data name="Post_Title" xml:space="preserve">
-    <value>Title</value>
+    <value>عنوان</value>
   </data>
   <data name="Post_Title_Required" xml:space="preserve">
-    <value>Post Title Required</value>
+    <value>عنوان مطلب را وارد کنید</value>
   </data>
   <data name="Post_UrlTitle" xml:space="preserve">
-    <value>Url Title</value>
+    <value>نامک</value>
   </data>
 </root>

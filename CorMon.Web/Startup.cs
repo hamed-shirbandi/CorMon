@@ -6,19 +6,40 @@ using CorMon.Infrastructure.DataProviders;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using CorMon.IocConfig;
+using RedisCache.Core;
+using Microsoft.Extensions.Configuration;
 
 namespace CorMon.Web
 {
     public class Startup
     {
 
+        private readonly IConfiguration _configuration;
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
         /// </summary>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
+            #region Caching
+
+            services.AddRedisCache(options =>
+            {
+                options.Configuration = _configuration["RedisCache:Connection"];
+                options.InstanceName = _configuration["RedisCache:InstanceName"];
+            });
+
+
+            #endregion
+
             services.AddMvc();
-            return services.ConfigureIocContainer();
+
+            return services.ConfigureIocContainer(_configuration);
         }
 
 
@@ -37,7 +58,9 @@ namespace CorMon.Web
             {
                 app.UseExceptionHandler("/Error/Unknown");
             }
-            
+
+  
+
             app.UseStaticFiles();
 
             serviceScopeFactory.InitialDatabase();

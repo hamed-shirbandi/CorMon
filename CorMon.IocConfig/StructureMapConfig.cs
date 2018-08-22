@@ -4,6 +4,7 @@ using CorMon.Application.Users;
 using CorMon.Core.Data;
 using CorMon.Infrastructure.DbContext;
 using CorMon.Infrastructure.Repositories;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StructureMap;
 using System;
@@ -12,8 +13,11 @@ namespace CorMon.IocConfig
 {
    public static class StructureMapConfig
     {
-        public static IServiceProvider ConfigureIocContainer(this IServiceCollection services)
+        public static IServiceProvider ConfigureIocContainer(this IServiceCollection services, IConfiguration configuration)
         {
+
+            services.AddSingleton<IConfiguration>(provider => { return configuration; });
+
             var container = new Container();
             container.Configure(config =>
             {

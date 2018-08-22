@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using CorMon.Application.Posts;
 using CorMon.Core.Enums;
 using CorMon.Application.Taxonomies;
+using CorMon.Application.Posts.Dto;
+using RedisCache.Core;
+using CorMon.Core.Helpers;
 
 namespace CorMon.Web.Controllers
 {
@@ -15,6 +18,7 @@ namespace CorMon.Web.Controllers
 
         private readonly IPostService _postService;
         private readonly ITaxonomyService _taxonomyService;
+        private readonly IRedisCacheService _redisCacheService;
         private int recordsPerPage;
 
 
@@ -22,10 +26,11 @@ namespace CorMon.Web.Controllers
 
         #region Ctor
 
-        public BlogController(IPostService postService, ITaxonomyService taxonomyService)
+        public BlogController(IPostService postService, ITaxonomyService taxonomyService, IRedisCacheService redisCacheService)
         {
             _postService = postService;
             _taxonomyService = taxonomyService;
+            _redisCacheService = redisCacheService;
             recordsPerPage = 5;
 
         }
@@ -47,8 +52,12 @@ namespace CorMon.Web.Controllers
         [Route("articles")]
         public async Task<ActionResult> Articles()
         {
-
-            var posts = await _postService.SearchAsync(page: 0, recordsPerPage: recordsPerPage, term: "",isTrashed:false, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
+            var cacheKey = string.Format(CacheKeyTemplate.PostsSearchCacheKey, 0, recordsPerPage, "");
+            if (!_redisCacheService.TryGetValue(key: cacheKey, result: out IEnumerable<PostOutput> posts))
+            {
+                posts = await _postService.SearchAsync(page: 0, recordsPerPage: recordsPerPage, term: "", isTrashed: false, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
+                await _redisCacheService.SetAsync(key: cacheKey, data: posts, cacheTimeInMinutes: 60);
+            }
 
             return View(posts);
         }
@@ -66,8 +75,12 @@ namespace CorMon.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> SearchArticles(int page = 1, string term = "")
         {
-
-            var posts = await _postService.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: term,isTrashed:false, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
+            var cacheKey = string.Format(CacheKeyTemplate.PostsSearchCacheKey, page, recordsPerPage, term);
+            if (!_redisCacheService.TryGetValue(key: cacheKey, result: out IEnumerable<PostOutput> posts))
+            {
+                 posts = await _postService.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: term, isTrashed: false, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
+                await _redisCacheService.SetAsync(key: cacheKey,data:posts,cacheTimeInMinutes:60);
+            }
 
             if (posts == null || !posts.Any())
                 return Content("no-more-info");
@@ -88,9 +101,13 @@ namespace CorMon.Web.Controllers
         [Route("article/{id}/{title}")]
         public async Task<ActionResult> Article(string id, string title)
         {
+            var cacheKey = string.Format(CacheKeyTemplate.PostByIdCacheKey, id);
+            if (!_redisCacheService.TryGetValue(key: cacheKey, result: out PostOutput post))
+            {
+                post = await _postService.GetAsync(id);
+                await _redisCacheService.SetAsync(key: cacheKey, data: post, cacheTimeInMinutes: 60);
+            }
 
-            var post = await _postService.GetAsync(id);
-   
             return View(post);
 
         }

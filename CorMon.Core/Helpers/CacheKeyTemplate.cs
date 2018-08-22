@@ -21,10 +21,7 @@ namespace CorMon.Core.Helpers
         /// {0} : page 
         /// {1} : recordsPerPage
         /// {2} : term
-        /// {3} : publishStatus
-        /// {4} : sortOrder
-        /// </remarks>
-        public static string PostsSearchCacheKeyCategoryIdCacheKey => "CorMon.Posts.Search-{0}-{1}-{2}-{3}-{4}";
+        public static string PostsSearchCacheKey => "CorMon.Posts.Search-{0}-{1}-{2}";
 
         #endregion
 

@@ -10,17 +10,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using RedisCache.Core;
 
 namespace CorMon.Web.Api
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
 
         /// <summary>
@@ -28,8 +28,19 @@ namespace CorMon.Web.Api
         /// </summary>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            #region Caching
+
+            services.AddRedisCache(options =>
+            {
+                options.Configuration = _configuration["RedisCache:Connection"];
+                options.InstanceName = _configuration["RedisCache:InstanceName"];
+            });
+
+
+            #endregion
+
             services.AddMvc();
-            return services.ConfigureIocContainer();
+            return services.ConfigureIocContainer(_configuration);
         }
 
 

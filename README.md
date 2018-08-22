@@ -6,12 +6,18 @@ Free and Open Source CMS based on ASP.NET CORE 2 and MongoDB
 # features (Done/To Do)
 
 
--MongoDB
--MVC Core
--Web Api Core
--Redis Cache
--JWT
--ASP.NET Identity Core
+- MongoDB
+
+- MVC Core
+
+- Web Api Core
+
+- Redis Cache
+
+- JWT
+
+- ASP.NET Identity Core
+
 - ...
 
 

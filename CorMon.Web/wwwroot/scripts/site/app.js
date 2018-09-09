@@ -10,7 +10,6 @@
     function getSearchResult() {
       $('#post-end-message').html('<div class="text-danger"></div>');
         $("#load-more-post").html('دریافت ...');
-        console.log("beafor: " +page);
         $.ajax({
             type: "Get",
             url: '/blog/searcharticles',
@@ -27,7 +26,6 @@
                     $('#show-more-post').append(data);
                     $("div.blog-post:hidden").fadeIn(400);
                     ++page;
-                    console.log("after: "+page);
 
                 }
             },

@@ -30,7 +30,7 @@ namespace CorMon.Web.Controllers
         {
             _postService = postService;
             _redisCacheService = redisCacheService;
-            recordsPerPage = 5;
+            recordsPerPage = 1;
         }
 
 
@@ -46,12 +46,11 @@ namespace CorMon.Web.Controllers
         /// </summary>
         public async Task<IActionResult> Index()
         {
-            var cacheKey = string.Format(CacheKeyTemplate.PostsSearchCacheKey, 0, recordsPerPage, null, null);
 
-            if (!_redisCacheService.TryGetValue(key: cacheKey, result: out IEnumerable<PostOutput> posts))
+            if (!_redisCacheService.TryGetValue(key: CacheKeyTemplate.PostsCacheKey, result: out IEnumerable<PostOutput> posts))
             {
-                posts = await _postService.SearchAsync(page: 0, recordsPerPage: recordsPerPage, term: "", taxonomyId: null, taxonomyType: null, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
-                await _redisCacheService.SetAsync(key: cacheKey, data: posts, cacheTimeInMinutes: 60);
+                 posts = await _postService.SearchAsync(page: 0, recordsPerPage: recordsPerPage, term: "", taxonomyId: null, taxonomyType: null, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
+                await _redisCacheService.SetAsync(key: CacheKeyTemplate.PostsCacheKey, data: posts, cacheTimeInMinutes: 60);
             }
 
             return View(posts);

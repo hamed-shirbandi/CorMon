@@ -31,7 +31,7 @@ namespace CorMon.Web.Controllers
             _postService = postService;
             _taxonomyService = taxonomyService;
             _redisCacheService = redisCacheService;
-            recordsPerPage = 5;
+            recordsPerPage = 1;
 
         }
 
@@ -63,7 +63,8 @@ namespace CorMon.Web.Controllers
             #region ViewBags
 
             ViewBag.TaxonomyName = taxonomyName;
-
+            ViewBag.TaxonomyId = taxonomyId;
+            ViewBag.TaxonomyType = taxonomyType;
 
             #endregion
 
@@ -78,13 +79,13 @@ namespace CorMon.Web.Controllers
         /// جستجوی پست ها
         /// </summary>
         [HttpGet]
-        public async Task<ActionResult> SearchArticles(int page = 1, string taxonomyId = null, TaxonomyType? taxonomyType = null, string taxonomyName = "")
+        public async Task<ActionResult> SearchArticles(int page = 1, string taxonomyId = null, TaxonomyType? taxonomyType = null)
         {
             var cacheKey = string.Format(CacheKeyTemplate.PostsSearchCacheKey, page, recordsPerPage, taxonomyId, taxonomyType);
-           
+
             if (!_redisCacheService.TryGetValue(key: cacheKey, result: out IEnumerable<PostOutput> posts))
             {
-                posts = await _postService.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: "", taxonomyId: taxonomyId, taxonomyType: taxonomyType, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
+                  posts = await _postService.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: "", taxonomyId: taxonomyId, taxonomyType: taxonomyType, publishStatus: PublishStatus.Publish, sortOrder: SortOrder.Desc);
                 await _redisCacheService.SetAsync(key: cacheKey, data: posts, cacheTimeInMinutes: 60);
             }
 

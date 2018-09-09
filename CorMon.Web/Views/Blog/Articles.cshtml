@@ -15,9 +15,11 @@
     </div>
 
     <div class="col-md-12 content-page">
-        <input type="hidden" id="search-term" value="@ViewBag.term" />
+        @*<input type="hidden" id="search-term" value="@ViewBag.term" />
         <input type="hidden" id="search-categoryId" value="@ViewBag.categoryId" />
-        <input type="hidden" id="search-tagId" value="@ViewBag.tagId" />
+        <input type="hidden" id="search-tagId" value="@ViewBag.tagId" />*@
+        <input type="hidden" id="search-taxonomyType" value="@ViewBag.TaxonomyType" />
+        <input type="hidden" id="search-taxonomyId" value="@ViewBag.TaxonomyId" />
         <div id="show-more-post">
             @Html.Partial("_ArticlesList", Model)
         </div>

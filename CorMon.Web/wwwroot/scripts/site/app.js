@@ -1,7 +1,6 @@
 ﻿$(function () {
-    var term = $("#search-term").val();
-    var tagId = $("#search-tagId").val();
-    var categoryId = $("#search-categoryId").val();
+    var taxonomyId = $("#search-taxonomyId").val();
+    var taxonomyType = $("#search-taxonomyType").val();
     var page = 1;
     $("#load-more-post").on('click', function (e) {
         e.preventDefault();
@@ -10,11 +9,12 @@
     });
     function getSearchResult() {
       $('#post-end-message').html('<div class="text-danger"></div>');
-      $("#load-more-post").html('دریافت ...');
+        $("#load-more-post").html('دریافت ...');
+        console.log("beafor: " +page);
         $.ajax({
-            type: "POST",
+            type: "Get",
             url: '/blog/searcharticles',
-            data: JSON.stringify({ term: term, tagId: tagId, categoryId: categoryId, page: page }),
+            data: { taxonomyId: taxonomyId, taxonomyType: taxonomyType, page: page },
             contentType: "application/json; charset=utf-8",
             dataType: "html",
             success: function (data) {
@@ -26,7 +26,9 @@
                 else {
                     $('#show-more-post').append(data);
                     $("div.blog-post:hidden").fadeIn(400);
-                    page++;
+                    ++page;
+                    console.log("after: "+page);
+
                 }
             },
             error: function () {

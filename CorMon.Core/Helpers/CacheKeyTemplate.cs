@@ -24,11 +24,21 @@ namespace CorMon.Core.Helpers
         /// {3} : taxonomyType
         public static string PostsSearchCacheKey => "CorMon.Posts.Search-{0}-{1}-{2}-{3}";
 
+
+
+
+        /// <summary>
+        /// Gets a key for caching
+        /// </summary>
+        /// <remarks>
+        public static string PostsCacheKey => "CorMon.Posts";
+
+
         #endregion
 
         #region Taxonomies
 
-      
+
         #endregion
     }
 }

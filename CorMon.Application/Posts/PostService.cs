@@ -129,6 +129,51 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
+        public  PostOutput Get(string id)
+        {
+            var post =  _postRepository.GetByIdAsync(id).Result;
+            if (post == null || post.IsTrashed)
+            {
+                throw new Exception("Post not found");
+            }
+
+            var user =  _userRepository.GetAsync(post.UserId).Result;
+
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            return new PostOutput
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                PostLevel = post.PostLevel,
+                MetaDescription = post.MetaDescription,
+                MetaKeyWords = post.MetaKeyWords,
+                PublishDateTime = post.PublishDateTime,
+                PublishStatus = post.PublishStatus,
+                MetaRobots = post.MetaRobots,
+                UrlTitle = post.UrlTitle,
+                UserId = post.UserId,
+                Author = user.DisplayName,
+                AboutAuthor = user.About,
+                ModifiedDateTime = post.ModifiedDateTime,
+                Categoories = GetPostTaxonomies(post.CategoryIds),
+                Tags = GetPostTaxonomies(post.CategoryIds),
+                IsTrashed = post.IsTrashed,
+            };
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<PublicJsonResult> CreateAsync(PostInput input)
         {
 
@@ -248,10 +293,10 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public async Task<IEnumerable<PostOutput>>  SearchAsync(int page, int recordsPerPage, string term, bool isTrashed, PublishStatus? publishStatus, SortOrder sortOrder)
+        public async Task<IEnumerable<PostOutput>>  SearchAsync(int page, int recordsPerPage, string term, string taxonomyId, TaxonomyType? taxonomyType , PublishStatus? publishStatus, SortOrder sortOrder)
         {
 
-            var posts =await _postRepository.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: term, isTrashed: isTrashed, publishStatus: publishStatus, sortOrder: sortOrder);
+            var posts =await _postRepository.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: term,taxonomyId:taxonomyId,taxonomyType: taxonomyType, publishStatus: publishStatus, sortOrder: sortOrder);
             return posts.Select(post => new PostOutput
             {
                 Id = post.Id,
@@ -274,6 +319,8 @@ namespace CorMon.Application.Posts
         }
 
 
+
+        
 
 
 

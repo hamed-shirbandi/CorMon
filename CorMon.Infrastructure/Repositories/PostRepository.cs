@@ -8,6 +8,7 @@ using CorMon.Infrastructure.DbContext;
 using MongoDB.Driver;
 using CorMon.Core.Enums;
 using MongoDB.Driver.Linq;
+using System.Linq;
 
 namespace CorMon.Infrastructure.Repositories
 {
@@ -85,13 +86,13 @@ namespace CorMon.Infrastructure.Repositories
         {
             var queryable = _posts.AsQueryable();
 
-            #region براساس وضعیت زباله
+            #region By isTrashed
 
             queryable = queryable.Where(p=>p.IsTrashed== isTrashed);
 
             #endregion
-
-            #region براساس متن
+            
+            #region By term
 
             if (!string.IsNullOrEmpty(term))
             {
@@ -100,7 +101,7 @@ namespace CorMon.Infrastructure.Repositories
 
             #endregion
 
-            #region براساس وضعیت انتشار
+            #region By publishStatus
 
             if (publishStatus.HasValue)
             {
@@ -109,32 +110,27 @@ namespace CorMon.Infrastructure.Repositories
 
             #endregion
 
-            #region مرتب سازی
+            #region SortOrder
 
             queryable = sortOrder == SortOrder.Asc ? queryable.OrderBy(p => p.Id) : queryable.OrderByDescending(p => p.Id);
 
 
             #endregion
 
-            #region دریافت تعداد کل صفحات
+            #region  Skip Take
 
             TotalItemCount = queryable.CountAsync().Result;
             pageSize = (int)Math.Ceiling((double)TotalItemCount / recordsPerPage);
 
             page = page > pageSize || page < 1 ? 1 : page;
 
-            #endregion
-
-            #region دریافت تعداد رکوردهای مورد تیاز
-
-
+          
             var skiped = (page - 1) * recordsPerPage;
             queryable = queryable.Skip(skiped).Take(recordsPerPage);
 
 
             #endregion
-
-
+            
 
             return queryable.ToList();
         }
@@ -145,17 +141,17 @@ namespace CorMon.Infrastructure.Repositories
         /// <summary>
         /// 
         /// </summary>
-        public async Task<IEnumerable<Post>> SearchAsync(int page, int recordsPerPage, string term, bool isTrashed, PublishStatus? publishStatus, SortOrder sortOrder)
+        public async Task<IEnumerable<Post>> SearchAsync(int page, int recordsPerPage, string term, string taxonomyId , TaxonomyType? taxonomyType , PublishStatus? publishStatus, SortOrder sortOrder)
         {
             var queryable = _posts.AsQueryable();
 
-            #region براساس وضعیت زباله
+            #region By IsTrashed
 
-            queryable = queryable.Where(p => p.IsTrashed == isTrashed);
+            queryable = queryable.Where(p => p.IsTrashed == false);
 
             #endregion
 
-            #region براساس متن
+            #region By term
 
             if (!string.IsNullOrEmpty(term))
             {
@@ -164,7 +160,7 @@ namespace CorMon.Infrastructure.Repositories
 
             #endregion
 
-            #region براساس وضعیت انتشار
+            #region By publishStatus
 
             if (publishStatus.HasValue)
             {
@@ -173,14 +169,50 @@ namespace CorMon.Infrastructure.Repositories
 
             #endregion
 
-            #region مرتب سازی
+            #region By taxonomyId & taxonomyType
+
+            if (taxonomyType.HasValue)
+            {
+                switch (taxonomyType.Value)
+                {
+                    case TaxonomyType.Category:
+                        queryable = queryable.Where(p => p.CategoryIds.Contains(taxonomyId));
+
+                        break;
+                    case TaxonomyType.Tag:
+                        queryable = queryable.Where(p => p.TagIds.Contains(taxonomyId));
+                        break;
+                }
+            }
+
+            #endregion
+
+            #region By publishStatus
+
+            if (publishStatus.HasValue)
+            {
+                queryable = queryable.Where(p => p.PublishStatus == publishStatus);
+            }
+
+            #endregion
+
+            #region By publishStatus
+
+            if (publishStatus.HasValue)
+            {
+                queryable = queryable.Where(p => p.PublishStatus == publishStatus);
+            }
+
+            #endregion
+
+            #region SortOrder
 
             queryable = sortOrder == SortOrder.Asc ? queryable.OrderBy(p => p.Id) : queryable.OrderByDescending(p => p.Id);
 
 
             #endregion
 
-            #region دریافت تعداد رکوردهای مورد تیاز
+            #region Skip Take
 
             var skiped = page * recordsPerPage;
 

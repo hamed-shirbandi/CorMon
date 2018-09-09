@@ -36,7 +36,7 @@
                         <span class="glyphicon glyphicon-list">
                             @foreach (var category in Model.Categoories)
                             {
-                                @Html.ActionLink(linkText: category.Name, actionName: "articles", controllerName: "blog", htmlAttributes: new { @class = "main-color post-category", style = "" }, routeValues: new { Area = "", taxName = category.UrlTitle, taxId = category.Id, taxType = TaxonomyType.Category })
+                                @Html.ActionLink(linkText: category.Name, actionName: "articles", controllerName: "blog", htmlAttributes: new { @class = "main-color post-category", style = "" }, routeValues: new { Area = "", taxonomyName = category.UrlTitle, taxonomyId = category.Id, taxonomyType = TaxonomyType.Category })
                             }
                         </span>
                     </span>

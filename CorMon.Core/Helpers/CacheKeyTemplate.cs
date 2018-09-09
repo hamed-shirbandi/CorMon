@@ -20,8 +20,9 @@ namespace CorMon.Core.Helpers
         /// <remarks>
         /// {0} : page 
         /// {1} : recordsPerPage
-        /// {2} : term
-        public static string PostsSearchCacheKey => "CorMon.Posts.Search-{0}-{1}-{2}";
+        /// {2} : taxonomyId
+        /// {3} : taxonomyType
+        public static string PostsSearchCacheKey => "CorMon.Posts.Search-{0}-{1}-{2}-{3}";
 
         #endregion
 

@@ -16,6 +16,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.IocConfig", "CorMon.IocConfig\CorMon.IocConfig.csproj", "{F8D1DA8B-5BE2-4FE8-A2D7-F1ADD3868F4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{14E82702-68C1-4585-A5B3-783A8EB8E6A0}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\CodeBlock.NetCore.Framework\Common\Project.targets = ..\..\CodeBlock.NetCore.Framework\Common\Project.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{85F9EA2C-4F75-4388-A56A-BB689C226886}"
 EndProject

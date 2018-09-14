@@ -1,7 +1,6 @@
-﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CorMon.Web.MVC.Tests.Admin.Controllers
+namespace CorMon.Web.UnitTests
 {
     [TestClass]
     public class UnitTest1

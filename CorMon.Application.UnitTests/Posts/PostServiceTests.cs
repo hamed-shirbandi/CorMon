@@ -18,7 +18,7 @@ namespace CorMon.Application.UnitTests.Posts
 
 
         [TestMethod]
-        public void Can_Create_User()
+        public void Can_Create_Post()
         {
 
         }

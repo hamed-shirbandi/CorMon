@@ -19,7 +19,7 @@ namespace CorMon.Application.UnitTests.Taxonomies
 
 
         [TestMethod]
-        public void Can_Create_User()
+        public void Can_Create_Taxonomy()
         {
 
         }

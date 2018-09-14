@@ -18,6 +18,10 @@ Free and Open Source CMS based on ASP.NET CORE 2 and MongoDB
 
 - ASP.NET Identity Core
 
+- Unit Testing
+
+- E2E Testing (Automated UI testing by Selenium)
+
 - ...
 
 

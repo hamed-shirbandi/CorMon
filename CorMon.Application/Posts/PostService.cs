@@ -172,7 +172,7 @@ namespace CorMon.Application.Posts
 
 
         /// <summary>
-        /// 
+        ///  
         /// </summary>
         public async Task<PublicJsonResult> CreateAsync(PostInput input)
         {

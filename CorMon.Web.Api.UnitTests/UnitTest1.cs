@@ -8,6 +8,6 @@ namespace CorMon.Web.Api.UnitTests
         [TestMethod]
         public void TestMethod1()
         {
-        }
+        } 
     }
 }

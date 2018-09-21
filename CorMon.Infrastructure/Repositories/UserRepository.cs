@@ -45,6 +45,16 @@ namespace CorMon.Infrastructure.Repositories
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public User Get(string id)
+        {
+            return  _users.Find(e => e.Id == id).FirstOrDefault();
+        }
+
+
+
 
         /// <summary>
         /// 

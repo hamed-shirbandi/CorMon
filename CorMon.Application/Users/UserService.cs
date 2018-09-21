@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CorMon.Core.JsonModels;
 using CorMon.Resource;
+using CorMon.Application.Mapper;
 
 namespace CorMon.Application.Users
 {
@@ -14,15 +15,18 @@ namespace CorMon.Application.Users
         #region Fields
 
         private readonly IUserRepository _userRepository;
+        private readonly IMapperService _mapperService;
 
 
         #endregion
 
         #region Ctor
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IMapperService mapperService)
         {
             _userRepository = userRepository;
+            _mapperService = mapperService;
+
         }
 
 
@@ -30,10 +34,7 @@ namespace CorMon.Application.Users
 
         #region Public Methods
 
-
-
-
-
+        
 
 
 
@@ -48,17 +49,17 @@ namespace CorMon.Application.Users
                 throw new Exception("User not found");
             }
 
-            return new UserOutput
-            {
-                DisplayName = user.DisplayName,
-                UserName = user.UserName,
-                Email = user.Email,
-                Phone = user.Phone,
-                About = user.About,
-
-            };
+            return _mapperService.BindToOutputModel(user);
         }
 
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task<PublicJsonResult> UpdateAsync(UserInput input)
         {
             var user = await _userRepository.GetAsync(input.Id);

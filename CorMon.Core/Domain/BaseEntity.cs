@@ -10,8 +10,26 @@ namespace CorMon.Core.Domain
         public BaseEntity()
         {
             id = ObjectId.GenerateNewId().ToString();
-
+            CreateDateTime = DateTime.Now;
+            ModifiedDateTime = DateTime.Now;
         }
+
+
+
+        /// <summary>
+        /// تاریخ ایجاد 
+        /// </summary>
+        public DateTime CreateDateTime { get; set; }
+
+
+
+
+        /// <summary>
+        /// تاریخ آخرین ویرایش 
+        /// </summary>
+        public DateTime ModifiedDateTime { get; set; }
+
+
 
         public string Id
         {

@@ -12,6 +12,7 @@ using CorMon.Resource;
 using CorMon.Core.Enums;
 using CorMon.Application.Taxonomies.Dto;
 using CorMon.Core.Helpers;
+using CorMon.Application.Mapper;
 
 namespace CorMon.Application.Posts
 {
@@ -22,17 +23,19 @@ namespace CorMon.Application.Posts
         private readonly IPostRepository _postRepository;
         private readonly ITaxonomyRepository _taxonomyRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IMapperService _mapperService;
 
 
         #endregion
 
         #region Ctor
 
-        public PostService(IPostRepository postRepository, IUserRepository userRepository, ITaxonomyRepository taxonomyRepository)
+        public PostService(IPostRepository postRepository, IUserRepository userRepository, ITaxonomyRepository taxonomyRepository, IMapperService mapperService)
         {
             _postRepository = postRepository;
             _userRepository = userRepository;
             _taxonomyRepository = taxonomyRepository;
+            _mapperService = mapperService;
         }
 
 
@@ -54,28 +57,8 @@ namespace CorMon.Application.Posts
                 throw new Exception("Post not found");
             }
 
-            return new PostInput
-            {
-
-                Id = post.Id,
-                Title = post.Title,
-                Content = post.Content,
-                PostLevel = post.PostLevel,
-                MetaDescription = post.MetaDescription,
-                MetaKeyWords = post.MetaKeyWords,
-                PublishDateTime = post.PublishDateTime,
-                PublishStatus = post.PublishStatus,
-                MetaRobots = post.MetaRobots,
-                UrlTitle = post.UrlTitle,
-                UserId = post.UserId,
-                Author = post.Author,
-                ModifiedDateTime = post.ModifiedDateTime,
-                CreateDateTime = post.CreateDateTime,
-                TagsPrefill = GetPostTaxonomiesNameArray(post.TagIds),
-                CategoryIds = post.CategoryIds,
-                TagIds = post.TagIds,
-                IsTrashed=post.IsTrashed,
-            };
+            var tagsPrefill = GetPostTaxonomiesNameArray(post.TagIds);
+            return _mapperService.BindToInputModel(post, tagsPrefill);
         }
 
 
@@ -99,26 +82,10 @@ namespace CorMon.Application.Posts
                 throw new Exception("User not found");
             }
 
-            return new PostOutput
-            {
-                Id = post.Id,
-                Title = post.Title,
-                Content = post.Content,
-                PostLevel = post.PostLevel,
-                MetaDescription = post.MetaDescription,
-                MetaKeyWords = post.MetaKeyWords,
-                PublishDateTime = post.PublishDateTime,
-                PublishStatus = post.PublishStatus,
-                MetaRobots = post.MetaRobots,
-                UrlTitle = post.UrlTitle,
-                UserId = post.UserId,
-                Author = user.DisplayName,
-                AboutAuthor = user.About,
-                ModifiedDateTime = post.ModifiedDateTime,
-                Categoories = GetPostTaxonomies(post.CategoryIds),
-                Tags = GetPostTaxonomies(post.CategoryIds),
-                IsTrashed = post.IsTrashed,
-            };
+            var tags = GetPostTaxonomies(post.TagIds);
+            var categories = GetPostTaxonomies(post.CategoryIds);
+
+            return _mapperService.BindToOutputModel(post, user, tags, categories);
         }
 
 
@@ -129,41 +96,19 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public  PostOutput Get(string id)
+        public PostOutput Get(string id)
         {
-            var post =  _postRepository.GetByIdAsync(id).Result;
+            var post = _postRepository.GetByIdAsync(id).Result;
             if (post == null || post.IsTrashed)
             {
                 throw new Exception("Post not found");
             }
 
-            var user =  _userRepository.GetAsync(post.UserId).Result;
+            var user = _userRepository.GetAsync(post.UserId).Result;
+            var tags = GetPostTaxonomies(post.TagIds);
+            var categories = GetPostTaxonomies(post.CategoryIds);
 
-            if (user == null)
-            {
-                throw new Exception("User not found");
-            }
-
-            return new PostOutput
-            {
-                Id = post.Id,
-                Title = post.Title,
-                Content = post.Content,
-                PostLevel = post.PostLevel,
-                MetaDescription = post.MetaDescription,
-                MetaKeyWords = post.MetaKeyWords,
-                PublishDateTime = post.PublishDateTime,
-                PublishStatus = post.PublishStatus,
-                MetaRobots = post.MetaRobots,
-                UrlTitle = post.UrlTitle,
-                UserId = post.UserId,
-                Author = user.DisplayName,
-                AboutAuthor = user.About,
-                ModifiedDateTime = post.ModifiedDateTime,
-                Categoories = GetPostTaxonomies(post.CategoryIds),
-                Tags = GetPostTaxonomies(post.CategoryIds),
-                IsTrashed = post.IsTrashed,
-            };
+            return _mapperService.BindToOutputModel(post, user, tags, categories);
         }
 
 
@@ -185,31 +130,16 @@ namespace CorMon.Application.Posts
             //بررسی نامک -- url friendly
             input.UrlTitle = input.UrlTitle.IsNullOrEmptyOrWhiteSpace() ? input.Title.GenerateUrlTitle() : input.UrlTitle.GenerateUrlTitle();
 
-            var post = new Post
-            {
-                Title = input.Title,
-                Author = input.Author,
-                Content = input.Content,
-                CreateDateTime = DateTime.Now,
-                ModifiedDateTime = DateTime.Now,
-                PostLevel = input.PostLevel,
-                MetaDescription = input.MetaDescription,
-                MetaKeyWords = input.MetaKeyWords,
-                PublishDateTime = input.PublishDateTime,
-                PublishStatus = input.PublishStatus,
-                MetaRobots = input.MetaRobots,
-                UrlTitle = input.UrlTitle,
-                UserId = input.UserId,
-                CategoryIds = AddTagsToPost(input.Categories),
-                TagIds = await AddTagsToPostAsync(input.Tags),
+            var tagsId = await AddTagsToPostAsync(input.Tags);
+            var categoriesId = AddTagsToPost(input.Categories);
 
-            };
+            var post = _mapperService.BindToDomainModel(input, categoriesId, tagsId);
 
             await _postRepository.CreateAsync(post);
             return new PublicJsonResult { result = true, id = post.Id, message = Messages.Post_Create_Success };
         }
 
- 
+
 
 
 
@@ -245,7 +175,7 @@ namespace CorMon.Application.Posts
             post.CategoryIds = input.CategoryIds;
             post.TagIds = await AddTagsToPostAsync(input.Tags);
             post.CategoryIds = AddTagsToPost(input.Categories);
-           
+
             await _postRepository.UpdateAsync(post);
             return new PublicJsonResult { result = true, message = Messages.Post_Update_Success };
 
@@ -261,29 +191,20 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public IEnumerable<PostOutput> Search(int page, int recordsPerPage, string term,bool isTrashed, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount)
+        public IEnumerable<PostOutput> Search(int page, int recordsPerPage, string term, bool isTrashed, PublishStatus? publishStatus, SortOrder sortOrder, out int pageSize, out int TotalItemCount)
         {
-          
-            var posts = _postRepository.Search(page:page,recordsPerPage:recordsPerPage,term:term,isTrashed:isTrashed, publishStatus: publishStatus, sortOrder: sortOrder,pageSize:out pageSize,TotalItemCount: out TotalItemCount);
-            return posts.Select(post => new PostOutput
-            {
-                Id = post.Id,
-                Title = post.Title,
-                Content = post.Content,
-                Author = post.Author,
-                PostLevel = post.PostLevel,
-                MetaDescription = post.MetaDescription,
-                MetaKeyWords = post.MetaKeyWords,
-                PublishDateTime = post.PublishDateTime,
-                PublishStatus = post.PublishStatus,
-                MetaRobots = post.MetaRobots,
-                UrlTitle = post.UrlTitle,
-                UserId = post.UserId,
-                Categoories = GetPostTaxonomies(post.CategoryIds),
-                Tags = GetPostTaxonomies(post.CategoryIds),
-                IsTrashed = post.IsTrashed,
 
-            }).ToList();
+            var posts = _postRepository.Search(page: page, recordsPerPage: recordsPerPage, term: term, isTrashed: isTrashed, publishStatus: publishStatus, sortOrder: sortOrder, pageSize: out pageSize, TotalItemCount: out TotalItemCount);
+
+            return posts.Select(post =>
+                                _mapperService.BindToOutputModel(
+
+                                post: post,
+                                tags: GetPostTaxonomies(post.TagIds),
+                                categories: GetPostTaxonomies(post.CategoryIds),
+                                user: _userRepository.Get(post.UserId)
+
+                        )).ToList();
         }
 
 
@@ -293,34 +214,25 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        public async Task<IEnumerable<PostOutput>>  SearchAsync(int page, int recordsPerPage, string term, string taxonomyId, TaxonomyType? taxonomyType , PublishStatus? publishStatus, SortOrder sortOrder)
+        public async Task<IEnumerable<PostOutput>> SearchAsync(int page, int recordsPerPage, string term, string taxonomyId, TaxonomyType? taxonomyType, PublishStatus? publishStatus, SortOrder sortOrder)
         {
 
-            var posts =await _postRepository.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: term,taxonomyId:taxonomyId,taxonomyType: taxonomyType, publishStatus: publishStatus, sortOrder: sortOrder);
-            return posts.Select(post => new PostOutput
-            {
-                Id = post.Id,
-                Title = post.Title,
-                Content = post.Content,
-                Author = post.Author,
-                PostLevel = post.PostLevel,
-                MetaDescription = post.MetaDescription,
-                MetaKeyWords = post.MetaKeyWords,
-                PublishDateTime = post.PublishDateTime,
-                PublishStatus = post.PublishStatus,
-                MetaRobots = post.MetaRobots,
-                UrlTitle = post.UrlTitle,
-                UserId = post.UserId,
-                Categoories = GetPostTaxonomies(post.CategoryIds),
-                Tags = GetPostTaxonomies(post.CategoryIds),
-                IsTrashed = post.IsTrashed,
+            var posts = await _postRepository.SearchAsync(page: page, recordsPerPage: recordsPerPage, term: term, taxonomyId: taxonomyId, taxonomyType: taxonomyType, publishStatus: publishStatus, sortOrder: sortOrder);
 
-            }).ToList();
+            return posts.Select(post =>
+                                _mapperService.BindToOutputModel(
+
+                                post: post,
+                                tags: GetPostTaxonomies(post.TagIds),
+                                categories: GetPostTaxonomies(post.CategoryIds),
+                                user: _userRepository.Get(post.UserId)
+
+                        )).ToList();
         }
 
 
 
-        
+
 
 
 
@@ -332,7 +244,7 @@ namespace CorMon.Application.Posts
         public async Task<PublicJsonResult> DeleteAsync(string id)
         {
             var post = await _postRepository.GetByIdAsync(id);
-            if (post == null )
+            if (post == null)
             {
                 throw new Exception("Post not found");
             }
@@ -344,18 +256,18 @@ namespace CorMon.Application.Posts
             else
             {
                 post.IsTrashed = true;
-               await _postRepository.UpdateAsync(post);
+                await _postRepository.UpdateAsync(post);
             }
 
 
-            return new PublicJsonResult { result=true,message=Messages.Post_Delete_Success};
+            return new PublicJsonResult { result = true, message = Messages.Post_Delete_Success };
         }
 
 
 
 
 
-        
+
 
         /// <summary>
         /// 
@@ -387,21 +299,13 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        private IEnumerable<TaxonomyOutput> GetPostTaxonomies(string[] taxIds)
+        private IEnumerable<Taxonomy> GetPostTaxonomies(string[] taxIds)
         {
-            if (taxIds==null)
-                return new List<TaxonomyOutput>();
+            if (taxIds == null)
+                return new List<Taxonomy>();
 
-            var taxs = _taxonomyRepository.GetListByIds(taxIds);
-            return taxs.Select(tax => new TaxonomyOutput
-            {
-                Id = tax.Id,
-                Name = tax.Name,
-                Description = tax.Description,
-                PostCount = tax.PostCount,
-                Type = tax.Type,
-                UrlTitle = tax.UrlTitle,
-            });
+            return _taxonomyRepository.GetListByIds(taxIds);
+
         }
 
 
@@ -425,7 +329,7 @@ namespace CorMon.Application.Posts
         /// </summary>
         private async Task<string[]> AddTagsToPostAsync(string tags)
         {
-            if (tags==null)
+            if (tags == null)
                 return new string[] { };
 
 
@@ -462,11 +366,11 @@ namespace CorMon.Application.Posts
         /// <summary>
         /// 
         /// </summary>
-        private  string[] AddTagsToPost(SelectListItem[] categories)
+        private string[] AddTagsToPost(SelectListItem[] categories)
         {
-           return categories.Where(c=>c.Selected).Select(c=>c.Value).ToArray();
-         
-            
+            return categories.Where(c => c.Selected).Select(c => c.Value).ToArray();
+
+
         }
 
 

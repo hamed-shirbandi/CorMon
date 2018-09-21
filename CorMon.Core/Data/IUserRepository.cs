@@ -10,6 +10,7 @@ namespace CorMon.Core.Data
     public interface IUserRepository
     {
         Task<User> GetAsync(string id);
+        User Get(string id);
         Task UpdateAsync(User user);
     }
 }

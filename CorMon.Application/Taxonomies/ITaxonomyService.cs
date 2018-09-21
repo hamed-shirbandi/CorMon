@@ -11,10 +11,10 @@ namespace CorMon.Application.Taxonomies
 {
   public  interface ITaxonomyService
     {
-        Task<TaxonomyInput> GetAsync(string id);
+        Task<TaxonomyOutput> GetAsync(string id);
         Task<PublicJsonResult> CreateAsync(TaxonomyInput input);
         Task<PublicJsonResult> UpdateAsync(TaxonomyInput input);
-        Task<IEnumerable<TaxonomyInput>> SearchAsync(string term, TaxonomyType? type, SortOrder sortOrder);
+        Task<IEnumerable<TaxonomyOutput>> SearchAsync(string term, TaxonomyType? type, SortOrder sortOrder);
         Task<SelectListItem[]> GetCategoriesSelectListAsync(string[] categoryIds=null);
     }
 }

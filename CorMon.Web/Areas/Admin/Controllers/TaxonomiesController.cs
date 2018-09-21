@@ -43,9 +43,9 @@ namespace CorMon.Web.Areas.Admin.Controllers
         /// </summary>
         public async Task<IActionResult> Index(TaxonomyType type = TaxonomyType.Category)
         {
-            var posts = await _taxonomyService.SearchAsync(term: "", type: type, sortOrder: SortOrder.Desc);
+            var taxonomies = await _taxonomyService.SearchAsync(term: "", type: type, sortOrder: SortOrder.Desc);
 
-            return View(posts);
+            return View(taxonomies);
         }
 
 

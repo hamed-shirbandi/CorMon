@@ -7,6 +7,7 @@ namespace CorMon.Core.Domain
     public class Post: BaseEntity
     {
 
+
         /// <summary>
         /// سطح فنی مطلب
         /// </summary>
@@ -44,21 +45,6 @@ namespace CorMon.Core.Domain
         public string Content { get; set; }
 
 
-
-
-
-        /// <summary>
-        /// تاریخ ایجاد مطلب
-        /// </summary>
-        public DateTime CreateDateTime { get; set; }
-
-
-
-
-        /// <summary>
-        /// تاریخ آخرین ویرایش مطلب
-        /// </summary>
-        public DateTime ModifiedDateTime { get; set; }
 
 
 

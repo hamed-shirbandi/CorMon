@@ -11,6 +11,7 @@ using CorMon.Core.Domain;
 using System.Linq;
 using CorMon.Core.Extensions;
 using CorMon.Core.Helpers;
+using CorMon.Application.Mapper;
 
 namespace CorMon.Application.Taxonomies
 {
@@ -19,15 +20,17 @@ namespace CorMon.Application.Taxonomies
         #region Fields
 
         private readonly ITaxonomyRepository _taxonomyRepository;
+        private readonly IMapperService _mapperService;
 
 
         #endregion
 
         #region Ctor
 
-        public TaxonomyService(ITaxonomyRepository taxonomyRepository)
+        public TaxonomyService(ITaxonomyRepository taxonomyRepository, IMapperService mapperService)
         {
             _taxonomyRepository = taxonomyRepository;
+            _mapperService = mapperService;
         }
 
 
@@ -42,24 +45,16 @@ namespace CorMon.Application.Taxonomies
         /// <summary>
         /// 
         /// </summary>
-        public async Task<TaxonomyInput> GetAsync(string id)
+        public async Task<TaxonomyOutput> GetAsync(string id)
         {
-            var tax = await _taxonomyRepository.GetByIdAsync(id);
-            if (tax == null)
+            var taxonomy = await _taxonomyRepository.GetByIdAsync(id);
+            if (taxonomy == null)
             {
                 throw new Exception("Taxonomy not found");
             }
 
 
-            return new TaxonomyInput
-            {
-                Id = tax.Id,
-                Name = tax.Name,
-                Description = tax.Description,
-                PostCount = tax.PostCount,
-                Type = tax.Type,
-                UrlTitle = tax.UrlTitle,
-            };
+            return _mapperService.BindToOutputModel(taxonomy);
         }
 
 
@@ -80,18 +75,10 @@ namespace CorMon.Application.Taxonomies
             //بررسی نامک -- url friendly
             input.UrlTitle = input.UrlTitle.IsNullOrEmptyOrWhiteSpace() ? input.Name.GenerateUrlTitle() : input.UrlTitle.GenerateUrlTitle();
 
-            var post = new Taxonomy
-            {
-                Id = input.Id,
-                Name = input.Name,
-                Description = input.Description,
-                PostCount = input.PostCount,
-                Type = input.Type,
-                UrlTitle = input.UrlTitle,
-            };
+            var taxonomy = _mapperService.BindToDomainModel(input);
 
-            await _taxonomyRepository.CreateAsync(post);
-            return new PublicJsonResult { result = true, id = post.Id, message = Messages.Post_Create_Success };
+            await _taxonomyRepository.CreateAsync(taxonomy);
+            return new PublicJsonResult { result = true, id = taxonomy.Id, message = Messages.Post_Create_Success };
         }
 
 
@@ -136,20 +123,11 @@ namespace CorMon.Application.Taxonomies
         /// <summary>
         /// 
         /// </summary>
-        public async Task<IEnumerable<TaxonomyInput>> SearchAsync(string term, TaxonomyType? type, SortOrder sortOrder)
+        public async Task<IEnumerable<TaxonomyOutput>> SearchAsync(string term, TaxonomyType? type, SortOrder sortOrder)
         {
-            var taxs = await _taxonomyRepository.SearchAsync(term, type, sortOrder);
-            return taxs.Select(tax =>
-            new TaxonomyInput
-            {
-                Id = tax.Id,
-                Name = tax.Name,
-                Description = tax.Description,
-                PostCount = tax.PostCount,
-                Type = tax.Type,
-                UrlTitle = tax.UrlTitle,
+            var taxonomies = await _taxonomyRepository.SearchAsync(term, type, sortOrder);
 
-            }).ToList();
+            return taxonomies.Select(taxonomy => _mapperService.BindToOutputModel(taxonomy)).ToList();
         }
         
 

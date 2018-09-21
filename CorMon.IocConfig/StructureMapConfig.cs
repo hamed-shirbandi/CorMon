@@ -1,4 +1,5 @@
-﻿using CorMon.Application.Posts;
+﻿using CorMon.Application.Mapper;
+using CorMon.Application.Posts;
 using CorMon.Application.Taxonomies;
 using CorMon.Application.Users;
 using CorMon.Core.Data;
@@ -28,6 +29,7 @@ namespace CorMon.IocConfig
                 config.For<IUserRepository>().Use<UserRepository>();
                 config.For<ITaxonomyRepository>().Use<TaxonomyRepository>();
                 config.For<ITaxonomyService>().Use<TaxonomyService>();
+                config.For<IMapperService>().Use<MapperService>();
                 
             });
             

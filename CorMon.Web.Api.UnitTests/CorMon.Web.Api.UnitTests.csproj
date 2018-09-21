@@ -17,6 +17,7 @@
     <Copy SourceFiles="..\CorMon.Web\appsettings.json" DestinationFolder="$(OutDir)" />
   </Target>
   <ItemGroup>
+    <ProjectReference Include="..\CorMon.UnitTests.Base\CorMon.UnitTests.Base.csproj" />
     <ProjectReference Include="..\CorMon.Web.Api\CorMon.Web.Api.csproj" />
   </ItemGroup>
 

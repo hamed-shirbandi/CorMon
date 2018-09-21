@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CorMon.UnitTests.Base\CorMon.UnitTests.Base.csproj" />
     <ProjectReference Include="..\CorMon.Web\CorMon.Web.csproj" />
   </ItemGroup>
   <Target Name="CopyConfig" AfterTargets="AfterBuild">

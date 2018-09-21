@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CorMon.UnitTests.Base;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Text;
 namespace CorMon.Application.UnitTests.Users
 {
     [TestClass]
-    public class UserServiceTests
+    public class UserServiceTests : TestsBase
     {
 
 

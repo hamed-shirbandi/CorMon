@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -12,4 +12,11 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CorMon.Web\CorMon.Web.csproj" />
+  </ItemGroup>
+  <Target Name="CopyConfig" AfterTargets="AfterBuild">
+    <Copy SourceFiles="..\CorMon.Web\appsettings.json" DestinationFolder="$(OutDir)" />
+  </Target>
+  
 </Project>

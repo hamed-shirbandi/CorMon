@@ -16,6 +16,9 @@
   <ItemGroup>
     <ProjectReference Include="..\CorMon.Application\CorMon.Application.csproj" />
     <ProjectReference Include="..\CorMon.Infrastructure\CorMon.Infrastructure.csproj" />
+    <ProjectReference Include="..\CorMon.UnitTests.Base\CorMon.UnitTests.Base.csproj" />
   </ItemGroup>
-
+  <Target Name="CopyConfig" AfterTargets="AfterBuild">
+    <Copy SourceFiles="..\CorMon.Web\appsettings.json" DestinationFolder="$(OutDir)" />
+  </Target>
 </Project>

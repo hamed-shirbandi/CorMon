@@ -6,7 +6,7 @@ using System.Text;
 namespace CorMon.Application.UnitTests.Taxonomies
 {
     [TestClass]
-    public class TaxonomyServiceTests
+    public class TaxonomyServiceTests: TestsBase
     {
 
 

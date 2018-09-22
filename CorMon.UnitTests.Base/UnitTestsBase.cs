@@ -7,11 +7,11 @@ using System.Collections.Generic;
 namespace CorMon.UnitTests.Base
 {
 
-    public class TestsBase
+    public class UnitTestsBase
     {
         public IServiceProvider ServiceProvider { get; private set; }
 
-        public TestsBase()
+        public UnitTestsBase()
         {
             ServiceProvider = GetServiceProvider();
 

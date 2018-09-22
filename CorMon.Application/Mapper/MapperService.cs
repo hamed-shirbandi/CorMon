@@ -14,16 +14,15 @@ namespace CorMon.Application.Mapper
 
         #region Fields
 
-        private readonly IConfiguration _configuration;
 
 
         #endregion
 
         #region Ctor
 
-        public MapperService(IConfiguration configuration)
+        public MapperService()
         {
-            _configuration = configuration;
+
         }
 
 

@@ -1,23 +1,26 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using CorMon.Application.Posts;
+using CorMon.Application.Posts.Dto;
 
 namespace CorMon.Web.Api.Controllers
 {
-  
-    public class StagingTestsController : BaseController
+    public class PostsController : BaseController
     {
         #region Fields
 
+        private readonly IPostService _postService;
 
 
         #endregion
 
         #region Ctor
 
-        public StagingTestsController()
+        public PostsController(IPostService postService)
         {
-
+            _postService = postService;
         }
+
 
         #endregion
 
@@ -27,17 +30,15 @@ namespace CorMon.Web.Api.Controllers
 
 
         /// <summary>
-        /// use in ui tests
+        /// 
         /// </summary>
         [HttpGet]
-        public string Check_App_Initialization()
+        [Route("posts/get/{id}")]
+        public async Task<PostOutput> Get(string id)
         {
-            return "OK" ;
+            return await _postService.GetAsync(id); 
         }
 
-
-
-        
 
 
 

@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RedisCache.Core;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace CorMon.Web.Api
 {
@@ -39,6 +40,12 @@ namespace CorMon.Web.Api
 
             #endregion
 
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "CorMon API Documentation", Version = "v1" });
+            });
+
             services.AddMvc();
             return services.ConfigureIocContainer(_configuration);
         }
@@ -56,22 +63,29 @@ namespace CorMon.Web.Api
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
-            else
-            {
-               // app.UseExceptionHandler("/Error/Unknown");
-            }
-
+      
 
             app.UseStaticFiles();
 
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1");
+            });
+
             serviceScopeFactory.InitialDatabase();
             serviceScopeFactory.SeedDatabase();
+
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Values}/{action=Get}/{id?}");
+                    template: "{controller=StagingTests}/{action=Get_Api_Documentation}");
             });
         }
     }

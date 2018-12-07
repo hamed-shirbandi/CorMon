@@ -2,23 +2,64 @@
 // More info at https://go.microsoft.com/fwlink/?LinkId=808241
 [
   {
-    "outputFileName": "wwwroot/css/site.min.css",
-    // An array of relative input file paths. Globbing patterns supported
+    "outputFileName": "wwwroot/content/bundled/css/site.min.css",
     "inputFiles": [
-      "wwwroot/css/site.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/site.min.js",
-    "inputFiles": [
-      "wwwroot/js/site.js"
+      "wwwroot/content/site/css/plugin.css",
+      "wwwroot/content/site/css/style.css",
+      "wwwroot/content/site/css/bootstrap-rtl.min.css",
+      "wwwroot/content/site/css/overwrite.css"
     ],
-    // Optionally specify minification options
     "minify": {
       "enabled": true,
       "renameLocals": true
     },
-    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/content/bundled/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/dist/jquery.js",
+      "wwwroot/scripts/site/plugin.js",
+      "wwwroot/scripts/site/scripts.js",
+      "wwwroot/scripts/site/app.js",
+      "wwwroot/scripts/site/bootstrap-rtl.min.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+
+  {
+    "outputFileName": "wwwroot/content/bundled/css/panel.min.css",
+    "inputFiles": [
+      "wwwroot/content/admin/css/main.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/content/bundled/js/panel.min.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/dist/jquery.js",
+      "wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "wwwroot/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js",
+      "wwwroot/scripts/public/vendors/slimscroll/jquery.slimscroll.js",
+      "wwwroot/scripts/public/vendors/velocity/velocity.min.js",
+      "wwwroot/scripts/public/vendors/noty/packaged/jquery.noty.packaged.js",
+      "wwwroot/scripts/admin/app/app.js",
+      "wwwroot/scripts/admin/app/app.core.js",
+      "wwwroot/scripts/public/plugins/tab.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
     "sourceMap": false
   }
 ]

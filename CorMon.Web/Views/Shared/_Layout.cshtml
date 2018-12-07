@@ -8,10 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="~/favicon/apple-touch-icon.png">
-    <link href="~/content/site/css/plugin.css" rel="stylesheet" />
-    <link href="~/content/site/css/style.css" rel="stylesheet" />
-    <link href="~/content/site/css/bootstrap-rtl.min.css" rel="stylesheet" />
-    <link href="~/content/site/css/overwrite.css" rel="stylesheet" />
+    @*<link href="~/content/site/css/plugin.css" rel="stylesheet" />
+        <link href="~/content/site/css/style.css" rel="stylesheet" />
+        <link href="~/content/site/css/bootstrap-rtl.min.css" rel="stylesheet" />
+        <link href="~/content/site/css/overwrite.css" rel="stylesheet" />*@
+    <link href="~/content/bundled/css/site.min.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
 <body>
@@ -36,8 +37,8 @@
                     <li class=""><a href="@Url.Action(action: "tags",controller:"blog")">تگ ها</a></li>
                     <li class=""><a href="@Url.Action(action: "index",controller:"dashboard",values:new { Area="admin"})">ورود به پنل </a></li>
                 </ul>
-               @Html.Partial("_GetSearchForm")
-              
+                @Html.Partial("_GetSearchForm")
+
             </div>
         </div>
     </nav>
@@ -95,11 +96,14 @@
         </div>
     </div>
     <a href="#" class="scroll-to-top"><i class="fa fa-long-arrow-up"></i></a>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    @*<script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/scripts/site/plugin.js"></script>
     <script src="~/scripts/site/scripts.js"></script>
     <script src="~/scripts/site/app.js"></script>
-    <script src="~/scripts/site/bootstrap-rtl.min.js"></script>
+    <script src="~/scripts/site/bootstrap-rtl.min.js"></script>*@
+
+    <script src="~/content/bundled/js/site.min.js"></script>
 
 
     @RenderSection("Scripts", required: false)

@@ -1,0 +1,29 @@
+﻿@model CorMon.Application.Users.Dto.UserOutput
+@{
+    var defaultUserImageUrl = Url.Content("~/Content/public/img/defaults/no-image-user.jpg");
+
+}
+<ul class="nav-bar is-left nav-profile">
+    <li>
+        <a class="nav-profile-toggle" role="button" data-toggle="dropdown">
+            <i class="fa fa-caret-down"></i>
+            <span>@Model.DisplayName</span>
+            <!-- Avatar -->
+            <img src="@(string.IsNullOrEmpty(Model.AvatarUrl)?defaultUserImageUrl: Model.AvatarUrl)" />
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="@Url.Action(action: "update", controller: "users", values: new { Area = "admin", id =Model.Id })">
+                    پروفایل
+                    <i class="si si-user"></i>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action(action: "logout", controller: "account", values: new { Area = ""})">
+                    خروج
+                    <i class="si si-logout"></i>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>

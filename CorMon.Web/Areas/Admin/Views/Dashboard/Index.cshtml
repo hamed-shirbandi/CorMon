@@ -80,7 +80,7 @@
                                     </td>
                                 </tr>
                             }
-                           
+
                         </tbody>
                     </table>
                 </div>
@@ -91,6 +91,8 @@
 
 
 @section Scripts{
+    <script src="~/scripts/public/vendors/chartjs/Chart.Core.js"></script>
+    <script src="~/scripts/public/vendors/chartjs/Chart.Bar.js"></script>
     <script>
 
 
@@ -98,24 +100,24 @@
         var lastDaysBarChartDataset = [];
         var lastDaysBarChartData = [];
 
-         
-           lastDaysBarChartLables.push("10/6/96");
-           lastDaysBarChartDataset.push(55);
 
-           lastDaysBarChartLables.push("11/6/96");
-           lastDaysBarChartDataset.push(100);
+        lastDaysBarChartLables.push("10/6/96");
+        lastDaysBarChartDataset.push(55);
 
-           lastDaysBarChartLables.push("12/6/96");
-           lastDaysBarChartDataset.push(109);
+        lastDaysBarChartLables.push("11/6/96");
+        lastDaysBarChartDataset.push(100);
 
-           lastDaysBarChartLables.push("13/6/96");
-           lastDaysBarChartDataset.push(70);
+        lastDaysBarChartLables.push("12/6/96");
+        lastDaysBarChartDataset.push(109);
 
-           lastDaysBarChartLables.push("14/6/96");
-           lastDaysBarChartDataset.push(85);
+        lastDaysBarChartLables.push("13/6/96");
+        lastDaysBarChartDataset.push(70);
 
-           lastDaysBarChartLables.push("15/6/96");
-           lastDaysBarChartDataset.push(90);
+        lastDaysBarChartLables.push("14/6/96");
+        lastDaysBarChartDataset.push(85);
+
+        lastDaysBarChartLables.push("15/6/96");
+        lastDaysBarChartDataset.push(90);
 
 
         lastDaysBarChartData = {
@@ -137,7 +139,7 @@
 
             //Statistic Radar chart
             var ctx = document.getElementById("last-days-chart-area").getContext("2d");
-            var chart = new Chart(ctx).Bar(lastDaysBarChartData,null);
+            var chart = new Chart(ctx).Bar(lastDaysBarChartData, null);
 
         })(jQuery);
     </script>

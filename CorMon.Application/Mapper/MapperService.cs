@@ -14,15 +14,16 @@ namespace CorMon.Application.Mapper
 
         #region Fields
 
+        private readonly IConfiguration _configuration;
 
 
         #endregion
 
         #region Ctor
 
-        public MapperService()
+        public MapperService(IConfiguration configuration)
         {
-
+            _configuration = configuration;
         }
 
 
@@ -211,6 +212,7 @@ namespace CorMon.Application.Mapper
                 Email = user.Email,
                 Phone = user.Phone,
                 About = user.About,
+                AvatarUrl = !string.IsNullOrEmpty(user.AvatarUrl) ? _configuration["ProjectUrl:Static"] + user.AvatarUrl : "",
 
             };
         }

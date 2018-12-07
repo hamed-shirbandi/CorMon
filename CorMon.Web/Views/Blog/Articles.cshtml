@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<PostOutput>
 
 @{
-    ViewBag.title = ViewBag.ApplicationName + " : " + "آخرین مقالات در " + @ViewBag.CategoryName;
+    ViewBag.title = "آخرین مقالات " + @ViewBag.TaxonomyName;
 }
 
 <div class="row">
     <div class="sub-title">
-        <h2 class="main-color">آخرین مقالات در  @ViewBag.TaxonomyName</h2>
+        <h2 class="main-color">@ViewBag.title</h2>
     </div>
 
     <div class="col-md-12 content-page">

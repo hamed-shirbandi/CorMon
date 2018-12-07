@@ -6,19 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.title</title>
     <link rel="shortcut icon" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="~/favicon/apple-touch-icon.png">
-    @*<link href="~/content/site/css/plugin.css" rel="stylesheet" />
-        <link href="~/content/site/css/style.css" rel="stylesheet" />
-        <link href="~/content/site/css/bootstrap-rtl.min.css" rel="stylesheet" />
-        <link href="~/content/site/css/overwrite.css" rel="stylesheet" />*@
     <link href="~/content/bundled/css/site.min.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
 <body>
     @*<div class="preloader">
-            <div class="rounder"></div>
-        </div>*@
+        <div class="rounder"></div>
+    </div>*@
     <nav class="navbar navbar-fixed-top navbar-inverse">
         <div class="container">
             <div class="navbar-header">
@@ -97,14 +94,7 @@
     </div>
     <a href="#" class="scroll-to-top"><i class="fa fa-long-arrow-up"></i></a>
 
-    @*<script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/scripts/site/plugin.js"></script>
-    <script src="~/scripts/site/scripts.js"></script>
-    <script src="~/scripts/site/app.js"></script>
-    <script src="~/scripts/site/bootstrap-rtl.min.js"></script>*@
-
     <script src="~/content/bundled/js/site.min.js"></script>
-
 
     @RenderSection("Scripts", required: false)
 </body>

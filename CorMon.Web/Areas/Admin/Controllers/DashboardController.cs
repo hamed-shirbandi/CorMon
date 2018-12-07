@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CorMon.Web.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("admin")]
     public class DashboardController : Controller
     {
 
@@ -20,7 +20,6 @@ namespace CorMon.Web.Areas.Admin.Controllers
         /// <summary>
         /// 
         /// </summary>
-        [Route("admin/dashboard")]
         public IActionResult Index()
         {
             return View();

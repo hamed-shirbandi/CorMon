@@ -8,12 +8,11 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/scripts/public/vendors/ckeditor/ckeditor.js"></script>
     <script>
-        jQuery.validator.setDefaults({ ignore: ":hidden:not(textarea)" });
+        jQuery.validator.setDefaults({ignore: ":hidden:not(textarea)"});
 
         $(document).ready(function () {
-            
 
             //Initial CK EDITOR
             //CKEDITOR.replace('Content');
@@ -21,7 +20,6 @@
             CKEDITOR.replace('Content', {
                 customConfig: 'config.js'
             });
-
      
             $("#add-tag").click(function () {
                 $(".tm-input").tagsManager('pushTag', $(".tm-input").val());

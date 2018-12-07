@@ -8,14 +8,20 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/scripts/public/vendors/ckeditor/ckeditor.js"></script>
+
     <script>
         jQuery.validator.setDefaults({ ignore: ":hidden:not(textarea)" });
 
         $(document).ready(function () {
-
             //Initial CK EDITOR
-            CKEDITOR.replace('Content');
+            //CKEDITOR.replace('Content');
+
+            CKEDITOR.replace('Content', {
+                customConfig: 'config.js'
+            });
+
 
               // Initial tag manager
             $("#tags-input").tagsManager({
@@ -27,6 +33,6 @@
     });
 
     </script>
-<script src="~/scripts/admin/pages/cormon.page.post.js"></script>
+    <script src="~/scripts/admin/pages/cormon.page.post.js"></script>
 
 }

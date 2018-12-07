@@ -105,7 +105,7 @@ namespace CorMon.Web.Controllers
         /// <summary>
         /// نمایش جزییات مطلب
         /// </summary>
-        [Route("article/{id}/{title}")]
+        [Route("article/{id}/{title?}")]
         public ActionResult Article(string id, string title)
         {
             var cacheKey = string.Format(CacheKeyTemplate.PostByIdCacheKey, id);

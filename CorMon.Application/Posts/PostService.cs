@@ -105,6 +105,12 @@ namespace CorMon.Application.Posts
             }
 
             var user = _userRepository.GetAsync(post.UserId).Result;
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+
             var tags = GetPostTaxonomies(post.TagIds);
             var categories = GetPostTaxonomies(post.CategoryIds);
 

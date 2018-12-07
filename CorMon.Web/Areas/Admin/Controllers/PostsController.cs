@@ -10,6 +10,7 @@ using CorMon.Application.Taxonomies;
 using CorMon.Web.Helpers;
 using CorMon.Web.Extensions;
 using CorMon.Web.Enums;
+using CorMon.Application.Users;
 
 namespace CorMon.Web.Areas.Admin.Controllers
 {
@@ -21,6 +22,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
         private readonly IPostService _postService;
         private readonly ITaxonomyService _taxonomyService;
+        private readonly IUserService _userService;
         private int recordsPerPage;
         private int pageSize;
         private int TotalItemCount;
@@ -29,9 +31,10 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
         #region Ctor
 
-        public PostsController(IPostService postService, ITaxonomyService taxonomyService)
+        public PostsController(IUserService userService,IPostService postService, ITaxonomyService taxonomyService)
         {
             _postService = postService;
+            _userService = userService;
             _taxonomyService = taxonomyService;
             pageSize = 0;
             recordsPerPage = 5;
@@ -139,7 +142,15 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
             }
 
-            input.UserId = "599b295c03a89924849735b3";
+            #region get sample user. This is because we don't have user management right now
+
+            var currentUser = await _userService.GetSampleUserAsync();
+            input.UserId = currentUser.Id;
+
+
+            #endregion
+
+
             var response = await _postService.CreateAsync(input);
             if (!response.result)
                 return ScriptBox.ShowMessage(response.message, MsgType.error);

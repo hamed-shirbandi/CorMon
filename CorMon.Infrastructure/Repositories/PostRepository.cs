@@ -74,7 +74,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task CreateAsync(IEnumerable<Post> posts)
         {
-
+            await _posts.InsertManyAsync(posts);
         }
 
 
@@ -245,7 +245,10 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task UpdateAsync(IEnumerable<Post> posts)
         {
-            throw new NotImplementedException();
+            foreach (var post in posts)
+            {
+                await UpdateAsync(post);
+            }
         }
 
 

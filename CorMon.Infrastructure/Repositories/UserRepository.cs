@@ -44,6 +44,14 @@ namespace CorMon.Infrastructure.Repositories
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<User> GetFirstUserAsync()
+        {
+            return await _users.AsQueryable().FirstOrDefaultAsync();
+        }
+
 
         /// <summary>
         /// 

@@ -6,6 +6,7 @@ namespace CorMon.Application.Users.Dto
 {
   public  class UserOutput
     {
+        public string Id { get; set; }
         public string DisplayName { get; set; }
         public string About { get; set; }
 

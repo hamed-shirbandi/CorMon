@@ -11,5 +11,6 @@ namespace CorMon.Application.Users
     {
         Task<UserOutput> GetAsync(string id);
         Task<PublicJsonResult> UpdateAsync(UserInput input);
+        Task<UserOutput> GetSampleUserAsync();
     }
 }

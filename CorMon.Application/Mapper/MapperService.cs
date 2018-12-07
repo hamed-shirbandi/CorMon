@@ -185,6 +185,7 @@ namespace CorMon.Application.Mapper
         {
             return new UserInput
             {
+                Id = user.Id,
                 DisplayName = user.DisplayName,
                 UserName = user.UserName,
                 Email = user.Email,
@@ -204,6 +205,7 @@ namespace CorMon.Application.Mapper
         {
             return new UserOutput
             {
+                Id = user.Id,
                 DisplayName = user.DisplayName,
                 UserName = user.UserName,
                 Email = user.Email,

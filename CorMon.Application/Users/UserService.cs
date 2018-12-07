@@ -53,6 +53,21 @@ namespace CorMon.Application.Users
         }
 
 
+        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<UserOutput> GetSampleUserAsync( )
+        {
+            var user = await _userRepository.GetFirstUserAsync();
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            return _mapperService.BindToOutputModel(user);
+        }
 
 
 

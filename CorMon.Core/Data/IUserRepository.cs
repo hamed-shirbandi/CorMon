@@ -12,5 +12,6 @@ namespace CorMon.Core.Data
         Task<User> GetAsync(string id);
         User Get(string id);
         Task UpdateAsync(User user);
+        Task<User> GetFirstUserAsync();
     }
 }

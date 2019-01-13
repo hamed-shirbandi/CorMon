@@ -28,8 +28,7 @@ namespace CorMon.UnitTests.Base
             services.AddSingleton<IConfiguration>(provider => { return configuration; });
 
             var serviceProvider = services.ConfigureIocContainer(configuration);
-
-           
+            
             return serviceProvider;
         }
 

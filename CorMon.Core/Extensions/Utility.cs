@@ -14,8 +14,7 @@ namespace CorMon.Core.Extensions
 
 
         #endregion
-
-
+        
         #region Ctor
 
         static Utility()
@@ -28,6 +27,17 @@ namespace CorMon.Core.Extensions
         #endregion
 
         #region Public Methods
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string ToLowerFirst(this string str)
+        {
+            return str.Substring(0, 1).ToLower() + str.Substring(1);
+        }
+
 
 
 

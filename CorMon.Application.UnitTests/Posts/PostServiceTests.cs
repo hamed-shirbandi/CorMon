@@ -3,6 +3,7 @@ using CorMon.Application.Posts;
 using CorMon.Core.Data;
 using CorMon.Core.Domain;
 using CorMon.Core.Enums;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Driver;
 using Moq;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CorMon.Application.UnitTests.Posts
 {
@@ -45,7 +47,8 @@ namespace CorMon.Application.UnitTests.Posts
             //var mapperService = new Mock<IMapperService>();
             //mapperService.Setup(m=>m.BindToOutputModel(It.IsAny<Post>(), It.IsAny<User>(), It.IsAny<IEnumerable<Taxonomy>>(), It.IsAny<IEnumerable<Taxonomy>>())).Returns(GetPostOutputModel());
 
-            postService = new PostService(postRepository.Object, userRepository.Object, taxonomyRepository.Object, new MapperService());
+            var configuration = ServiceProvider.GetRequiredService<IConfiguration>();
+            postService = new PostService(postRepository.Object, userRepository.Object, taxonomyRepository.Object, new MapperService(configuration));
         }
 
 

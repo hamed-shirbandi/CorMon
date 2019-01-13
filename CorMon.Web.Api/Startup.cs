@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CorMon.Infrastructure.DataProviders;
 using CorMon.IocConfig;
+using CorMon.Web.Api.Services.Jwt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -39,6 +40,12 @@ namespace CorMon.Web.Api
 
 
             #endregion
+
+            services.AddJwt(options =>
+            {
+                _configuration.GetSection("Jwt").Bind(options);
+
+            });
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -76,6 +83,9 @@ namespace CorMon.Web.Api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1");
             });
+
+
+       
 
             serviceScopeFactory.InitialDatabase();
             serviceScopeFactory.SeedDatabase();

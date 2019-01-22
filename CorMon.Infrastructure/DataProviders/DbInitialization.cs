@@ -36,8 +36,8 @@ namespace CorMon.Infrastructure.DataProviders
             if (!collections.Has<Role>())
                 dbContext.CreateCollection<Role>();
 
-            if (!collections.Has<Taxonomy>(name: "taxonomies"))
-                dbContext.CreateCollection<Taxonomy>(name: "taxonomies");
+            if (!collections.Has<Taxonomy>(name: "Taxonomies"))
+                dbContext.CreateCollection<Taxonomy>(name: "Taxonomies");
         }
 
 
@@ -57,8 +57,8 @@ namespace CorMon.Infrastructure.DataProviders
 
             #region Taxonomy Indexs
 
-            dbContext.GetCollection<Taxonomy>().Indexes.CreateOneAsync(new CreateIndexModel<Taxonomy>(Builders<Taxonomy>.IndexKeys.Ascending(x => x.Id), new CreateIndexOptions() { Name = "Id", Unique = true }));
-            dbContext.GetCollection<Taxonomy>().Indexes.CreateOneAsync(new CreateIndexModel<Taxonomy>(Builders<Taxonomy>.IndexKeys.Ascending(x => x.Type), new CreateIndexOptions() { Name = "Type" }));
+            dbContext.GetCollection<Taxonomy>(name:"Taxonomies").Indexes.CreateOneAsync(new CreateIndexModel<Taxonomy>(Builders<Taxonomy>.IndexKeys.Ascending(x => x.Id), new CreateIndexOptions() { Name = "Id", Unique = true }));
+            dbContext.GetCollection<Taxonomy>(name: "Taxonomies").Indexes.CreateOneAsync(new CreateIndexModel<Taxonomy>(Builders<Taxonomy>.IndexKeys.Ascending(x => x.Type), new CreateIndexOptions() { Name = "Type" }));
 
 
             #endregion

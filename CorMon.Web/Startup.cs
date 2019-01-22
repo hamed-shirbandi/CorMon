@@ -50,7 +50,7 @@ namespace CorMon.Web
                 identityOptions.Password.RequireNonAlphanumeric = false;
                 identityOptions.Password.RequireDigit = false;
             }, mongoIdentityOptions => {
-                mongoIdentityOptions.ConnectionString = _configuration["Mongo:Connection"];
+                mongoIdentityOptions.ConnectionString = _configuration["Mongo:Connection"]+"/"+ _configuration["Mongo:Database"];
             });
 
             services.AddMvc();

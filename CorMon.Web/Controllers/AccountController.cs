@@ -78,7 +78,7 @@ namespace CorMon.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(nameof(LoginViewModel.Password), "Invalid login attempt.");
                     return View(model);
                 }
             }

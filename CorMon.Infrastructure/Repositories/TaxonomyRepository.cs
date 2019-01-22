@@ -24,7 +24,7 @@ namespace CorMon.Infrastructure.Repositories
 
         public TaxonomyRepository(IMongoDbContext dbContext)
         {
-            _taxonomies = dbContext.GetCollection<Taxonomy>(name:"taxonomies");
+            _taxonomies = dbContext.GetCollection<Taxonomy>(name:"Taxonomies");
         }
 
 

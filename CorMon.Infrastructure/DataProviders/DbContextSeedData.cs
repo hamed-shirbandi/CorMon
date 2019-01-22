@@ -1,6 +1,8 @@
 ﻿using CorMon.Core.Domain;
 using CorMon.Core.Enums;
 using CorMon.Infrastructure.DbContext;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -14,52 +16,53 @@ namespace CorMon.Infrastructure.DataProviders
     public static class DbContextSeedData
     {
 
-        public static void SeedDatabase(this IServiceScopeFactory scopeFactory)
+        public static async void SeedDatabase(this IServiceScopeFactory scopeFactory)
         {
             using (var serviceScope = scopeFactory.CreateScope())
             {
                 string adminRoleId = string.Empty;
                 var dbContext = serviceScope.ServiceProvider.GetService<IMongoDbContext>();
+                var configuration = serviceScope.ServiceProvider.GetService<IConfiguration>();
+
+                var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<Role>>();
+                var userManager = serviceScope.ServiceProvider.GetService<UserManager<User>>();
 
                 var _posts = dbContext.GetCollection<Post>();
                 var _users = dbContext.GetCollection<User>();
-                var _roles = dbContext.GetCollection<Role>();
                 var _taxonomies = dbContext.GetCollection<Taxonomy>(name: "taxonomies");
 
-                #region Roles
+                #region Admin User Role
 
-                if (!_roles.AsQueryable().Any())
+
+                var roleName = "Admin";
+
+                var roleExist = await roleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
                 {
-                    var role = new Role
-                    {
-                        Name = "مدیر",
-                    };
-                    adminRoleId = role.Id;
-                    _roles.InsertOne(role);
-
+                    await roleManager.CreateAsync(new Role { Name = roleName });
                 }
 
 
-
-                #endregion
-
-                #region Users
-
-                if (!_users.AsQueryable().Any())
+                var user = new User
                 {
-                    var user = new User
+                    UserName = configuration["Identity:SuperUser:Username"],
+                    Email = configuration["Identity:SuperUser:Email"],
+                    PhoneNumber = configuration["Identity:SuperUser:PhoneNumber"],
+                    DisplayName = "مدیر اصلی سیستم",
+                };
+
+                string password = configuration["Identity:SuperUser:Password"];
+
+                if (await userManager.FindByNameAsync(user.UserName) == null)
+                {
+                    var createSuperUser = await userManager.CreateAsync(user, password);
+
+                    if (createSuperUser.Succeeded)
                     {
-                        DisplayName = "حامد شیربندی",
-                        Email = "hamed.shirbandi@gmail.com",
-                        PhoneNumber = "0210000000",
-                        UserName = "hamed99",
-                        About = "اگر در مورد این نوشته سوال یا ابهامی وجود دارد میتوانید به ایمیل من ارسال کنید. البته در این مورد باید کمی صبور باشید. در آینده بخش نظرات اضافه خواهد شد.",
-                        Roles = new List<string> { adminRoleId }
-                    };
-                    _users.InsertOne(user);
+                        await userManager.AddToRoleAsync(user, roleName);
+                    }
 
                 }
-
 
 
                 #endregion
@@ -112,7 +115,7 @@ namespace CorMon.Infrastructure.DataProviders
 
 
                     List<Post> posts = new List<Post>();
-                    var user = _users.AsQueryable().FirstOrDefault();
+                     user = _users.AsQueryable().FirstOrDefault();
                     var taxonomies = _taxonomies.Find(t => true).ToList();
                     var tagIds = taxonomies.Where(t => t.Type == TaxonomyType.Tag).Select(t => t.Id).ToArray();
                     var categoryIds = taxonomies.Where(t => t.Type == TaxonomyType.Category).Select(t => t.Id).ToArray();

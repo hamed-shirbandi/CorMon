@@ -75,8 +75,9 @@ namespace CorMon.Web
                 app.UseExceptionHandler("/Error/Unknown");
             }
 
-  
 
+
+            app.UseAuthentication();
             app.UseStaticFiles();
 
             serviceScopeFactory.InitialDatabase();

@@ -33,7 +33,59 @@ namespace CorMon.Application.Mapper
         #region Public Methods
 
 
-        
+        #region User
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public UserInput BindToInputModel(User user)
+        {
+            return new UserInput
+            {
+                Id = user.Id,
+                DisplayName = user.DisplayName,
+                UserName = user.UserName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                About = user.About,
+
+            };
+        }
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public UserOutput BindToOutputModel(User user)
+        {
+            return new UserOutput
+            {
+                Id = user.Id,
+                DisplayName = user.DisplayName,
+                UserName = user.UserName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                About = user.About,
+                AvatarUrl = !string.IsNullOrEmpty(user.AvatarUrl) ? _configuration["ProjectUrl:Static"] + user.AvatarUrl : "",
+
+            };
+        }
+
+        #endregion
+
+        #region Role
+
+
+
+        #endregion
+
+        #region Post
+
+
 
         /// <summary>
         /// 
@@ -71,7 +123,7 @@ namespace CorMon.Application.Mapper
         /// <summary>
         /// 
         /// </summary>
-        public PostOutput BindToOutputModel(Post post,User user,IEnumerable<Taxonomy> tags, IEnumerable<Taxonomy> categories)
+        public PostOutput BindToOutputModel(Post post, User user, IEnumerable<Taxonomy> tags, IEnumerable<Taxonomy> categories)
         {
             return new PostOutput
             {
@@ -89,7 +141,7 @@ namespace CorMon.Application.Mapper
                 Author = user.DisplayName,
                 AboutAuthor = user.About,
                 ModifiedDateTime = post.ModifiedDateTime,
-                Categoories = categories.Select(taxonomy=> BindToOutputModel(taxonomy)) ,
+                Categoories = categories.Select(taxonomy => BindToOutputModel(taxonomy)),
                 Tags = tags.Select(taxonomy => BindToOutputModel(taxonomy)),
                 IsTrashed = post.IsTrashed,
             };
@@ -120,6 +172,12 @@ namespace CorMon.Application.Mapper
             };
         }
 
+
+
+
+        #endregion
+
+        #region Taxonomy
 
 
 
@@ -177,49 +235,9 @@ namespace CorMon.Application.Mapper
             };
         }
 
-        
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public UserInput BindToInputModel(User user)
-        {
-            return new UserInput
-            {
-                Id = user.Id,
-                DisplayName = user.DisplayName,
-                UserName = user.UserName,
-                Email = user.Email,
-                Phone = user.Phone,
-                About = user.About,
-
-            };
-        }
 
 
-        
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public UserOutput BindToOutputModel(User user)
-        {
-            return new UserOutput
-            {
-                Id = user.Id,
-                DisplayName = user.DisplayName,
-                UserName = user.UserName,
-                Email = user.Email,
-                Phone = user.Phone,
-                About = user.About,
-                AvatarUrl = !string.IsNullOrEmpty(user.AvatarUrl) ? _configuration["ProjectUrl:Static"] + user.AvatarUrl : "",
-
-            };
-        }
-
-   
-
-
+        #endregion
 
 
         #endregion

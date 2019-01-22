@@ -1,4 +1,5 @@
-﻿using CorMon.Core.Domain;
+﻿using AspNetCore.Identity.Mongo.Model;
+using CorMon.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,7 @@ namespace CorMon.Core.Extensions
         /// <summary>
         /// 
         /// </summary>
-        public static bool Has<T>(this IList<string> collections, string name = "") where T : BaseEntity
+        public static bool Has<T>(this IList<string> collections, string name = "") 
         {
             var collection = name;
             if (string.IsNullOrEmpty(collection))

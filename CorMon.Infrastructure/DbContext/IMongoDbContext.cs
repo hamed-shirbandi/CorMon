@@ -8,8 +8,8 @@ namespace CorMon.Infrastructure.DbContext
 {
     public interface IMongoDbContext
     {
-        IMongoCollection<TEntity> GetCollection<TEntity>(string name="") where TEntity : BaseEntity;
-        void CreateCollection<TEntity>(string name = "") where TEntity : BaseEntity;
+        IMongoCollection<TEntity> GetCollection<TEntity>(string name = "");
+        void CreateCollection<TEntity>(string name = "");
         IList<string> ListCollections();
     }
 }

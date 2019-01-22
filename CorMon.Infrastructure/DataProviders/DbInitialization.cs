@@ -3,6 +3,7 @@ using CorMon.Core.Extensions;
 using CorMon.Infrastructure.DbContext;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
+using AspNetCore.Identity.Mongo.Model;
 
 namespace CorMon.Infrastructure.DataProviders
 {
@@ -42,27 +43,28 @@ namespace CorMon.Infrastructure.DataProviders
         private static void CreateIndexes(IMongoDbContext dbContext)
         {
 
+
             #region Post Indexs
 
-            dbContext.GetCollection<Post>().Indexes.CreateOneAsync(Builders<Post>.IndexKeys.Ascending(x => x.Id), new CreateIndexOptions() { Name = "Id", Unique = true });
-            dbContext.GetCollection<Post>().Indexes.CreateOneAsync(Builders<Post>.IndexKeys.Ascending(x => x.UserId), new CreateIndexOptions() { Name = "UserId" });
+            dbContext.GetCollection<Post>().Indexes.CreateOneAsync(new CreateIndexModel<Post>(Builders<Post>.IndexKeys.Ascending(x => x.Id), new CreateIndexOptions() { Name = "Id", Unique = true }));
+            dbContext.GetCollection<Post>().Indexes.CreateOneAsync(new CreateIndexModel<Post>(Builders<Post>.IndexKeys.Ascending(x => x.UserId), new CreateIndexOptions() { Name = "UserId"}));
 
 
             #endregion
 
             #region Taxonomy Indexs
 
-            dbContext.GetCollection<Taxonomy>().Indexes.CreateOneAsync(Builders<Taxonomy>.IndexKeys.Ascending(x => x.Id), new CreateIndexOptions() { Name = "Id", Unique = true });
-            dbContext.GetCollection<Taxonomy>().Indexes.CreateOneAsync(Builders<Taxonomy>.IndexKeys.Ascending(x => x.Type), new CreateIndexOptions() { Name = "Type"});
+            dbContext.GetCollection<Taxonomy>().Indexes.CreateOneAsync(new CreateIndexModel<Taxonomy>(Builders<Taxonomy>.IndexKeys.Ascending(x => x.Id), new CreateIndexOptions() { Name = "Id", Unique = true }));
+            dbContext.GetCollection<Taxonomy>().Indexes.CreateOneAsync(new CreateIndexModel<Taxonomy>(Builders<Taxonomy>.IndexKeys.Ascending(x => x.Type), new CreateIndexOptions() { Name = "Type" }));
 
 
             #endregion
 
-
             #region User Indexs
 
-            dbContext.GetCollection<User>().Indexes.CreateOneAsync(Builders<User>.IndexKeys.Ascending(x => x.Id), new CreateIndexOptions() { Name = "Id", Unique = true });
-            dbContext.GetCollection<User>().Indexes.CreateOneAsync(Builders<User>.IndexKeys.Ascending(x => x.Email), new CreateIndexOptions() { Name = "Email", Unique = true });
+            dbContext.GetCollection<User>().Indexes.CreateOneAsync(new CreateIndexModel<User>(Builders<User>.IndexKeys.Ascending(x => x.Id), new CreateIndexOptions() { Name = "Id", Unique = true }));
+            dbContext.GetCollection<User>().Indexes.CreateOneAsync(new CreateIndexModel<User>(Builders<User>.IndexKeys.Ascending(x => x.Email), new CreateIndexOptions() { Name = "Email", Unique = true }));
+
 
 
             #endregion

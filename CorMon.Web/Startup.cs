@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Localization;
 using CorMon.IocConfig;
 using RedisCache.Core;
 using Microsoft.Extensions.Configuration;
+using AspNetCore.Identity.Mongo;
+using CorMon.Core.Domain;
 
 namespace CorMon.Web
 {
@@ -40,8 +42,19 @@ namespace CorMon.Web
 
             #endregion
 
-            services.AddMvc();
+            services.AddIdentityMongoDbProvider<User, Role>(identityOptions =>
+            {
+                identityOptions.Password.RequiredLength = 6;
+                identityOptions.Password.RequireLowercase = false;
+                identityOptions.Password.RequireUppercase = false;
+                identityOptions.Password.RequireNonAlphanumeric = false;
+                identityOptions.Password.RequireDigit = false;
+            }, mongoIdentityOptions => {
+                mongoIdentityOptions.ConnectionString = _configuration["Mongo:Connection"];
+            });
 
+            services.AddMvc();
+          
             return services.ConfigureIocContainer(_configuration);
         }
 

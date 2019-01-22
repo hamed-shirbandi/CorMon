@@ -25,15 +25,22 @@ namespace CorMon.Application.UnitTests.Posts
 
         #endregion
 
+        #region Ctor
+
+        public PostServiceTests():base()
+        {
+
+        }
+
+        #endregion
+
         #region Initialize
 
 
         [TestInitialize]
         public void SetupTest()
         {
-            // add some fake post & user & taxonomy
-            AddFakeData();
-
+           
             var postRepository = new Mock<IPostRepository>();
             postRepository.Setup(m => m.GetByIdAsync(It.IsAny<string>())).Returns((string id) => Task.FromResult(posts.FirstOrDefault(p => p.Id == id)));
 
@@ -75,80 +82,7 @@ namespace CorMon.Application.UnitTests.Posts
 
         #region Private Methods
 
-
-        private void AddFakeData()
-        {
-            AddTaxonomies();
-            AddUsers();
-            AddFakePosts();
-        }
-
-
-
-        private void AddUsers()
-        {
-            users = new List<User>
-            {
-                new User
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    UserName = "UserName",
-                    DisplayName = "DisplayName",
-                    Email = "test@example.com",
-                    Phone = "0911111111",
-                    About = "About",
-                }
-            };
-        }
-
-        private void AddTaxonomies()
-        {
-            taxonomies = new List<Taxonomy>();
-
-            for (int i = 1; i <= 6; i++)
-            {
-                taxonomies.Add(new Taxonomy
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = "Name " + i,
-                    UrlTitle = "Title_" + i,
-                    Description = "Description " + i,
-                    Type =  TaxonomyType.Tag,
-                    PostCount = 10,
-                });
-
-            }
-        }
-
-
-
-
-        private void AddFakePosts()
-        {
-            posts = new List<Post>();
-
-            for (int i = 1; i <= 10; i++)
-            {
-                posts.Add(new Post
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Title = "Title " + i,
-                    UrlTitle = "Title_" + i,
-                    Content = "Content " + i,
-                    Author = "Author " + i,
-                    PostLevel = PostLevel.Advance,
-                    PublishDateTime = DateTime.Now,
-                    PublishStatus = PublishStatus.Publish,
-                    UserId = users.FirstOrDefault().Id,
-                    TagIds = taxonomies.Where(t => t.Type == TaxonomyType.Tag).Select(t => t.Id).ToArray(),
-                    CategoryIds = taxonomies.Where(t => t.Type == TaxonomyType.Category).Select(t => t.Id).ToArray(),
-                });
-
-            }
-
-        }
-
-
+        
 
         #endregion
     }

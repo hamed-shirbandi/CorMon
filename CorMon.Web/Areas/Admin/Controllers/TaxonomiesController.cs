@@ -8,11 +8,12 @@ using System.Globalization;
 using CorMon.Application.Posts;
 using CorMon.Core.Enums;
 using CorMon.Application.Taxonomies;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace CorMon.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class TaxonomiesController : BaseController
     {
         #region Fields

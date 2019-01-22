@@ -9,6 +9,18 @@ namespace CorMon.Application.Posts.Dto
 {
     public class PostInput
     {
+        public PostInput()
+        {
+            ActionName = "Create";
+            CreateDateTime = DateTime.Now;
+            ModifiedDateTime = DateTime.Now;
+            PublishDateTime = DateTime.Now;
+            PublishStatus = PublishStatus.Draft;
+            MetaRobots = RobotsState.Global;
+            TagsPrefill = new string[] { };
+            Categories = new SelectListItem[] { };
+        }
+
 
         public string ActionName { get; set; }
         public string Id { get; set; }

@@ -11,11 +11,13 @@ using CorMon.Web.Helpers;
 using CorMon.Web.Extensions;
 using CorMon.Web.Enums;
 using CorMon.Application.Users;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CorMon.Web.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
+    [Authorize]
     public class PostsController : BaseController
     {
         #region Fields
@@ -31,7 +33,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
         #region Ctor
 
-        public PostsController(IUserService userService,IPostService postService, ITaxonomyService taxonomyService)
+        public PostsController(IUserService userService, IPostService postService, ITaxonomyService taxonomyService)
         {
             _postService = postService;
             _userService = userService;
@@ -50,9 +52,9 @@ namespace CorMon.Web.Areas.Admin.Controllers
         /// 
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Index(bool isTrashed=false)
+        public async Task<IActionResult> Index(bool isTrashed = false)
         {
-            var posts =  _postService.Search(page:1,recordsPerPage: recordsPerPage, term: "",isTrashed: isTrashed, publishStatus: null, sortOrder: SortOrder.Desc,pageSize:out pageSize,TotalItemCount:out TotalItemCount);
+            var posts = _postService.Search(page: 1, recordsPerPage: recordsPerPage, term: "", isTrashed: isTrashed, publishStatus: null, sortOrder: SortOrder.Desc, pageSize: out pageSize, TotalItemCount: out TotalItemCount);
 
             #region ViewBags
 
@@ -76,7 +78,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Search(int page = 1, string term = "",bool isTrashed=false, PublishStatus? publishStatus = null, SortOrder sortOrder = SortOrder.Desc)
+        public ActionResult Search(int page = 1, string term = "", bool isTrashed = false, PublishStatus? publishStatus = null, SortOrder sortOrder = SortOrder.Desc)
         {
             var posts = _postService.Search(page: page, recordsPerPage: recordsPerPage, term: term, isTrashed: isTrashed, publishStatus: publishStatus, sortOrder: sortOrder, pageSize: out pageSize, TotalItemCount: out TotalItemCount);
 
@@ -109,15 +111,9 @@ namespace CorMon.Web.Areas.Admin.Controllers
         {
             var model = new PostInput
             {
-                ActionName = "Create",
-                CreateDateTime = DateTime.Now,
-                ModifiedDateTime = DateTime.Now,
-                PublishDateTime = DateTime.Now,
-                PublishStatus = PublishStatus.Draft,
-                MetaRobots = RobotsState.Global,
-                Categories = await _taxonomyService.GetCategoriesSelectListAsync(),
-                TagsPrefill = new string[] { },
+                Categories = await _taxonomyService.GetCategoriesSelectListAsync()
             };
+
 
             return View(model);
         }
@@ -142,20 +138,14 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
             }
 
-            #region get sample user. This is because we don't have user management right now
 
-            var currentUser = await _userService.GetSampleUserAsync();
-            input.UserId = currentUser.Id;
+            input.UserId = GetCurrentUserId();
 
+            var createPost = await _postService.CreateAsync(input);
+            if (!createPost.result)
+                return ScriptBox.ShowMessage(createPost.message, MsgType.error);
 
-            #endregion
-
-
-            var response = await _postService.CreateAsync(input);
-            if (!response.result)
-                return ScriptBox.ShowMessage(response.message, MsgType.error);
-
-            return ScriptBox.RedirectToUrl(url: "/admin/posts/update", values:new { id=response.id},message:response.message);
+            return ScriptBox.RedirectToUrl(url: "/admin/posts/update", values: new { id = createPost.id }, message: createPost.message);
         }
 
 
@@ -192,9 +182,9 @@ namespace CorMon.Web.Areas.Admin.Controllers
                 return ScriptBox.ShowMessage(errors, MsgType.error);
             }
 
-            var response = await _postService.UpdateAsync(input);
-            if (!response.result)
-                return ScriptBox.ShowMessage(response.message, MsgType.error);
+            var updatePost = await _postService.UpdateAsync(input);
+            if (!updatePost.result)
+                return ScriptBox.ShowMessage(updatePost.message, MsgType.error);
 
             return ScriptBox.ReloadPage();
         }
@@ -209,10 +199,10 @@ namespace CorMon.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
-           
-            var response = await _postService.DeleteAsync(id);
-            if (!response.result)
-                return ScriptBox.ShowMessage(response.message, MsgType.error);
+
+            var deletePost = await _postService.DeleteAsync(id);
+            if (!deletePost.result)
+                return ScriptBox.ShowMessage(deletePost.message, MsgType.error);
 
             return ScriptBox.RedirectToUrl(url: "/admin/posts");
 
@@ -236,7 +226,7 @@ namespace CorMon.Web.Areas.Admin.Controllers
 
 
 
-        
+
 
 
         #endregion

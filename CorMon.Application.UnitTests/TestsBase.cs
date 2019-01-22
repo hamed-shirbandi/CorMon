@@ -23,7 +23,7 @@ namespace CorMon.Application.UnitTests
 
         public TestsBase()
         {
-
+            AddFakeData();
         }
 
         #endregion
@@ -50,7 +50,7 @@ namespace CorMon.Application.UnitTests
                     UserName = "UserName"+ i,
                     DisplayName = "DisplayName" + i,
                     Email = "test@example.com" + i,
-                    Phone = "091111111" + i,
+                    PhoneNumber = "091111111" + i,
                     About = "About" + i,
                 });
 

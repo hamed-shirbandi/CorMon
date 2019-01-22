@@ -86,7 +86,7 @@ namespace CorMon.Application.Users
             user.DisplayName = input.DisplayName;
             user.About = input.About;
             user.Email = input.Email;
-            user.Phone = input.PhoneNumber;
+            user.PhoneNumber = input.PhoneNumber;
             user.UserName = input.UserName;
             await _userRepository.UpdateAsync(user);
 

@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="wwwroot\content\admin\img\Loading\" />
     <Folder Include="wwwroot\content\public\fonts\" />
     <Folder Include="wwwroot\content\public\vendors\" />
@@ -40,6 +41,9 @@
 
   <ItemGroup>
     <None Include="Areas\Admin\Views\Shared\Components\UserMenu\Default.cshtml" />
+    <None Include="Views\Account\Lockout.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\Register.cshtml" />
   </ItemGroup>
 
 </Project>

@@ -32,8 +32,8 @@
                     <li class=""><a href="@Url.Action(action: "articles",controller:"blog")">بلاگ</a></li>
                     <li class=""><a href="@Url.Action(action: "categories",controller: "blog")">گروه ها</a></li>
                     <li class=""><a href="@Url.Action(action: "tags",controller:"blog")">تگ ها</a></li>
-                    <li class=""><a href="@Url.Action(action: "index",controller:"dashboard",values:new { Area="admin"})">ورود به پنل </a></li>
                 </ul>
+                @Html.Partial("_LoginPartial")
                 @Html.Partial("_GetSearchForm")
 
             </div>

@@ -1,0 +1,23 @@
+﻿@using CorMon.Core.Domain
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@if (SignInManager.IsSignedIn(User))
+{
+<ul class="nav navbar-nav navbar-right">
+    <li>
+    <a href="@Url.Action(action: "index",controller:"dashboard",values:new { Area="admin"})">پنل مدیریت</a>
+    </li>
+
+    <li>
+        <a asp-area="" asp-controller="Account" asp-action="Logout">خروج</a>
+    </li>
+</ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-area="" asp-controller="Account" asp-action="Register">ثبت نام</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="Login">ورود</a></li>
+    </ul>
+}

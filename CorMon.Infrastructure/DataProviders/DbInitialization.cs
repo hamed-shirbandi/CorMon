@@ -33,8 +33,11 @@ namespace CorMon.Infrastructure.DataProviders
             if (!collections.Has<User>())
                 dbContext.CreateCollection<User>();
 
+            if (!collections.Has<Role>())
+                dbContext.CreateCollection<Role>();
+
             if (!collections.Has<Taxonomy>(name: "taxonomies"))
-                dbContext.CreateCollection<Taxonomy>();
+                dbContext.CreateCollection<Taxonomy>(name: "taxonomies");
         }
 
 
@@ -66,6 +69,12 @@ namespace CorMon.Infrastructure.DataProviders
             dbContext.GetCollection<User>().Indexes.CreateOneAsync(new CreateIndexModel<User>(Builders<User>.IndexKeys.Ascending(x => x.Email), new CreateIndexOptions() { Name = "Email", Unique = true }));
 
 
+
+            #endregion
+
+            #region Role Indexs
+
+            dbContext.GetCollection<Role>().Indexes.CreateOneAsync(new CreateIndexModel<Role>(Builders<Role>.IndexKeys.Ascending(x => x.Id), new CreateIndexOptions() { Name = "Id", Unique = true }));
 
             #endregion
 

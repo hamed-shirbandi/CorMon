@@ -13,15 +13,35 @@ namespace CorMon.Infrastructure.DataProviders
 {
     public static class DbContextSeedData
     {
+
         public static void SeedDatabase(this IServiceScopeFactory scopeFactory)
         {
             using (var serviceScope = scopeFactory.CreateScope())
             {
+                string adminRoleId = string.Empty;
                 var dbContext = serviceScope.ServiceProvider.GetService<IMongoDbContext>();
 
                 var _posts = dbContext.GetCollection<Post>();
                 var _users = dbContext.GetCollection<User>();
+                var _roles = dbContext.GetCollection<Role>();
                 var _taxonomies = dbContext.GetCollection<Taxonomy>(name: "taxonomies");
+
+                #region Roles
+
+                if (!_roles.AsQueryable().Any())
+                {
+                    var role = new Role
+                    {
+                        Name = "مدیر",
+                    };
+                    adminRoleId = role.Id;
+                    _roles.InsertOne(role);
+
+                }
+
+
+
+                #endregion
 
                 #region Users
 
@@ -31,10 +51,10 @@ namespace CorMon.Infrastructure.DataProviders
                     {
                         DisplayName = "حامد شیربندی",
                         Email = "hamed.shirbandi@gmail.com",
-                        Phone = "0210000000",
+                        PhoneNumber = "0210000000",
                         UserName = "hamed99",
                         About = "اگر در مورد این نوشته سوال یا ابهامی وجود دارد میتوانید به ایمیل من ارسال کنید. البته در این مورد باید کمی صبور باشید. در آینده بخش نظرات اضافه خواهد شد.",
-
+                        Roles = new List<string> { adminRoleId }
                     };
                     _users.InsertOne(user);
 
@@ -59,7 +79,7 @@ namespace CorMon.Infrastructure.DataProviders
                             Description = "توضیح تست برای دسته بندی",
                             PostCount = 0,
                             Type = TaxonomyType.Category,
-                            UrlTitle = "دسته-بندی-شماره-"+i,
+                            UrlTitle = "دسته-بندی-شماره-" + i,
                         };
                         taxonomies.Add(cat);
 
@@ -94,8 +114,8 @@ namespace CorMon.Infrastructure.DataProviders
                     List<Post> posts = new List<Post>();
                     var user = _users.AsQueryable().FirstOrDefault();
                     var taxonomies = _taxonomies.Find(t => true).ToList();
-                    var tagIds = taxonomies.Where(t=>t.Type==TaxonomyType.Tag).Select(t => t.Id).ToArray();
-                    var categoryIds = taxonomies.Where(t=>t.Type==TaxonomyType.Category).Select(t => t.Id).ToArray();
+                    var tagIds = taxonomies.Where(t => t.Type == TaxonomyType.Tag).Select(t => t.Id).ToArray();
+                    var categoryIds = taxonomies.Where(t => t.Type == TaxonomyType.Category).Select(t => t.Id).ToArray();
 
                     for (int i = 0; i < 10; i++)
                     {
@@ -113,9 +133,9 @@ namespace CorMon.Infrastructure.DataProviders
                             PostLevel = PostLevel.Intro,
                             PublishStatus = PublishStatus.Publish,
                             MetaRobots = RobotsState.Global,
-                            UrlTitle = "لورم-ایپسوم-متن-ساختگی-با-تولید-سادگی-"+i,
+                            UrlTitle = "لورم-ایپسوم-متن-ساختگی-با-تولید-سادگی-" + i,
                             TagIds = tagIds,
-                            CategoryIds=categoryIds,
+                            CategoryIds = categoryIds,
 
                         };
                         posts.Add(post);

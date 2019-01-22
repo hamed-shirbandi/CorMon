@@ -132,6 +132,9 @@
   <data name="Post_Update_Success" xml:space="preserve">
     <value>عملیات ویرایش پست با موفقیت انجام شد</value>
   </data>
+  <data name="User_Login_Failed" xml:space="preserve">
+    <value>نام کاربری یا رمز عبور اشتباه است</value>
+  </data>
   <data name="User_Update_Success" xml:space="preserve">
     <value>عملیات ویرایش کاربر با موفقیت انجام شد</value>
   </data>

@@ -131,7 +131,7 @@ namespace CorMon.Application.Posts
             //بررسی یکتا بودن عنوان مطلب
             var existPost = await _postRepository.GetByTitleAsync(input.Title.Trim());
             if (existPost != null)
-                return new PublicJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
+                return new PublicJsonResult { Result = false, Message = Messages.Post_Title_Already_Exist };
 
             //بررسی نامک -- url friendly
             input.UrlTitle = input.UrlTitle.IsNullOrEmptyOrWhiteSpace() ? input.Title.GenerateUrlTitle() : input.UrlTitle.GenerateUrlTitle();
@@ -142,7 +142,7 @@ namespace CorMon.Application.Posts
             var post = _mapperService.BindToDomainModel(input, categoriesId, tagsId);
 
             await _postRepository.CreateAsync(post);
-            return new PublicJsonResult { result = true, id = post.Id, message = Messages.Post_Create_Success };
+            return new PublicJsonResult { Result = true, Id = post.Id, Message = Messages.Post_Create_Success };
         }
 
 
@@ -165,7 +165,7 @@ namespace CorMon.Application.Posts
             //بررسی یکتا بودن عنوان 
             var existPost = await _postRepository.GetByTitleAsync(input.Title.Trim());
             if (existPost != null && existPost.Id != input.Id)
-                return new PublicJsonResult { result = false, message = Messages.Post_Title_Already_Exist };
+                return new PublicJsonResult { Result = false, Message = Messages.Post_Title_Already_Exist };
 
 
             post.UrlTitle = input.UrlTitle.IsNullOrEmptyOrWhiteSpace() ? input.Title.GenerateUrlTitle() : input.UrlTitle.GenerateUrlTitle();
@@ -183,7 +183,7 @@ namespace CorMon.Application.Posts
             post.CategoryIds = AddTagsToPost(input.Categories);
 
             await _postRepository.UpdateAsync(post);
-            return new PublicJsonResult { result = true, message = Messages.Post_Update_Success };
+            return new PublicJsonResult { Result = true, Message = Messages.Post_Update_Success };
 
 
         }
@@ -266,7 +266,7 @@ namespace CorMon.Application.Posts
             }
 
 
-            return new PublicJsonResult { result = true, message = Messages.Post_Delete_Success };
+            return new PublicJsonResult { Result = true, Message = Messages.Post_Delete_Success };
         }
 
 
@@ -290,7 +290,7 @@ namespace CorMon.Application.Posts
             post.IsTrashed = false;
             await _postRepository.UpdateAsync(post);
 
-            return new PublicJsonResult { result = true, message = Messages.Post_Recycle_Success };
+            return new PublicJsonResult { Result = true, Message = Messages.Post_Recycle_Success };
         }
 
 

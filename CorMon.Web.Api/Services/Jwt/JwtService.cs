@@ -42,7 +42,7 @@ namespace CorMon.Web.Api.Services.Jwt
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),//username
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.UserId)
+                new Claim(ClaimTypes.NameIdentifier, user.Id)
             };
 
 

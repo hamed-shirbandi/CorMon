@@ -53,7 +53,24 @@ namespace CorMon.Application.Users
         }
 
 
-        
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<UserOutput> GetByEmailAsync(string email)
+        {
+            var user = await _userRepository.GetByEmailAsync(email);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            return _mapperService.BindToOutputModel(user);
+        }
+
+
+
 
         /// <summary>
         /// 
@@ -90,7 +107,7 @@ namespace CorMon.Application.Users
             user.UserName = input.UserName;
             await _userRepository.UpdateAsync(user);
 
-            return new PublicJsonResult { result=true,message=Messages.User_Update_Success};
+            return new PublicJsonResult { Result=true,Message=Messages.User_Update_Success};
         }
 
 

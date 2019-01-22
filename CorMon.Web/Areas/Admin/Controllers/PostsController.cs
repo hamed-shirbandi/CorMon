@@ -142,10 +142,10 @@ namespace CorMon.Web.Areas.Admin.Controllers
             input.UserId = GetCurrentUserId();
 
             var createPost = await _postService.CreateAsync(input);
-            if (!createPost.result)
-                return ScriptBox.ShowMessage(createPost.message, MsgType.error);
+            if (!createPost.Result)
+                return ScriptBox.ShowMessage(createPost.Message, MsgType.error);
 
-            return ScriptBox.RedirectToUrl(url: "/admin/posts/update", values: new { id = createPost.id }, message: createPost.message);
+            return ScriptBox.RedirectToUrl(url: "/admin/posts/update", values: new { id = createPost.Id }, message: createPost.Message);
         }
 
 
@@ -183,8 +183,8 @@ namespace CorMon.Web.Areas.Admin.Controllers
             }
 
             var updatePost = await _postService.UpdateAsync(input);
-            if (!updatePost.result)
-                return ScriptBox.ShowMessage(updatePost.message, MsgType.error);
+            if (!updatePost.Result)
+                return ScriptBox.ShowMessage(updatePost.Message, MsgType.error);
 
             return ScriptBox.ReloadPage();
         }
@@ -201,8 +201,8 @@ namespace CorMon.Web.Areas.Admin.Controllers
         {
 
             var deletePost = await _postService.DeleteAsync(id);
-            if (!deletePost.result)
-                return ScriptBox.ShowMessage(deletePost.message, MsgType.error);
+            if (!deletePost.Result)
+                return ScriptBox.ShowMessage(deletePost.Message, MsgType.error);
 
             return ScriptBox.RedirectToUrl(url: "/admin/posts");
 
@@ -218,8 +218,8 @@ namespace CorMon.Web.Areas.Admin.Controllers
         {
 
             var response = await _postService.RecycleAsync(id);
-            if (!response.result)
-                return ScriptBox.ShowMessage(response.message, MsgType.error);
+            if (!response.Result)
+                return ScriptBox.ShowMessage(response.Message, MsgType.error);
 
             return ScriptBox.ReloadPage();
         }

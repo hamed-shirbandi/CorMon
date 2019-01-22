@@ -106,6 +106,15 @@ namespace CorMon.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نام کاربری یا رمز عبور اشتباه است.
+        /// </summary>
+        public static string User_Login_Failed {
+            get {
+                return ResourceManager.GetString("User_Login_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملیات ویرایش کاربر با موفقیت انجام شد.
         /// </summary>
         public static string User_Update_Success {

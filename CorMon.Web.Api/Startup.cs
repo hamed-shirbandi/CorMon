@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore.Identity.Mongo;
+using CorMon.Core.Domain;
 using CorMon.Infrastructure.DataProviders;
 using CorMon.IocConfig;
 using CorMon.Web.Api.Services.Jwt;
@@ -41,6 +43,21 @@ namespace CorMon.Web.Api
 
             #endregion
 
+            #region Identity
+
+            services.AddIdentityMongoDbProvider<User, Role>(identityOptions =>
+            {
+                identityOptions.Password.RequiredLength = 6;
+                identityOptions.Password.RequireLowercase = false;
+                identityOptions.Password.RequireUppercase = false;
+                identityOptions.Password.RequireNonAlphanumeric = false;
+                identityOptions.Password.RequireDigit = false;
+            }, mongoIdentityOptions => {
+                mongoIdentityOptions.ConnectionString = _configuration["Mongo:Connection"] + "/" + _configuration["Mongo:Database"];
+            });
+
+            #endregion
+
             services.AddJwt(options =>
             {
                 _configuration.GetSection("Jwt").Bind(options);
@@ -70,8 +87,8 @@ namespace CorMon.Web.Api
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
-      
 
+            app.UseAuthentication();
             app.UseStaticFiles();
 
 

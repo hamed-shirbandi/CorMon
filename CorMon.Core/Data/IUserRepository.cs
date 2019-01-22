@@ -13,5 +13,6 @@ namespace CorMon.Core.Data
         User Get(string id);
         Task UpdateAsync(User user);
         Task<User> GetFirstUserAsync();
+        Task<User> GetByEmailAsync(string email);
     }
 }

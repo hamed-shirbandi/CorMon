@@ -18,7 +18,7 @@ namespace CorMon.Core.Extensions
             var collection = name;
             if (string.IsNullOrEmpty(collection))
             {
-                collection = typeof(T).Name.ToLower();
+                collection = typeof(T).Name;
 
                 if (!collection.EndsWith("s"))
                     collection = collection + "s";

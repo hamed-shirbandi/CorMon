@@ -44,6 +44,18 @@ namespace CorMon.Infrastructure.Repositories
 
 
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public async Task<User> GetByEmailAsync(string email)
+        {
+            return await _users.Find(e => e.Email == email).FirstOrDefaultAsync();
+        }
+
+      
+
+
         /// <summary>
         /// 
         /// </summary>

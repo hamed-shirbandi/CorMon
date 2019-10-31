@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 
 namespace CorMon.UITests.Base
 {
@@ -9,6 +9,13 @@ namespace CorMon.UITests.Base
     {
         public IServiceProvider ServiceProvider { get; private set; }
         public IConfiguration Configuration { get; private set; }
+        public string EnvironmentName {
+            get
+            {
+               // return "Staging"; // to test on staging environment
+                return "Development"; // to test locally
+            }
+        }
 
         public TestsBase()
         {

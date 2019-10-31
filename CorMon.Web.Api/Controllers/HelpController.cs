@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 namespace CorMon.Web.Api.Controllers
 {
   
-    public class StagingTestsController : BaseController
+    public class HelpController : BaseController
     {
         #region Fields
 
@@ -15,7 +15,7 @@ namespace CorMon.Web.Api.Controllers
 
         #region Ctor
 
-        public StagingTestsController(IConfiguration configuration)
+        public HelpController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -30,26 +30,27 @@ namespace CorMon.Web.Api.Controllers
         /// 
         /// </summary>
         [HttpGet]
-        public string Get_Api_Documentation()
+        public string Get_Api_Documentation_Url()
         {
             return $"CorMon Api Documentation ==> {_configuration["ProjectUrl:Api"]}/swagger";
         }
 
 
+        
+
+
 
 
         /// <summary>
-        /// use in ui tests
+        /// 
         /// </summary>
         [HttpGet]
-        public string Check_App_Initialization()
+        public string Check_Api_Version()
         {
-            return "OK" ;
+            return "1.0";
         }
 
 
-
-        
 
 
 

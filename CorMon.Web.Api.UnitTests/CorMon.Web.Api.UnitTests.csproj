@@ -14,7 +14,7 @@
 
 
   <Target Name="CopyConfig" AfterTargets="AfterBuild">
-    <Copy SourceFiles="..\CorMon.Web\appsettings.json" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="..\CorMon.Web.Api\appsettings.json" DestinationFolder="$(OutDir)" />
   </Target>
   <ItemGroup>
     <ProjectReference Include="..\CorMon.UnitTests.Base\CorMon.UnitTests.Base.csproj" />

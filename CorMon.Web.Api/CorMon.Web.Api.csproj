@@ -27,4 +27,5 @@
     <ProjectReference Include="..\CorMon.Resource\CorMon.Resource.csproj" />
   </ItemGroup>
 
+  
 </Project>

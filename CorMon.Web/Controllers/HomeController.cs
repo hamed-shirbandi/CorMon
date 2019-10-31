@@ -57,17 +57,7 @@ namespace CorMon.Web.Controllers
         }
 
 
-
-
-
-
-        /// <summary>
-        /// use in ui tests
-        /// </summary>
-        public IActionResult Check_App_Initialization()
-        {
-            return View();
-        }
+        
 
 
         #endregion

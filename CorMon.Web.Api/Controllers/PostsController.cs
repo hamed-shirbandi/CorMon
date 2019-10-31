@@ -96,7 +96,6 @@ namespace CorMon.Web.Api.Controllers
         [Route("posts")]
         public async Task<PublicJsonResult> Delete(string id)
         {
-            
             return await _postService.DeleteAsync(id);
         }
 

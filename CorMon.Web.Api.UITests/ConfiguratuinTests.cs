@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CorMon.Web.Api.UITests
 {
@@ -14,7 +15,7 @@ namespace CorMon.Web.Api.UITests
     public class ConfiguratuinTests :TestsBase
     {
         #region Fields
-
+        
         private IWebDriver driver;
         private string appURL;
 
@@ -34,7 +35,8 @@ namespace CorMon.Web.Api.UITests
         [TestInitialize()]
         public void SetupTest()
         {
-            appURL = Configuration["Environment:Development:Project.Api.Url"];
+           
+            appURL = Configuration[$"Environment:{EnvironmentName}:Project.Api.Url"];
 
             string browser = "Chrome";
             switch (browser)
@@ -65,11 +67,11 @@ namespace CorMon.Web.Api.UITests
         /// 
         /// </summary>
         [TestMethod]
-        public void Check_App_Initialization()
+        public void Check_Api_Version()
         {
-            driver.Navigate().GoToUrl(appURL + "/StagingTests/Check_App_Initialization");
+            driver.Navigate().GoToUrl(appURL + "/Help/Check_Api_Version");
             var responseElement = driver.FindElement(By.TagName("pre"));
-            Assert.IsTrue(responseElement.Text.Contains("OK"), "Successfully initialized");
+            Assert.IsTrue(responseElement.Text.Contains("1.0"), "Successfully initialized");
 
         }
 

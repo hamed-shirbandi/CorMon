@@ -35,7 +35,7 @@ namespace CorMon.Web.UITests
         [TestInitialize()]
         public void SetupTest()
         {
-            appURL = Configuration["Environment:Development:Project.Web.Url"];
+            appURL = Configuration[$"Environment:{EnvironmentName}:Project.Web.Url"];
 
             string browser = "Chrome";
             switch (browser)
@@ -70,11 +70,11 @@ namespace CorMon.Web.UITests
         [TestMethod]
         public void Check_App_Initialization()
         {
-            driver.Navigate().GoToUrl(appURL + "/home/Check_App_Initialization");
+            driver.Navigate().GoToUrl(appURL + "/home/index");
             var responseElement = driver.FindElement(By.ClassName("uipasta-credit"));
             var tt = responseElement.Text;
-            Assert.IsTrue(responseElement.Text.Contains("UiPasta"));
-             
+            Assert.IsTrue(responseElement.Text.Contains("UiPasta"));// check if view contains UiPasta word
+
 
         }
 

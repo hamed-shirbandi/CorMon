@@ -82,6 +82,7 @@ namespace CorMon.Web.Api
         /// </summary>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceScopeFactory serviceScopeFactory)
         {
+          
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -112,7 +113,7 @@ namespace CorMon.Web.Api
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=StagingTests}/{action=Get_Api_Documentation}");
+                    template: "{controller=Help}/{action=Get_Api_Documentation_Url}/{id?}");
             });
         }
     }

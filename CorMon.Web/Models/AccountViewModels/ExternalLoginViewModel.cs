@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Example.CustomUser.Models.AccountViewModels
+namespace CorMon.Web.Models.AccountViewModels
 {
     public class ExternalLoginViewModel
     {

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
 
 namespace CorMon.Application.UnitTests.Posts
 {
@@ -45,7 +46,7 @@ namespace CorMon.Application.UnitTests.Posts
             postRepository.Setup(m => m.GetByIdAsync(It.IsAny<string>())).Returns((string id) => Task.FromResult(posts.FirstOrDefault(p => p.Id == id)));
 
             var userRepository = new Mock<IUserRepository>();
-            userRepository.Setup(m => m.GetAsync(It.IsAny<string>())).Returns((string id) => Task.FromResult(users.FirstOrDefault(p => p.Id == id)));
+            userRepository.Setup(m => m.GetAsync(It.IsAny<string>())).Returns((string id) => Task.FromResult(users.FirstOrDefault(p => p.Id == new ObjectId(id))));
 
 
             var taxonomyRepository = new Mock<ITaxonomyRepository>();

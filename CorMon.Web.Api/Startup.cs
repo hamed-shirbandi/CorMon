@@ -11,8 +11,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using RedisCache.Core;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -67,10 +69,14 @@ namespace CorMon.Web.Api
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "CorMon API Documentation", Version = "v1" });
+                c.SwaggerDoc(_configuration["Swagger:Version"], new OpenApiInfo { Title = _configuration["Swagger:Title"], Version = _configuration["Swagger:Version"] });
+                var includeXmlComments = _configuration["Swagger:IncludeXmlComments"].Split(",");
+                foreach (var includeXmlComment in includeXmlComments)
+                    c.IncludeXmlComments(string.Format(@"{0}\{1}", AppDomain.CurrentDomain.BaseDirectory, includeXmlComment));
             });
+          
 
-            services.AddMvc();
+            services.AddControllers();
             return services.ConfigureIocContainer(_configuration);
         }
 
@@ -80,19 +86,15 @@ namespace CorMon.Web.Api
         /// <summary>
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// </summary>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceScopeFactory serviceScopeFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceScopeFactory serviceScopeFactory)
         {
           
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
 
-            app.UseAuthentication();
-            app.UseStaticFiles();
-
-
+          
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -109,11 +111,15 @@ namespace CorMon.Web.Api
             serviceScopeFactory.SeedDatabase();
 
 
-            app.UseMvc(routes =>
+            app.UseStaticFiles();
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Help}/{action=Get_Api_Documentation_Url}/{id?}");
+                    pattern: "{controller=Help}/{action=Get_Api_Documentation_Url}/{id?}");
             });
         }
     }

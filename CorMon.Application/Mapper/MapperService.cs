@@ -44,7 +44,7 @@ namespace CorMon.Application.Mapper
         {
             return new UserInput
             {
-                Id = user.Id,
+                Id = user.Id.ToString(),
                 DisplayName = user.DisplayName,
                 UserName = user.UserName,
                 Email = user.Email,
@@ -64,7 +64,7 @@ namespace CorMon.Application.Mapper
         {
             return new UserOutput
             {
-                Id = user.Id,
+                Id = user.Id.ToString(),
                 DisplayName = user.DisplayName,
                 UserName = user.UserName,
                 Email = user.Email,

@@ -10,6 +10,7 @@ using RedisCache.Core;
 using Microsoft.Extensions.Configuration;
 using AspNetCore.Identity.Mongo;
 using CorMon.Core.Domain;
+using Microsoft.Extensions.Hosting;
 
 namespace CorMon.Web
 {
@@ -58,7 +59,7 @@ namespace CorMon.Web
             #endregion
 
 
-            services.AddMvc();
+            services.AddControllersWithViews();
           
             return services.ConfigureIocContainer(_configuration);
         }
@@ -68,12 +69,11 @@ namespace CorMon.Web
         /// <summary>
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// </summary>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceScopeFactory serviceScopeFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceScopeFactory serviceScopeFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
@@ -81,21 +81,26 @@ namespace CorMon.Web
             }
 
 
-
-            app.UseAuthentication();
-            app.UseStaticFiles();
-
             serviceScopeFactory.InitialDatabase();
             serviceScopeFactory.SeedDatabase();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute("areaRoute", "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
-                routes.MapRoute(
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                   name: "areas",
+                   pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+ 
         }
 
 

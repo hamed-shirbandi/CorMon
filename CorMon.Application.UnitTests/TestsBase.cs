@@ -1,6 +1,7 @@
 ﻿using CorMon.Core.Domain;
 using CorMon.Core.Enums;
 using CorMon.UnitTests.Base;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace CorMon.Application.UnitTests
             {
                 users.Add(new User
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = ObjectId.GenerateNewId(),
                     UserName = "UserName"+ i,
                     DisplayName = "DisplayName" + i,
                     Email = "test@example.com" + i,
@@ -93,7 +94,7 @@ namespace CorMon.Application.UnitTests
                     PostLevel = PostLevel.Advance,
                     PublishDateTime = DateTime.Now,
                     PublishStatus = PublishStatus.Publish,
-                    UserId = users.FirstOrDefault().Id,
+                    UserId = users.FirstOrDefault().Id.ToString(),
                     TagIds = taxonomies.Where(t => t.Type == TaxonomyType.Tag).Select(t => t.Id).ToArray(),
                     CategoryIds = taxonomies.Where(t => t.Type == TaxonomyType.Category).Select(t => t.Id).ToArray(),
                 });

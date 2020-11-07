@@ -8,6 +8,7 @@ using CorMon.Infrastructure.DbContext;
 using MongoDB.Driver;
 using System.Linq;
 using CorMon.Core.Enums;
+using MongoDB.Bson;
 
 namespace CorMon.Infrastructure.Repositories
 {
@@ -39,7 +40,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public async Task<User> GetAsync(string id)
         {
-            return await _users.Find(e => e.Id == id).FirstOrDefaultAsync();
+            return await _users.Find(e => e.Id == new ObjectId(id)).FirstOrDefaultAsync();
         }
 
 
@@ -70,7 +71,7 @@ namespace CorMon.Infrastructure.Repositories
         /// </summary>
         public User Get(string id)
         {
-            return  _users.Find(e => e.Id == id).FirstOrDefault();
+            return  _users.Find(e => e.Id == new ObjectId(id)).FirstOrDefault();
         }
 
 

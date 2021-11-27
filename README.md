@@ -5,6 +5,7 @@ Free and Open Source CMS based on ASP.NET Core and MongoDB
 
 # features (Done/To Do)
 
+- CRUD Based, Anemic Domain Model
 
 - MongoDB
 

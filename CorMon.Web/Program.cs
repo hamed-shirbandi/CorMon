@@ -35,7 +35,7 @@ builder.Services.AddIdentityMongoDbProvider<User, Role>(identityOptions =>
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.ConfigureIocContainer(builder.Configuration);
+builder.Services.ConfigureIocContainer();
 
 
 var app = builder.Build();

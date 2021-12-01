@@ -52,7 +52,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddControllers();
 
-builder.Services.ConfigureIocContainer(builder.Configuration);
+builder.Services.ConfigureIocContainer();
 
 
 var app = builder.Build();

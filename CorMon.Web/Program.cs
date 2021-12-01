@@ -6,8 +6,6 @@ using RedisCache.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 #region Caching
 
 builder.Services.AddRedisCache(options =>
@@ -40,8 +38,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.ConfigureIocContainer(builder.Configuration);
 
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -52,9 +48,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-var scopeFactory = app.Services.GetService<IServiceScopeFactory>();
-scopeFactory.InitialDatabase();
-scopeFactory.SeedDatabase();
+
+app.Services.InitialDatabase();
+app.Services.SeedDatabase();
 
 
 app.UseHttpsRedirection();

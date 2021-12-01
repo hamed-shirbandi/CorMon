@@ -14,9 +14,9 @@ namespace CorMon.Infrastructure.DataProviders
     public static class DbContextSeedData
     {
 
-        public static void SeedDatabase(this IServiceScopeFactory scopeFactory)
+        public static void SeedDatabase(this IServiceProvider serviceProvider)
         {
-            using (var serviceScope = scopeFactory.CreateScope())
+            using (var serviceScope = serviceProvider.CreateScope())
             {
                 string adminRoleId = string.Empty;
                 var dbContext = serviceScope.ServiceProvider.GetService<IMongoDbContext>();

@@ -4,14 +4,15 @@ using CorMon.Infrastructure.DbContext;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using AspNetCore.Identity.Mongo.Model;
+using System;
 
 namespace CorMon.Infrastructure.DataProviders
 {
     public static class DbInitialization
     {
-        public static void InitialDatabase(this IServiceScopeFactory scopeFactory)
+        public static void InitialDatabase(this IServiceProvider serviceProvider)
         {
-            using (var serviceScope = scopeFactory.CreateScope())
+            using (var serviceScope = serviceProvider.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetService<IMongoDbContext>();
 

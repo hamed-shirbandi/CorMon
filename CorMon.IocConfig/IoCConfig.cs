@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CorMon.IocConfig
 {
-    public static class IocConfig
+    public static class IoCConfig
     {
         public static void ConfigureIocContainer(this IServiceCollection services)
         {

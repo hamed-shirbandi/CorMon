@@ -1,27 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using StructureMap.AspNetCore;
+﻿using AspNetCore.Identity.Mongo;
+using CorMon.Core.Domain;
+using CorMon.Infrastructure.DataProviders;
+using CorMon.IocConfig;
+using RedisCache.Core;
 
-namespace CorMon.Web
+var builder = WebApplication.CreateBuilder(args);
+
+
+
+#region Caching
+
+builder.Services.AddRedisCache(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            BuildWebHost(args).Run();
-        }
+    options.Configuration = builder.Configuration["RedisCache:Connection"];
+    options.InstanceName = builder.Configuration["RedisCache:InstanceName"];
+});
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-            .UseStructureMap()
-            .UseStartup<Startup>()
-            .Build();
-    }
+
+#endregion
+
+#region Identity
+
+builder.Services.AddIdentityMongoDbProvider<User, Role>(identityOptions =>
+{
+    identityOptions.Password.RequiredLength = 6;
+    identityOptions.Password.RequireLowercase = false;
+    identityOptions.Password.RequireUppercase = false;
+    identityOptions.Password.RequireNonAlphanumeric = false;
+    identityOptions.Password.RequireDigit = false;
+}, mongoIdentityOptions => {
+    mongoIdentityOptions.ConnectionString = builder.Configuration["Mongo:Connection"] + "/" + builder.Configuration["Mongo:Database"];
+});
+
+#endregion
+
+
+builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureIocContainer(builder.Configuration);
+
+
+
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
+
+var scopeFactory = app.Services.GetService<IServiceScopeFactory>();
+scopeFactory.InitialDatabase();
+scopeFactory.SeedDatabase();
+
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+       name: "areas",
+       pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
+app.Run();

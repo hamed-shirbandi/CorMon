@@ -9,9 +9,6 @@ namespace CorMon.IocConfig
     {
         public static void ConfigureIocContainer(this IServiceCollection services)
         {
-
-            //services.AddSingleton(provider => { return configuration; });
-
             services.Scan(sc =>
                         sc.FromCallingAssembly()
                           .FromAssemblies(

@@ -7,26 +7,35 @@ Free and Open Source CMS based on ASP.NET Core and MongoDB
 
 - CRUD Based, Anemic Domain Model
 
-- MongoDB
-
-- MVC Core
-
-- Web Api Core
-
-- Redis Cache
-
-- JWT
-
-- ASP.NET Identity Core
+- Onion Architecture
 
 - Unit Testing
 
-- E2E Testing (Automated UI testing by Selenium)
+- E2E Testing
+
+- ASP.NET Core MVC
+
+- ASP.NET Core Web Api
+
+- ASP.NET Core Identity
+
+- MongoDB
+
+- Repository
+
+- Redis Cache
+
+- Cookie Authentication
+
+- JWT Authentication
+
+- Swagger UI
+
 
 - ...
 
 
 # Screenshots
-![CorMon](https://github.com/hamed-shirbandi/CorMon/blob/master/CorMon.Web/wwwroot/content/public/img/screenShots/CorMon2.png)
+![CorMon](https://github.com/hamed-shirbandi/CorMon/blob/master/src/Presentation/CorMon.Web/wwwroot/content/public/img/screenShots/CorMon2.png)
 
-![CorMon](https://github.com/hamed-shirbandi/CorMon/blob/master/CorMon.Web/wwwroot/content/public/img/screenShots/CorMon1.png)
+![CorMon](https://github.com/hamed-shirbandi/CorMon/blob/master/src/Presentation/CorMon.Web/wwwroot/content/public/img/screenShots/CorMon1.png)

@@ -10,13 +10,13 @@
     <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
   </ItemGroup>
-
+  
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\CorMon.Application\CorMon.Application.csproj" />
+    <ProjectReference Include="..\..\..\Libraries\CorMon.Infrastructure\CorMon.Infrastructure.csproj" />
     <ProjectReference Include="..\CorMon.UnitTests.Base\CorMon.UnitTests.Base.csproj" />
-    <ProjectReference Include="..\CorMon.Web\CorMon.Web.csproj" />
   </ItemGroup>
   <Target Name="CopyConfig" AfterTargets="AfterBuild">
-    <Copy SourceFiles="..\CorMon.Web\appsettings.json" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="..\..\..\Presentation\CorMon.Web\appsettings.json" DestinationFolder="$(OutDir)" />
   </Target>
-  
 </Project>

@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web", "CorMon.Web\CorMon.Web.csproj", "{9580FF16-1506-45EB-84A3-D5B8F41C1037}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web", "src\Presentation\CorMon.Web\CorMon.Web.csproj", "{9580FF16-1506-45EB-84A3-D5B8F41C1037}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Application", "CorMon.Application\CorMon.Application.csproj", "{184CE80B-F843-47B2-8ABA-445A866E061F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Application", "src\Libraries\CorMon.Application\CorMon.Application.csproj", "{184CE80B-F843-47B2-8ABA-445A866E061F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Core", "CorMon.Core\CorMon.Core.csproj", "{773F0099-1A7A-40AE-A764-6C1CF08E56DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Core", "src\Libraries\CorMon.Core\CorMon.Core.csproj", "{773F0099-1A7A-40AE-A764-6C1CF08E56DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Infrastructure", "CorMon.Infrastructure\CorMon.Infrastructure.csproj", "{242D4665-8C03-4DCA-AE55-400039C5E1D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Infrastructure", "src\Libraries\CorMon.Infrastructure\CorMon.Infrastructure.csproj", "{242D4665-8C03-4DCA-AE55-400039C5E1D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Resource", "CorMon.Resource\CorMon.Resource.csproj", "{337DC0B1-BFD7-4D40-A30E-6AE9109F7577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Resource", "src\Libraries\CorMon.Resource\CorMon.Resource.csproj", "{337DC0B1-BFD7-4D40-A30E-6AE9109F7577}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.IocConfig", "CorMon.IocConfig\CorMon.IocConfig.csproj", "{F8D1DA8B-5BE2-4FE8-A2D7-F1ADD3868F4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.IocConfig", "src\Libraries\CorMon.IocConfig\CorMon.IocConfig.csproj", "{F8D1DA8B-5BE2-4FE8-A2D7-F1ADD3868F4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{14E82702-68C1-4585-A5B3-783A8EB8E6A0}"
 EndProject
@@ -21,25 +21,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{500772FC-BE27-4D64-A058-77DBB2B8A945}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web.Api", "CorMon.Web.Api\CorMon.Web.Api.csproj", "{6D1ACDB2-0BF4-4166-880D-3BD42203F26F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web.Api", "src\Presentation\CorMon.Web.Api\CorMon.Web.Api.csproj", "{6D1ACDB2-0BF4-4166-880D-3BD42203F26F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{4A62A53D-47BE-40AA-88BB-D0E1CDE85ECB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{453BBB22-F95A-4F0F-B363-2C742A5EDA6D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web.UITests", "CorMon.Web.UITests\CorMon.Web.UITests.csproj", "{2F20FCB0-BE3D-4E8A-8183-7E9B06090F2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web.UITests", "src\Tests\UI\CorMon.Web.UITests\CorMon.Web.UITests.csproj", "{2F20FCB0-BE3D-4E8A-8183-7E9B06090F2D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web.Api.UITests", "CorMon.Web.Api.UITests\CorMon.Web.Api.UITests.csproj", "{3EC9C01B-32F1-4573-BC2E-A821FD5B7E20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web.Api.UITests", "src\Tests\UI\CorMon.Web.Api.UITests\CorMon.Web.Api.UITests.csproj", "{3EC9C01B-32F1-4573-BC2E-A821FD5B7E20}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Application.UnitTests", "CorMon.Application.UnitTests\CorMon.Application.UnitTests.csproj", "{C444E6ED-D72C-4D26-9596-49827F110EA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Application.UnitTests", "src\Tests\Unit\CorMon.Application.UnitTests\CorMon.Application.UnitTests.csproj", "{C444E6ED-D72C-4D26-9596-49827F110EA7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web.UnitTests", "CorMon.Web.UnitTests\CorMon.Web.UnitTests.csproj", "{D90135DF-D711-4386-8095-46E4C186BF03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web.UnitTests", "src\Tests\Unit\CorMon.Web.UnitTests\CorMon.Web.UnitTests.csproj", "{D90135DF-D711-4386-8095-46E4C186BF03}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web.Api.UnitTests", "CorMon.Web.Api.UnitTests\CorMon.Web.Api.UnitTests.csproj", "{B3DAC64F-E9BD-4F9D-B340-34F7632A965C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.Web.Api.UnitTests", "src\Tests\Unit\CorMon.Web.Api.UnitTests\CorMon.Web.Api.UnitTests.csproj", "{B3DAC64F-E9BD-4F9D-B340-34F7632A965C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.UITests.Base", "CorMon.UITests.Base\CorMon.UITests.Base.csproj", "{3C8DA60D-9988-4CBC-AED7-679C5A25C3F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorMon.UITests.Base", "src\Tests\UI\CorMon.UITests.Base\CorMon.UITests.Base.csproj", "{3C8DA60D-9988-4CBC-AED7-679C5A25C3F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.UnitTests.Base", "CorMon.UnitTests.Base\CorMon.UnitTests.Base.csproj", "{92B648F6-C4B0-453F-83A8-806A3F6258B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorMon.UnitTests.Base", "src\Tests\Unit\CorMon.UnitTests.Base\CorMon.UnitTests.Base.csproj", "{92B648F6-C4B0-453F-83A8-806A3F6258B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

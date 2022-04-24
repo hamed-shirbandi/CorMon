@@ -16,13 +16,13 @@
     <PackageReference Include="RedisCache.Core" Version="1.0.3" />
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CorMon.Application\CorMon.Application.csproj" />
-    <ProjectReference Include="..\CorMon.Core\CorMon.Core.csproj" />
-    <ProjectReference Include="..\CorMon.Infrastructure\CorMon.Infrastructure.csproj" />
-    <ProjectReference Include="..\CorMon.IocConfig\CorMon.IocConfig.csproj" />
-    <ProjectReference Include="..\CorMon.Resource\CorMon.Resource.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Libraries\CorMon.Application\CorMon.Application.csproj" />
+		<ProjectReference Include="..\..\Libraries\CorMon.Core\CorMon.Core.csproj" />
+		<ProjectReference Include="..\..\Libraries\CorMon.Infrastructure\CorMon.Infrastructure.csproj" />
+		<ProjectReference Include="..\..\Libraries\CorMon.IocConfig\CorMon.IocConfig.csproj" />
+		<ProjectReference Include="..\..\Libraries\CorMon.Resource\CorMon.Resource.csproj" />
+	</ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
